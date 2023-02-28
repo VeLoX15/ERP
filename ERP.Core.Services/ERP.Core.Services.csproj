@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="DbController.MySql" Version="1.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ERP.Core.Constants\ERP.Core.Constants.csproj" />
+		<ProjectReference Include="..\ERP.Core.Filters\ERP.Core.Filters.csproj" />
+		<ProjectReference Include="..\ERP.Core.Interfaces\ERP.Core.Interfaces.csproj" />
+		<ProjectReference Include="..\ERP.Core.Models\ERP.Core.Models.csproj" />
+		<ProjectReference Include="..\ERP.Core\ERP.Core.csproj" />
+	</ItemGroup>
+
+</Project>

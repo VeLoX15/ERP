@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "kQ/EP3Ff1rtGhjSnIPqTbs9sFzN/I5av1YjyAJOiLfdROPTCd4pfQmcuwQ9FGaAkQNbRLH0VTSZCwEsW2CxHcg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tom\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\Tom\\.nuget\\packages\\dbcontroller\\1.0.1\\dbcontroller.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

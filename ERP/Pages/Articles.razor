@@ -1,0 +1,30 @@
+﻿@page "/articles/filter"
+@inject ArticleService articleService
+
+
+<PageTitle>article</PageTitle>
+
+<h3>Artikelfilter</h3>
+
+<EditForm Model="Article" OnValidSubmit="@SubmitValidForm">
+    <FluentValidationValidator Validator="validator" />
+    <ValidationSummary />
+
+    <div class="col-12">
+        <div class="card">
+            <p>
+                <label>Artikelnummer</label>
+                <InputText @bind-Value="@Artikel.Number"
+            </p>
+            <p>
+                <label>Artikelnummer</label>
+                <InputText @bind-Value="@Artikel.Number"
+            </p>
+        </div>
+    </div>
+</EditForm>
+
+
+@code {
+
+}
