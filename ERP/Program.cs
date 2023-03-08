@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using ERP.Core.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 using System.Reflection;
@@ -23,6 +24,8 @@ namespace FormularPortal
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, configureOptions =>
                 {
                 });
+
+            builder.Services.AddScoped<ArticleService>();
 
             builder.Configuration.AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json"), false, true);
 

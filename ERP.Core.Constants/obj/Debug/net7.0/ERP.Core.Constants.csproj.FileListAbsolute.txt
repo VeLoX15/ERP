@@ -1,0 +1,12 @@
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\bin\Debug\net7.0\ERP.Core.Constants.deps.json
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\bin\Debug\net7.0\ERP.Core.Constants.dll
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\bin\Debug\net7.0\ERP.Core.Constants.pdb
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.csproj.AssemblyReference.cache
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.AssemblyInfoInputs.cache
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.AssemblyInfo.cs
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.csproj.CoreCompileInputs.cache
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.dll
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\refint\ERP.Core.Constants.dll
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ERP.Core.Constants.pdb
+C:\Users\Tom\source\repos\ERP\ERP.Core.Constants\obj\Debug\net7.0\ref\ERP.Core.Constants.dll

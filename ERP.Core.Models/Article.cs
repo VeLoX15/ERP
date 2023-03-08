@@ -1,9 +1,4 @@
 ﻿using DbController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ERP.Core.Models
 {
@@ -40,5 +35,27 @@ namespace ERP.Core.Models
         [CompareField("materials")]
         public List<Material> Materials { get; set; } = new List<Material>();
 
+
+        public Dictionary<string, object?> GetParameters()
+        {
+            return new Dictionary<string, object?>
+            {
+                { "ARTICLE_ID", ArticleId },
+                { "ARTICLE_NUMBER", ArticleNumber },
+                { "NAME", Name },
+                { "DESCRIPTION", Description },
+                { "WEIGHT", Weight },
+                { "LENGTH", Length },
+                { "STOCK", Stock },
+                { "ASSORTMENT_INTAKE", AssortmentIntake },
+                { "SALE_NET", SaleNet },
+                { "SALE_GROSS", SaleGross },
+                { "PURCHASE_NET", PurchaseNet },
+                { "IS_BUNDLE", IsBundle },
+                { "BUNDLE_ARTICLES", BundleArticles },
+                { "CATEGORIE", Categories },
+                { "@MATERIALS", Materials }
+           };
+        }
     }
 }
