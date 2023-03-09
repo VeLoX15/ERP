@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ERP.Core.Constants
+﻿namespace ERP.Core.Constants
 {
-    internal class CustomersStatus
+    public enum CustomersStatus
     {
+        RegisteredUser = 1,
+        NewCustomer = 2,
+        RegularCustomer = 3,
+        VeryImportantCustomer = 4,
+        UntrustedCustomer = 5,
+        Scammer = 6
     }
 }

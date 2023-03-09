@@ -16,5 +16,18 @@ namespace ERP.Core.Models
         public int Number { get; set; }
         [CompareField("sort_number")]
         public int SortNumber { get; set; }
+
+        public Dictionary<string, object?> GetParameters()
+        {
+            return new Dictionary<string, object?>
+            {
+                { "row_id", RowId },
+                { "warehouse_id", WarehouseId },
+                { "section_id", SectionId },
+                { "name", Name },
+                { "number", Number },
+                { "sort_number", SortNumber }
+           };
+        }
     }
 }

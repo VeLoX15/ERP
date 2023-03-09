@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Core.Constants", "ERP.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Core.Filters", "ERP.Core.Filters\ERP.Core.Filters.csproj", "{371271C3-19BD-4B12-BC66-5C9CAEDB58F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Core.Interfaces", "ERP.Core.Interfaces\ERP.Core.Interfaces.csproj", "{EBAB52C1-CE33-488F-9F31-939CEF1DE341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Core.Interfaces", "ERP.Core.Interfaces\ERP.Core.Interfaces.csproj", "{EBAB52C1-CE33-488F-9F31-939CEF1DE341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Core.Models", "ERP.Core.Models\ERP.Core.Models.csproj", "{96082D71-6512-4793-81A8-D183259F795E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Core.Models", "ERP.Core.Models\ERP.Core.Models.csproj", "{96082D71-6512-4793-81A8-D183259F795E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Core.Services", "ERP.Core.Services\ERP.Core.Services.csproj", "{6AD1BB42-1283-49FE-82A6-95F980020F27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Core.Services", "ERP.Core.Services\ERP.Core.Services.csproj", "{6AD1BB42-1283-49FE-82A6-95F980020F27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP.Core.Validators", "ERP.Core.Validators\ERP.Core.Validators.csproj", "{7D693C8E-B9F3-43C2-93D2-7AF4F53C3929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ERP.Core.Validators", "ERP.Core.Validators\ERP.Core.Validators.csproj", "{7D693C8E-B9F3-43C2-93D2-7AF4F53C3929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

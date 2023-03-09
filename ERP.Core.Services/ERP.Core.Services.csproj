@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 	  <PackageReference Include="DbController.MySql" Version="1.0.1" />
+	  <PackageReference Include="DbController.SqlServer" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

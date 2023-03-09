@@ -301,6 +301,10 @@
             "DbController.MySql": {
               "target": "Package",
               "version": "[1.0.1, )"
+            },
+            "DbController.SqlServer": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [
@@ -497,6 +501,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Blazor.Pagination": {
+              "target": "Package",
+              "version": "[2.0.2, )"
+            },
             "DbController.MySql": {
               "target": "Package",
               "version": "[1.0.1, )"
