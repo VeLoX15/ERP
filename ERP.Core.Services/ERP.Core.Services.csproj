@@ -9,6 +9,7 @@
 	<ItemGroup>
 	  <PackageReference Include="DbController.MySql" Version="1.0.1" />
 	  <PackageReference Include="DbController.SqlServer" Version="1.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>

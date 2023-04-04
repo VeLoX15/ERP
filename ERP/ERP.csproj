@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <PackageReference Include="Blazor.Pagination" Version="2.0.2" />
-    <PackageReference Include="DbController.MySql" Version="1.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
     <PackageReference Include="vNext.BlazorComponents.FluentValidation" Version="1.1.1" />
   </ItemGroup>
@@ -26,6 +25,7 @@
 		<ProjectReference Include="..\ERP.Core.Constants\ERP.Core.Constants.csproj" />
 		<ProjectReference Include="..\ERP.Core.Services\ERP.Core.Services.csproj" />
 		<ProjectReference Include="..\ERP.Core.Validators\ERP.Core.Validators.csproj" />
+		<ProjectReference Include="..\DatabaseControllerProvider\DatabaseControllerProvider.csproj" />
 	</ItemGroup>
 
 </Project>

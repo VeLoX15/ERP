@@ -1,7 +1,6 @@
-﻿@page "/Admin/Warehouse"
-@page "/Admin/Warehouse/{Page:int}"
+﻿@page "/Admin/Warehouses"
+@page "/Admin/Warehouses/{Page:int}"
 @inject WarehouseService warehouseService
-@inject DbProviderService dbProviderService
 @inject NavigationManager navigationManager
 
 
@@ -17,12 +16,12 @@
         <div class="card-content" style="padding: 0 1.3rem;">
             <EditForm Model="Filter" OnValidSubmit="async () => await LoadAsync(true)">
                 <div class="form-floating mb-3">
-                    <InputText @bind-Value="Filter.SearchPhrase" class="form-control" id="form-filter-searchphrase" placeholder="Suchbegriff" />
-                    <label for="form-filter-searchphrase">Suchbegriff</label>
+                    <InputText @bind-Value="Filter.SearchPhrase" class="form-control" id="form-filter-searchphrase" placeholder="Search Keyword" />
+                    <label for="form-filter-searchphrase">Search Keyword</label>
                 </div>
 
                 <div class="toolbar">
-                    <button type="submit" class="btn btn-primary">Suchen</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
 
             </EditForm>
@@ -41,7 +40,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Aktiv</th>
-                            <th>Login erforderlich</th>
+                            <th>Login required</th>
                             <th class="text-right">AKTION</th>
                         </tr>
                     </thead>
@@ -53,7 +52,7 @@
                                 <td>@item.Number</td>
                                 <td>@item.SortNumber</td>
                                 <td class="text-right">
-                                    <a class="btn btn-primary" href="/Admin/Warehouse/@item.WarehouseId"><i class="fa-solid fa-edit"></i></a>
+                                    <a class="btn btn-primary" href="/Admin/Warehouses/@item.WarehouseId"><i class="fa-solid fa-edit"></i></a>
                                 </td>
                             </tr>
                         </Virtualize>
@@ -61,7 +60,7 @@
                         @if (!Data.Any())
                         {
                             <tr>
-                                <td colspan="5" class="text-center">Es wurden keine Formulare gefunden.</td>
+                                <td colspan="5" class="text-center">No warehouse was found.</td>
                             </tr>
                         }
                     </tbody>
@@ -69,4 +68,9 @@
             </div>
         </div>
     </div>
+
+    <Pagination CurrentPageNumber="Page"
+                ItemsPerPage="Filter.Limit"
+                TotalItems="TotalItems"
+                NavUrl="/Admin/Warehouses/" />
 </div>

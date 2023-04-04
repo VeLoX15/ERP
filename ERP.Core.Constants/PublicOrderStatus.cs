@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ERP.Core.Constants
+﻿namespace ERP.Core.Constants
 {
-    internal class PublicOrderStatus
+    public enum PublicOrderStatus
     {
+        Open = 1,
+        InProgress = 2,
+        InShipping = 3,
+        Completed = 4,
+        Stoning = 5
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rs+fw9AWD972+bQ18t9ki9xYdDcgIgzh8vB0Cnclvu5ZOq+oFyBtiHTSVG6AxMtQTj7iTNkk6bmsdqnT4ev9zg==",
+  "dgSpecHash": "PIMiSmYvw8Ve3LDziq+9bJFWtbNoHg4EYKfxd4Xc3DP3qs3Y+3LSHqpP4S9o6NG96/kaIysIYW/wkUlGhhcC0w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,8 @@
     "C:\\Users\\Tom\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.1\\microsoft.aspnetcore.components.forms.7.0.1.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.1\\microsoft.aspnetcore.components.web.7.0.1.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.1\\microsoft.aspnetcore.metadata.7.0.1.nupkg.sha512",
+    "C:\\Users\\Tom\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Tom\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.4\\microsoft.extensions.configuration.binder.7.0.4.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Tom\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.0\\microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",

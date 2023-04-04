@@ -7,14 +7,34 @@ namespace ERP.Core.Services
 {
     public class WarehouseService : IModelService<Warehouse, int, WarehouseFilter>
     {
-        public Task CreateAsync(Warehouse input, IDbController dbController)
+        public async Task CreateAsync(Warehouse input, IDbController dbController)
         {
-            throw new NotImplementedException();
+            string sql = @$"INSERT INTO articles
+(
+warehouse_id,
+name,
+number,
+sort_number
+)
+VALUES
+(
+@WAREHOUSE_ID,
+@NAME,
+@NUMBER,
+@SORT_NUMBER
+); {dbController.GetLastIdSql()}";
+
+            input.WarehouseId = await dbController.GetFirstAsync<int>(sql, input.GetParameters());
         }
 
-        public Task DeleteAsync(Warehouse input, IDbController dbController)
+        public async Task DeleteAsync(Warehouse input, IDbController dbController)
         {
-            throw new NotImplementedException();
+            string sql = "DELETE FROM warehouses WHERE warehouse_id = @WAREHOUSE_ID";
+
+            await dbController.QueryAsync(sql, new
+            {
+                WAREHOUSE_ID = input.WarehouseId
+            });
         }
 
         public Task<Warehouse?> GetAsync(int identifier, IDbController dbController)
@@ -42,9 +62,15 @@ namespace ERP.Core.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Warehouse input, IDbController dbController)
+        public async Task UpdateAsync(Warehouse input, IDbController dbController)
         {
-            throw new NotImplementedException();
+            string sql = @"UPDATE warehouses SET 
+warehouse_id = @WAREHOUSE_ID,
+name = @NAME,
+number = @NUMBER,
+sort_number = @SORT_NUMBER";
+
+            await dbController.QueryAsync(sql, input.GetParameters());
         }
 
         public Task UpdateAsync(Warehouse input, Warehouse oldInputToCompare, IDbController dbController)

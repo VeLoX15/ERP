@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ERP.Core.Constants
+﻿namespace ERP.Core.Constants
 {
-    internal class CustomersGroup
+    public enum CustomersGroup
     {
+        B2B = 1,
+        B2C = 2
     }
 }

@@ -24,8 +24,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DbController.MySql" Version="1.0.1" />
-  </ItemGroup>
-
 </Project>

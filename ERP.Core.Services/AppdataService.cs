@@ -1,5 +1,7 @@
-﻿using DbController;
+﻿using DatabaseControllerProvider;
+using DbController;
 using ERP.Core.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace ERP.Core.Services
 {
@@ -16,7 +18,6 @@ namespace ERP.Core.Services
             // HACK: Refactor to dependency injection
             DbProviderService dbProviderService = new DbProviderService();
             using IDbController dbController = dbProviderService.GetDbController(DbProvider, ConnectionString);
-            Permissions = await PermissionService.GetAllAsync(dbController);
 
             // TODO: Init FirstUserExists
         }
