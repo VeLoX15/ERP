@@ -1,0 +1,59 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "ERP.Core.Interfaces/1.0.0": {
+        "dependencies": {
+          "DbController": "1.0.1"
+        },
+        "runtime": {
+          "ERP.Core.Interfaces.dll": {}
+        }
+      },
+      "Dapper/2.0.123": {
+        "runtime": {
+          "lib/net5.0/Dapper.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.123.33578"
+          }
+        }
+      },
+      "DbController/1.0.1": {
+        "dependencies": {
+          "Dapper": "2.0.123"
+        },
+        "runtime": {
+          "lib/net7.0/DbController.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ERP.Core.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Dapper/2.0.123": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RDFF4rBLLmbpi6pwkY7q/M6UXHRJEOerplDGE5jwEkP/JGJnBauAClYavNKJPW1yOTWRPIyfj4is3EaJxQXILQ==",
+      "path": "dapper/2.0.123",
+      "hashPath": "dapper.2.0.123.nupkg.sha512"
+    },
+    "DbController/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2g9MyHW8+jA6DretdBRcfx2pJP7kg6dOiijvQc7lMCJ5PFk46/41x+czSEwPvPHGYQl/3U5RDUQhn8uw6d9WgQ==",
+      "path": "dbcontroller/1.0.1",
+      "hashPath": "dbcontroller.1.0.1.nupkg.sha512"
+    }
+  }
+}

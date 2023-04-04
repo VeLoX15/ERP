@@ -1,9 +1,5 @@
 ﻿using DbController;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ERP.Core.Models
 {
@@ -23,7 +19,19 @@ namespace ERP.Core.Models
         public string Email { get; set; } = string.Empty;
         [CompareField("telefon")]
         public string Telefon { get; set; } = string.Empty;
-        
 
+        public Dictionary<string, object?> GetParameters()
+        {
+            return new Dictionary<string, object?>
+            {
+                { "CUSTOMER_ID", CustomerId },
+                { "CUSTOMER_NUMBER", CustomerNumber },
+                { "USER_NAME", UserName },
+                { "FIRST_NAME", FirstName },
+                { "LAST_NAME", LastName },
+                { "EMAIL", Email },
+                { "TELEFON", Telefon}
+           };
+        }
     }
 }

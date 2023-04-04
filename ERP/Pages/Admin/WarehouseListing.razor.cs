@@ -2,6 +2,7 @@ using Blazor.Pagination;
 using DbController;
 using ERP.Core.Models;
 using ERP.Core.Filters;
+using ERP.Core.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace ERP.Pages.Admin
@@ -22,7 +23,7 @@ namespace ERP.Pages.Admin
         {
             if (navigateToPage1)
             {
-                navigationManager.NavigateTo("/Admin/Warehouse/");
+                navigationManager.NavigateTo("/Admin/Warehouses/");
             }
 
             Filter.PageNumber = Page;

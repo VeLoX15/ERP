@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj": {}
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\ERP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj",
         "projectName": "ERP.Core.Constants",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\Source\\Repos\\ERP\\ERP.Core.Constants\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,21 +55,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj",
         "projectName": "ERP.Core.Filters",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\Source\\Repos\\ERP\\ERP.Core.Filters\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -116,21 +116,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj",
         "projectName": "ERP.Core.Interfaces",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\Source\\Repos\\ERP\\ERP.Core.Interfaces\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -177,21 +177,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj",
         "projectName": "ERP.Core.Models",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -205,14 +205,14 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
               }
             }
           }
@@ -242,21 +242,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj",
         "projectName": "ERP.Core.Services",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -270,20 +270,20 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
               }
             }
           }
@@ -298,6 +298,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "DbController": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
             "DbController.MySql": {
               "target": "Package",
               "version": "[1.0.1, )"
@@ -305,6 +309,18 @@
             "DbController.SqlServer": {
               "target": "Package",
               "version": "[1.0.1, )"
+            },
+            "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[7.0.4, )"
             }
           },
           "imports": [
@@ -323,21 +339,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj",
         "projectName": "ERP.Core.Validators",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\Source\\Repos\\ERP\\ERP.Core.Validators\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -378,21 +394,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
         "projectName": "ERP.Core",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -439,21 +455,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\ERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\ERP.csproj",
         "projectName": "ERP",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\ERP.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -467,26 +483,26 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj"
               },
-              "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
-                "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
+              "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
+                "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
               }
             }
           }
@@ -537,7 +553,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,14 +1,14 @@
-﻿using ERP.Core.Services;
+﻿using DbController.MySql;
+using ERP.Core.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
 using System.Reflection;
 
-namespace FormularPortal
+namespace ERP
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -25,8 +25,15 @@ namespace FormularPortal
                 {
                 });
 
+            builder.Services.AddScoped<DbProviderService>();
+            builder.Services.AddScoped<PermissionService>();
+            builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<ArticleService>();
-
+            builder.Services.AddScoped<WarehouseService>();
+            builder.Services.AddScoped<SectionService>();
+            builder.Services.AddScoped<RowService>();
+            builder.Services.AddScoped<RackService>();
+            builder.Services.AddScoped<CompartmentService>();
             builder.Configuration.AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json"), false, true);
 
 #if DEBUG
@@ -40,14 +47,14 @@ namespace FormularPortal
 
 
             // FluentValidation
-
-
-
-
-
+            builder.Services.AddValidatorsFromAssembly(Assembly.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ERP.Core.Validators.dll")));
             var app = builder.Build();
+            using var serviceScope = app.Services.CreateScope();
 
-            //await AppdatenService.InitAsync(builder.Configuration);
+            var services = serviceScope.ServiceProvider;
+            var dbProviderService = services.GetRequiredService<DbProviderService>()!;
+
+            await AppdatenService.InitAsync(builder.Configuration, dbProviderService);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

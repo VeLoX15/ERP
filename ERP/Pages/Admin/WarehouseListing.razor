@@ -1,5 +1,5 @@
-﻿@page "/Admin/Warehouse"
-@page "/Admin/Warehouse/{Page:int}"
+﻿@page "/Admin/Warehouses"
+@page "/Admin/Warehouses/{Page:int}"
 @inject WarehouseService warehouseService
 @inject DbProviderService dbProviderService
 @inject NavigationManager navigationManager
@@ -53,7 +53,7 @@
                                 <td>@item.Number</td>
                                 <td>@item.SortNumber</td>
                                 <td class="text-right">
-                                    <a class="btn btn-primary" href="/Admin/Warehouse/@item.WarehouseId"><i class="fa-solid fa-edit"></i></a>
+                                    <a class="btn btn-primary" href="/Admin/Warehouses/@item.WarehouseId"><i class="fa-solid fa-edit"></i></a>
                                 </td>
                             </tr>
                         </Virtualize>

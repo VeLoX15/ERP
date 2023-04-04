@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {}
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
+    "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
+        "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
         "projectName": "ERP.Core",
-        "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
-        "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\obj\\",
+        "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj",
+        "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

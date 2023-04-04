@@ -1,0 +1,12 @@
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\bin\Debug\net7.0\ERP.Core.Validators.deps.json
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\bin\Debug\net7.0\ERP.Core.Validators.dll
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\bin\Debug\net7.0\ERP.Core.Validators.pdb
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.csproj.AssemblyReference.cache
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.AssemblyInfoInputs.cache
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.AssemblyInfo.cs
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.csproj.CoreCompileInputs.cache
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.dll
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\refint\ERP.Core.Validators.dll
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ERP.Core.Validators.pdb
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Validators\obj\Debug\net7.0\ref\ERP.Core.Validators.dll

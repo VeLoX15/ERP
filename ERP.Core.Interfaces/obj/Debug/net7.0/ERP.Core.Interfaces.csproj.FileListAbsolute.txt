@@ -1,0 +1,12 @@
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\bin\Debug\net7.0\ERP.Core.Interfaces.deps.json
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\bin\Debug\net7.0\ERP.Core.Interfaces.dll
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\bin\Debug\net7.0\ERP.Core.Interfaces.pdb
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.csproj.AssemblyReference.cache
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.AssemblyInfoInputs.cache
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.AssemblyInfo.cs
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.dll
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\refint\ERP.Core.Interfaces.dll
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ERP.Core.Interfaces.pdb
+C:\Users\tomsa\Source\Repos\ERP\ERP.Core.Interfaces\obj\Debug\net7.0\ref\ERP.Core.Interfaces.dll

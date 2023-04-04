@@ -2,7 +2,7 @@
 using DbController.SqlServer;
 using DbController;
 
-namespace DatabaseControllerProvider
+namespace ERP.Core.Services
 {
     public sealed class DbProviderService
     {

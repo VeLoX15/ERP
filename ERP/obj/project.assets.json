@@ -157,12 +157,12 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authorization/7.0.1": {
+      "Microsoft.AspNetCore.Authorization/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Metadata": "7.0.1",
+          "Microsoft.AspNetCore.Metadata": "7.0.4",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0"
+          "Microsoft.Extensions.Options": "7.0.1"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Authorization.dll": {
@@ -175,11 +175,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components/7.0.1": {
+      "Microsoft.AspNetCore.Components/7.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "7.0.1",
-          "Microsoft.AspNetCore.Components.Analyzers": "7.0.1"
+          "Microsoft.AspNetCore.Authorization": "7.0.4",
+          "Microsoft.AspNetCore.Components.Analyzers": "7.0.4"
         },
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Components.dll": {
@@ -192,10 +192,27 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Components.Analyzers/7.0.1": {
+      "Microsoft.AspNetCore.Components.Analyzers/7.0.4": {
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/7.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "7.0.4",
+          "Microsoft.AspNetCore.Components": "7.0.4"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.AspNetCore.Components.Forms/7.0.1": {
@@ -234,7 +251,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Metadata/7.0.1": {
+      "Microsoft.AspNetCore.Metadata/7.0.4": {
         "type": "package",
         "compile": {
           "lib/net7.0/Microsoft.AspNetCore.Metadata.dll": {
@@ -245,6 +262,64 @@
           "lib/net7.0/Microsoft.AspNetCore.Metadata.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "Microsoft.Extensions.Configuration/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/7.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.Binder.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Configuration.Binder.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
         }
       },
       "Microsoft.Extensions.DependencyInjection/7.0.0": {
@@ -298,7 +373,7 @@
           "buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
         }
       },
-      "Microsoft.Extensions.Options/7.0.0": {
+      "Microsoft.Extensions.Options/7.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
@@ -912,13 +987,17 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "DbController": "1.0.1",
           "DbController.MySql": "1.0.1",
           "DbController.SqlServer": "1.0.1",
           "ERP.Core": "1.0.0",
           "ERP.Core.Constants": "1.0.0",
           "ERP.Core.Filters": "1.0.0",
           "ERP.Core.Interfaces": "1.0.0",
-          "ERP.Core.Models": "1.0.0"
+          "ERP.Core.Models": "1.0.0",
+          "Microsoft.AspNetCore.Components.Authorization": "7.0.4",
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "7.0.4"
         },
         "compile": {
           "bin/placeholder/ERP.Core.Services.dll": {}
@@ -1133,10 +1212,10 @@
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
       ]
     },
-    "Microsoft.AspNetCore.Authorization/7.0.1": {
-      "sha512": "yhkU+dAvkp1o1ZhihwKFsGy2RXxBaLCohev0HN8yaqfFsV1ThvQIRPh6GKcoPln/ARY23N0gIkOv5zx36HRXhg==",
+    "Microsoft.AspNetCore.Authorization/7.0.4": {
+      "sha512": "ccVCRKKSclEs88EN61pJkVModWE3e0h/YnLZYBgBoelUZSIbbKuzcJBdnt03G+sGV3fU0oC365C0Zjmd2m8qfA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authorization/7.0.1",
+      "path": "microsoft.aspnetcore.authorization/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1148,14 +1227,14 @@
         "lib/net7.0/Microsoft.AspNetCore.Authorization.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
-        "microsoft.aspnetcore.authorization.7.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.authorization.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components/7.0.1": {
-      "sha512": "1oRvYf1Mv51HeV8fj69PC24N1GJzukzpr2av1ZLdVXAAsYbSZkf4wJrx0ztjolw8MhDoxKzzdaNRFagFf4mM1Q==",
+    "Microsoft.AspNetCore.Components/7.0.4": {
+      "sha512": "abcaqRJo+7HU1KIqGLQ7YtwgStunyQXhPf5dgeOWL3d7VrV79aeTqhXnE/5DR7jiy68toVbfj0Qhib0mkIIuKg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components/7.0.1",
+      "path": "microsoft.aspnetcore.components/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1163,14 +1242,14 @@
         "THIRD-PARTY-NOTICES.txt",
         "lib/net7.0/Microsoft.AspNetCore.Components.dll",
         "lib/net7.0/Microsoft.AspNetCore.Components.xml",
-        "microsoft.aspnetcore.components.7.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.components.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.components.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Components.Analyzers/7.0.1": {
-      "sha512": "ppVov06v5p2O2CYR/afInph+7HA9gPk2VjTAYLNk2Tj/OOJWku0c6moXn/pjmXnhcJ9aXEciNmjS+U6H+0Xctg==",
+    "Microsoft.AspNetCore.Components.Analyzers/7.0.4": {
+      "sha512": "PgQqzTlANn/i/cVOz8iCiVl+7t15t5ZaVL+jyQR4bVbL4E4Ktv6FDceUZqUwN+6J40lZvqRnNWajsDWTyrFKNQ==",
       "type": "package",
-      "path": "microsoft.aspnetcore.components.analyzers/7.0.1",
+      "path": "microsoft.aspnetcore.components.analyzers/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1179,8 +1258,23 @@
         "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
         "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
-        "microsoft.aspnetcore.components.analyzers.7.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Authorization/7.0.4": {
+      "sha512": "61bkhyQilWrk66kS0u5Jv8LkiJoVEIhmQMnv/O0oPSkOvCvmfBcv5Ue5onQb5tTh+6MC2UI0VVHFgcFKlW05lQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.authorization/7.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net7.0/Microsoft.AspNetCore.Components.Authorization.dll",
+        "lib/net7.0/Microsoft.AspNetCore.Components.Authorization.xml",
+        "microsoft.aspnetcore.components.authorization.7.0.4.nupkg.sha512",
+        "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Components.Forms/7.0.1": {
@@ -1213,10 +1307,10 @@
         "microsoft.aspnetcore.components.web.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Metadata/7.0.1": {
-      "sha512": "IY2hcEYR+q4PJ/rsfzakTTeS8UOU14rlYzfTWArJCmfL+jpNeu0pkr7SHiRQbL1MKNz7aT4n3qQG7jcGHQVOjQ==",
+    "Microsoft.AspNetCore.Metadata/7.0.4": {
+      "sha512": "AxRqILbKo0fwUFqazh88qRaWJfh3OOSOPE6tm/H+IOvX0hrn2M95dukO+ZEk+idL++oOoVkqK30AgUyPAKFF5g==",
       "type": "package",
-      "path": "microsoft.aspnetcore.metadata/7.0.1",
+      "path": "microsoft.aspnetcore.metadata/7.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1228,8 +1322,89 @@
         "lib/net7.0/Microsoft.AspNetCore.Metadata.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
-        "microsoft.aspnetcore.metadata.7.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.7.0.4.nupkg.sha512",
         "microsoft.aspnetcore.metadata.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Configuration/7.0.0": {
+      "sha512": "tldQUBWt/xeH2K7/hMPPo5g8zuLc3Ro9I5d4o/XrxvxOCA2EZBtW7bCHHTc49fcBtvB8tLAb/Qsmfrq+2SJ4vA==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Configuration.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Configuration.targets",
+        "lib/net462/Microsoft.Extensions.Configuration.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.xml",
+        "lib/net6.0/Microsoft.Extensions.Configuration.dll",
+        "lib/net6.0/Microsoft.Extensions.Configuration.xml",
+        "lib/net7.0/Microsoft.Extensions.Configuration.dll",
+        "lib/net7.0/Microsoft.Extensions.Configuration.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+        "microsoft.extensions.configuration.7.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
+      "sha512": "f34u2eaqIjNO9YLHBz8rozVZ+TcFiFs0F3r7nUJd7FRkVSxk8u4OpoK226mi49MwexHOR2ibP9MFvRUaLilcQQ==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.abstractions/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Configuration.Abstractions.targets",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+        "microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.Binder/7.0.4": {
+      "sha512": "8+XPvJnHZsYgHOQlcMuQe7QNF5KdVKHH1F/wW3nd8/u81Gk/XFAYMDP0Lpz18h7/AM95M662vvqMorcYxCBB4w==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.binder/7.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Configuration.Binder.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Configuration.Binder.targets",
+        "lib/net462/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/net462/Microsoft.Extensions.Configuration.Binder.xml",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/net6.0/Microsoft.Extensions.Configuration.Binder.xml",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/net7.0/Microsoft.Extensions.Configuration.Binder.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+        "microsoft.extensions.configuration.binder.7.0.4.nupkg.sha512",
+        "microsoft.extensions.configuration.binder.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.Extensions.DependencyInjection/7.0.0": {
@@ -1360,10 +1535,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Options/7.0.0": {
-      "sha512": "lP1yBnTTU42cKpMozuafbvNtQ7QcBjr/CcK3bYOGEMH55Fjt+iecXjT6chR7vbgCMqy3PG3aNQSZgo/EuY/9qQ==",
+    "Microsoft.Extensions.Options/7.0.1": {
+      "sha512": "pZRDYdN1FpepOIfHU62QoBQ6zdAoTvnjxFfqAzEd9Jhb2dfhA5i6jeTdgGgcgTWFRC7oT0+3XrbQu4LjvgX1Nw==",
       "type": "package",
-      "path": "microsoft.extensions.options/7.0.0",
+      "path": "microsoft.extensions.options/7.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1384,7 +1559,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Options.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
-        "microsoft.extensions.options.7.0.0.nupkg.sha512",
+        "microsoft.extensions.options.7.0.1.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -2717,19 +2892,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tom\\.nuget\\packages\\": {}
+    "C:\\Users\\tomsa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj",
+      "projectUniqueName": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\ERP.csproj",
       "projectName": "ERP",
-      "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\ERP.csproj",
-      "packagesPath": "C:\\Users\\Tom\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP\\obj\\",
+      "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\ERP.csproj",
+      "packagesPath": "C:\\Users\\tomsa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Tom\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tomsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2743,26 +2918,26 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Constants\\ERP.Core.Constants.csproj"
             },
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Filters\\ERP.Core.Filters.csproj"
             },
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Interfaces\\ERP.Core.Interfaces.csproj"
             },
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Models\\ERP.Core.Models.csproj"
             },
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Services\\ERP.Core.Services.csproj"
             },
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core.Validators\\ERP.Core.Validators.csproj"
             },
-            "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
-              "projectPath": "C:\\Users\\Tom\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
+            "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj": {
+              "projectPath": "C:\\Users\\tomsa\\source\\repos\\ERP\\ERP.Core\\ERP.Core.csproj"
             }
           }
         }
@@ -2813,7 +2988,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
