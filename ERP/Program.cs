@@ -1,6 +1,10 @@
-﻿using ERP.Core.Services;
+﻿using Dapper;
+using DbController.TypeHandler;
+using ERP.Core.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
+using Tabletop.Core.Services;
 
 namespace ERP
 {
@@ -10,6 +14,11 @@ namespace ERP
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            SqlMapper.AddTypeHandler(typeof(Guid), new GuidTypeHandler());
+            SqlMapper.RemoveTypeMap(typeof(Guid));
+            SqlMapper.RemoveTypeMap(typeof(Guid?));
+
+            var config = builder.Configuration;
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor()
@@ -23,31 +32,26 @@ namespace ERP
                 {
                 });
 
-            builder.Services.AddScoped<DbProviderService>();
             builder.Services.AddScoped<PermissionService>();
             builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<ArticleService>();
             builder.Services.AddScoped<WarehouseService>();
             builder.Services.AddScoped<SectionService>();
             builder.Services.AddScoped<RowService>();
             builder.Services.AddScoped<RackService>();
-            builder.Services.AddScoped<CompartmentService>();
+
             builder.Configuration.AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json"), false, true);
 
-#if DEBUG
-
-            builder.Configuration.AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.development.json"), true, true);
-#endif
-
             // FluentValidation
-            builder.Services.AddValidatorsFromAssembly(Assembly.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ERP.Core.Validators.dll")));
+            builder.Services.AddValidatorsFromAssembly(Assembly.LoadFrom(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ERP.Core.dll")));
             var app = builder.Build();
             using var serviceScope = app.Services.CreateScope();
 
             var services = serviceScope.ServiceProvider;
-            var dbProviderService = services.GetRequiredService<DbProviderService>()!;
 
-            await AppdatenService.InitAsync(builder.Configuration, dbProviderService);
+
+            await AppdatenService.InitAsync(builder.Configuration);
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -65,6 +69,7 @@ namespace ERP
 
             app.UseAuthentication();
 
+            app.MapControllers();
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
 

@@ -1,32 +1,26 @@
 ﻿using DbController;
-using ERP.Core.Interfaces;
 using ERP.Core.Models;
 
 namespace ERP.Core.Services
 {
     public class RowService : IModelService<Row, int>
     {
-        public Task CreateAsync(Row input, IDbController dbController)
+        public Task CreateAsync(Row input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Row input, IDbController dbController)
+        public Task DeleteAsync(Row input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Row?> GetAsync(int identifier, IDbController dbController)
+        public Task<Row?> GetAsync(int identifier, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Row input, IDbController dbController)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Row input, Row oldInputToCompare, IDbController dbController)
+        public Task UpdateAsync(Row input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

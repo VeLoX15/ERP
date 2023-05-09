@@ -4,5 +4,6 @@ namespace ERP.Core.Filters
 {
     public class UserFilter : PageFilterBase
     {
+
     }
 }

@@ -8,18 +8,21 @@
 
   <ItemGroup>
     <Folder Include="Pages\Account\" />
+    <Folder Include="Pages\Account\" />
+    <Folder Include="wwwroot\css\bootstrap\" />
     <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\lib\bootstrap-icons\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Blazor.Pagination" Version="2.0.2" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
     <PackageReference Include="vNext.BlazorComponents.FluentValidation" Version="1.1.1" />
   </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\ERP.Core\ERP.Core.csproj" />
-		<ProjectReference Include="..\ERP.Core.Services\ERP.Core.Services.csproj" />
 	</ItemGroup>
 
 </Project>

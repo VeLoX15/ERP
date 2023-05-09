@@ -1,33 +1,26 @@
 ﻿using DbController;
-using ERP.Core.Interfaces;
 using ERP.Core.Models;
 
 namespace ERP.Core.Services
 {
-    public class CompartmentService : IModelService<Tray, int
-        >
+    public class CompartmentService : IModelService<Compartment, int>
     {
-        public Task CreateAsync(Tray input, IDbController dbController)
+        public Task CreateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Tray input, IDbController dbController)
+        public Task DeleteAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Tray?> GetAsync(int identifier, IDbController dbController)
+        public Task<Compartment?> GetAsync(int identifier, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Tray input, IDbController dbController)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Tray input, Tray oldInputToCompare, IDbController dbController)
+        public Task UpdateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
         }

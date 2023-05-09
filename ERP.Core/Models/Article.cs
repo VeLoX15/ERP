@@ -20,19 +20,14 @@ namespace ERP.Core.Models
         public int Stock { get; set; }
         [CompareField("assortment_intake")]
         public DateTime AssortmentIntake { get; set; }
-        [CompareField("sale_net")]
-        public decimal SaleNet { get; set; }
-        [CompareField("sale_gross")]
-        public decimal SaleGross { get; set; }
-        [CompareField("purchase_net")]
-        public decimal PurchaseNet { get; set; }
+        [CompareField("purchase_price")]
+        public decimal PurchasePrice { get; set; }
+        [CompareField("selling_price")]
+        public decimal SellingPrice { get; set; }
         [CompareField("is_bundle")]
         public bool IsBundle { get; set; }
-        [CompareField("bundle_articles")]
         public List<Article> BundleArticles { get; set; } = new List<Article>();
-        [CompareField("categories")]
         public List<Category> Categories { get; set; } = new List<Category>();
-        [CompareField("materials")]
         public List<Material> Materials { get; set; } = new List<Material>();
 
 
@@ -48,13 +43,9 @@ namespace ERP.Core.Models
                 { "LENGTH", Length },
                 { "STOCK", Stock },
                 { "ASSORTMENT_INTAKE", AssortmentIntake },
-                { "SALE_NET", SaleNet },
-                { "SALE_GROSS", SaleGross },
-                { "PURCHASE_NET", PurchaseNet },
-                { "IS_BUNDLE", IsBundle },
-                { "BUNDLE_ARTICLES", BundleArticles },
-                { "CATEGORIE", Categories },
-                { "@MATERIALS", Materials }
+                { "PURCHASE_PRICE", PurchasePrice },
+                { "SELLING_PRICE", SellingPrice },
+                { "IS_BUNDLE", IsBundle }
            };
         }
     }

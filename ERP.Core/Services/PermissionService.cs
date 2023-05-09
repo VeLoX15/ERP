@@ -1,40 +1,13 @@
 ﻿using DbController;
-using ERP.Core.Interfaces;
 using ERP.Core.Models;
 
 namespace ERP.Core.Services
 {
-    public class PermissionService : IModelService<Permission, int>
+    public class PermissionService
     {
-        public Task CreateAsync(Permission input, IDbController dbController)
+        public async Task<List<Permission>> GetUserPermissionsAsync(int userId, IDbController dbController, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(Permission input, IDbController dbController)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Permission?> GetAsync(int permissionId, IDbController dbController)
-        {
-            string sql = "SELECT * FROM permissions WHERE permission_id = @PERMISSION_ID";
-
-            var item = dbController.GetFirstAsync<Permission>(sql, new
-            {
-                PERMISSION_ID = permissionId
-            });
-
-            return item;
-        }
-
-        public Task UpdateAsync(Permission input, IDbController dbController)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<Permission>> GetUserPermissionsAsync(int userId, IDbController dbController)
-        {
+            cancellationToken.ThrowIfCancellationRequested();
             string sql = @"SELECT p.*
     FROM user_permissions up
     INNER JOIN permissions p ON (p.permission_id = up.permission_id)
@@ -43,19 +16,22 @@ namespace ERP.Core.Services
             var list = await dbController.SelectDataAsync<Permission>(sql, new
             {
                 USER_ID = userId
-            });
+            }, cancellationToken);
+
+            //await LoadPermissionDescriptionsAsync(list, dbController, cancellationToken);
 
             return list;
         }
 
-        public async Task UpdateUserPermissionsAsync(User user, IDbController dbController)
+        public async Task UpdateUserPermissionsAsync(User user, IDbController dbController, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             // Step 1: Delete all permissions for the user.
             string sql = "DELETE FROM user_permissions WHERE user_id = @USER_ID";
             await dbController.QueryAsync(sql, new
             {
                 USER_ID = user.UserId
-            });
+            }, cancellationToken);
 
             // Step 2: Add all permissions from the object back.
             foreach (var permission in user.Permissions)
@@ -75,7 +51,7 @@ namespace ERP.Core.Services
                 {
                     USER_ID = user.UserId,
                     PERMISSION_ID = permission.PermissionId
-                });
+                }, cancellationToken);
 
             }
         }
@@ -83,14 +59,25 @@ namespace ERP.Core.Services
         {
             string sql = "SELECT * FROM permissions";
 
-
             var list = await dbController.SelectDataAsync<Permission>(sql);
+            //await LoadPermissionDescriptionsAsync(list, dbController);
             return list;
         }
 
-        public Task UpdateAsync(Permission input, Permission oldInputToCompare, IDbController dbController)
-        {
-            throw new NotImplementedException();
-        }
+        //private static async Task LoadPermissionDescriptionsAsync(List<Permission> list, IDbController dbController, CancellationToken cancellationToken = default)
+        //{
+        //    cancellationToken.ThrowIfCancellationRequested();
+        //    if (list.Any())
+        //    {
+        //        IEnumerable<int> permissionIds = list.Select(x => x.Id);
+        //        string sql = $"SELECT * FROM permission_description WHERE permission_id IN ({string.Join(",", permissionIds)})";
+        //        List<PermissionDescription> descriptions = await dbController.SelectDataAsync<PermissionDescription>(sql, null, cancellationToken);
+
+        //        foreach (var permission in list)
+        //        {
+        //            permission.Description = descriptions.Where(x => x.PermissionId == permission.Id).ToList();
+        //        }
+        //    }
+        //}
     }
 }

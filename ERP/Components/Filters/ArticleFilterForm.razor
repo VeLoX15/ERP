@@ -1,0 +1,73 @@
+﻿@page "/Article/"
+@inject ArticleService articleService
+@inject IJSRuntime jsRuntime
+@inject NavigationManager navigationManager
+
+
+<EditForm Model="Input">
+    <FluentValidationValidator Validator="Validator" />
+    <ValidationSummary />
+    <div class="col-3">
+        <h3>Edit Unit</h3>
+        <hr />
+        <div class="form-group">
+            <label for="article_number">Article Number:</label>
+            <InputNumber id="article_number" @bind-Value="Filter.ArticleNumber" class="form-control" />
+            <div class="form-group">
+                <label for="article_number_condition">Condition:</label>
+                <InputSelect id="article_number_condition" @bind-Value="Filter.ArticleNumberCondition" class="form-control">
+                    <option value="0">Select Weapon</option>
+                    @foreach (var condition in Enum.GetNames(typeof(FilterCondition)))
+                    {
+                    <option value="@condition)">@condition</option>
+                    }
+                </InputSelect>
+            </div>
+            <label for="article_number">Article Number:</label>
+            <InputNumber id="article_number" @bind-Value="Input.ArticleNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="name">Article Name:</label>
+            <InputText id="name" @bind-Value="Input.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight:</label>
+            <InputNumber id="weight" @bind-Value="Input.Weight" class="form-control" />
+            <label for="weight">Weight:</label>
+            <InputNumber id="weight" @bind-Value="Input.Weight" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="length">Length:</label>
+            <InputNumber id="length" @bind-Value="Input.Length" class="form-control" />
+            <label for="length">Length:</label>
+            <InputNumber id="length" @bind-Value="Input.Length" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="assortment_intake">Assortment Intake:</label>
+            <InputDate id="assortment_intake" @bind-Value="Input.AssortmentIntake" class="form-control" />
+            <label for="assortment_intake">Assortment Intake:</label>
+            <InputDate id="assortment_intake" @bind-Value="Input.AssortmentIntake" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="purchase_price">Purchase Price:</label>
+            <InputNumber id="purchase_price" @bind-Value="Input.PurchasePrice" class="form-control" />
+            <label for="purchase_price">Purchase Price:</label>
+            <InputNumber id="purchase_price" @bind-Value="Input.PurchasePrice" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="selling_price">Selling Price:</label>
+            <InputNumber id="selling_price" @bind-Value="Input.SellingPrice" class="form-control" />
+            <label for="selling_price">Selling Price:</label>
+            <InputNumber id="selling_price" @bind-Value="Input.SellingPrice" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="is_bundle">Bundle:</label>
+            <InputCheckbox id="is_bundle" @bind-Value="Input.IsBundle" class="form-control" />
+        </div>
+
+
+@*        <div class="form-group">
+            <button type="submit" class="btn btn-success" @onclick="">Search</button>
+        </div>*@
+    </div>
+</EditForm>

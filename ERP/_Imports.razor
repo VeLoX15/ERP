@@ -10,11 +10,14 @@
 @using Blazor.Pagination
 @using ERP
 @using ERP.Components
+@using ERP.Components.Filters
 @using ERP.Core
 @using ERP.Core.Constants
-@using ERP.Core.Interfaces
 @using ERP.Core.Services
 @using ERP.Core.Models
 @using ERP.Core.Filters
-@using ERP.Core.Validators
-@using DatabaseControllerProvider
+@using Microsoft.Extensions.Configuration
+@using FluentValidation
+@using DbController
+@using DbController.MySql
+@using DbController.TypeHandler

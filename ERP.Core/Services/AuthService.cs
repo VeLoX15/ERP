@@ -1,7 +1,9 @@
 ﻿using DbController;
+using DbController.MySql;
 using ERP.Core.Models;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Components.Authorization;
+using System.Security.Claims;
+using Tabletop.Core.Services;
 
 namespace ERP.Core.Services
 {
@@ -9,13 +11,11 @@ namespace ERP.Core.Services
     {
         private readonly AuthenticationStateProvider _authenticationStateProvider;
         private readonly UserService _userService;
-        private readonly DbProviderService _dbProviderService;
 
-        public AuthService(AuthenticationStateProvider authenticationStateProvider, UserService userService, DbProviderService dbProviderService)
+        public AuthService(AuthenticationStateProvider authenticationStateProvider, UserService userService)
         {
             _authenticationStateProvider = authenticationStateProvider;
             _userService = userService;
-            _dbProviderService = dbProviderService;
         }
         /// <summary>
         /// Converts the active claims into a <see cref="User"/> object
@@ -39,7 +39,7 @@ namespace ERP.Core.Services
                 bool shouldDispose = dbController is null;
 
 
-                dbController ??= _dbProviderService.GetDbController("mysql", AppdatenService.ConnectionString);
+                dbController ??= new MySqlController(AppdatenService.ConnectionString);
 
                 var result = await _userService.GetAsync(userId, dbController);
 
