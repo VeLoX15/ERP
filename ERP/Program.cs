@@ -4,7 +4,6 @@ using ERP.Core.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
-using Tabletop.Core.Services;
 
 namespace ERP
 {

@@ -3,7 +3,6 @@
     public enum FilterCondition
     {
         FromTo,
-        Equal,
         GreaterThan,
         LessThan
     }

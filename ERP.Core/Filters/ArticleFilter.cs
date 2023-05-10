@@ -17,7 +17,6 @@ namespace ERP.Core.Filters
         public decimal SellingPrice { get; set; }
         public bool IsBundle { get; set; }
 
-        public FilterCondition ArticleIdCondition { get; set; }
         public FilterCondition ArticleNumberCondition { get; set; }
         public FilterCondition WeightCondition { get; set; }
         public FilterCondition LengthCondition { get; set; }
@@ -25,6 +24,14 @@ namespace ERP.Core.Filters
         public FilterCondition AssortmentIntakeCondition { get; set; }
         public FilterCondition PurchasePriceCondition { get; set; }
         public FilterCondition SellingPriceCondition { get; set; }
+
+        public int ArticleNumberRange { get; set; }
+        public decimal WeightRange { get; set; }
+        public decimal LengthRange { get; set; }
+        public int StockRange { get; set; }
+        public DateTime AssortmentIntakeRange { get; set; }
+        public decimal PurchasePriceRange { get; set; }
+        public decimal SellingPriceRange { get; set; }
 
 
     }
