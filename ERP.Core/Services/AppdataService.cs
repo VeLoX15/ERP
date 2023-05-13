@@ -91,7 +91,7 @@ namespace ERP.Core.Services
             return item;
         }
 
-        public static string ConnectionString => _configuration?["ConnectionStrings:Default"] ?? string.Empty;
+        public static string ConnectionString => _configuration?["ConnectionString"] ?? string.Empty;
         public static bool IsLdapLoginEnabled => _configuration?.GetSection("LdapSettings").GetValue<bool>("ENABLE_LDAP_LOGIN") ?? false;
         public static bool IsLocalLoginEnabled => _configuration?.GetSection("LdapSettings").GetValue<bool>("ENABLE_LOCAL_LOGIN") ?? false;
         public static string LdapServer => _configuration?["LdapSettings:LDAP_SERVER"] ?? string.Empty;

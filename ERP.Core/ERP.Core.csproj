@@ -21,7 +21,6 @@
   <ItemGroup>
     <Folder Include="Installer\" />
     <Folder Include="Installer\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>

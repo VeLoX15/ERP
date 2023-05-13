@@ -4,10 +4,9 @@ using ERP.Core;
 using ERP.Core.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Localization;
 using Microsoft.JSInterop;
 
-namespace ERP.Pages.Admin
+namespace ERP.Pages.Management.Users
 {
     public abstract class ManagementBasePage<T, TService> : ComponentBase where T : class, IDbModel, new() where TService : IModelService<T>
     {
@@ -17,8 +16,6 @@ namespace ERP.Pages.Admin
 #nullable disable
         [Inject] public TService Service { get; set; }
         [Inject] public IJSRuntime JSRuntime { get; set; }
-
-        [Inject] protected IStringLocalizer<App> AppLocalizer { get; set; }
 #nullable enable
 
         protected List<T> Data { get; set; } = new();
@@ -60,7 +57,7 @@ namespace ERP.Pages.Admin
                 await Service.DeleteAsync(SelectedForDeletion, dbController);
                 await dbController.CommitChangesAsync();
                 AppdatenService.DeleteRecord(SelectedForDeletion);
-                await JSRuntime.ShowToastAsync(ToastType.success, AppLocalizer["DELETE_MESSAGE"]);
+                await JSRuntime.ShowToastAsync(ToastType.success, "Delete Massage");
                 SelectedForDeletion = null;
             }
             catch (Exception ex)
@@ -68,7 +65,7 @@ namespace ERP.Pages.Admin
                 await dbController.RollbackChangesAsync();
                 if (ex.HResult == -2147467259)
                 {
-                    await JSRuntime.ShowToastAsync(ToastType.error, AppLocalizer["DELETE_ERROR_REFERENCE"]);
+                    await JSRuntime.ShowToastAsync(ToastType.error, "Delete Error");
                 }
                 else
                 {
@@ -109,25 +106,10 @@ namespace ERP.Pages.Admin
                 }
 
 
-                await JSRuntime.ShowToastAsync(ToastType.success, AppLocalizer["SAVE_MESSAGE"]);
+                await JSRuntime.ShowToastAsync(ToastType.success, "Save Massage");
 
                 Input = null;
             }
-        }
-
-        protected virtual string GetModalTitel()
-        {
-            if (Input is null)
-            {
-                return string.Empty;
-            }
-
-            if (Input.Id > 0)
-            {
-                return AppLocalizer["MODAL_EDIT_TITLE"];
-            }
-
-            return AppLocalizer["MODAL_NEW_TITLE"];
         }
     }
 }

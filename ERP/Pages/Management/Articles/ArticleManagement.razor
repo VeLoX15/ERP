@@ -1,7 +1,9 @@
-﻿@page "/Article/"
+﻿@page "/Management/Article/Filter"
+@attribute [Authorize(Roles = Roles.VIEW_ARTICLES)]
 @inject ArticleService articleService
-@inject IJSRuntime jsRuntime
 @inject NavigationManager navigationManager
+@inject AuthService authService
+@inject IJSRuntime jsRuntime
 
 <h3>Article Filter</h3>
 <hr />

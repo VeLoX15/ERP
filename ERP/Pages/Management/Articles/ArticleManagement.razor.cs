@@ -3,9 +3,9 @@ using ERP.Core.Models;
 using ERP.Core.Filters;
 using ERP.Core.Validators;
 
-namespace ERP.Components.Filters
+namespace ERP.Pages.Management.Articles
 {
-    public partial class ArticleFilterForm
+    public partial class ArticleManagement
     {
         [Parameter]
         public int ArticleId { get; set; }

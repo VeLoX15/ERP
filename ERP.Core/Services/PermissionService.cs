@@ -60,24 +60,7 @@ namespace ERP.Core.Services
             string sql = "SELECT * FROM permissions";
 
             var list = await dbController.SelectDataAsync<Permission>(sql);
-            //await LoadPermissionDescriptionsAsync(list, dbController);
             return list;
         }
-
-        //private static async Task LoadPermissionDescriptionsAsync(List<Permission> list, IDbController dbController, CancellationToken cancellationToken = default)
-        //{
-        //    cancellationToken.ThrowIfCancellationRequested();
-        //    if (list.Any())
-        //    {
-        //        IEnumerable<int> permissionIds = list.Select(x => x.Id);
-        //        string sql = $"SELECT * FROM permission_description WHERE permission_id IN ({string.Join(",", permissionIds)})";
-        //        List<PermissionDescription> descriptions = await dbController.SelectDataAsync<PermissionDescription>(sql, null, cancellationToken);
-
-        //        foreach (var permission in list)
-        //        {
-        //            permission.Description = descriptions.Where(x => x.PermissionId == permission.Id).ToList();
-        //        }
-        //    }
-        //}
     }
 }

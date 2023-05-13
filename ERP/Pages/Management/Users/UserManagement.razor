@@ -1,0 +1,215 @@
+﻿@page "/Management/User"
+@inject AuthService authService
+@inherits ManagementBasePage<User, UserService>
+@attribute [Authorize(Roles = Roles.EDIT_USERS)]
+<PageTitle>User Mangement</PageTitle>
+<h3>User Mangement</h3>
+
+<div class="toolbar">
+    <button type="button" class="btn btn-success" @onclick="NewAsync"><i class="bi bi-plus-lg"></i></button>
+</div>
+
+<div class="col-lg-3 col-sm-12 order-lg-3">
+    <div class="card">
+        <div class="card-header">
+            <h4>Lorem</h4>
+        </div>
+        <div class="card-content" style="padding: 0 1.3rem;">
+            <EditForm Model="Filter" OnValidSubmit="async () => await LoadAsync(true)">
+                <div class="form-floating mb-3">
+                    <InputText @bind-Value="Filter.SearchPhrase" class="form-control" id="usermanagement-filter-searchphrase" placeholder="Search" />
+                    <label for="usermanagement-filter-searchphrase">Lorem</label>
+                </div>
+
+                <div class="toolbar">
+                    <button type="submit" class="btn btn-primary">Lorem</button>
+                </div>
+
+            </EditForm>
+        </div>
+    </div>
+</div>
+<div class="col-lg-9 col-sm-12">
+
+    <div class="card">
+        <div class="card-content">
+            <!-- Table with no outer spacing -->
+            <div class="table-responsive">
+                <table class="table mb-0 table-lg">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>User name</th>
+                            <th>Email</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <Virtualize Items="Data" Context="user">
+                            <tr>
+                                <td>@user.DisplayName</td>
+                                <td>@user.Username</td>
+                                <td>@user.Email</td>
+                                <td class="text-right">
+                                    @if (user.Origin is "local" && _loggedInUser?.Id != user.Id)
+                                    {
+                                        <span class="aktion-icon" role="button" @onclick="() => SelectedForDeletion = user">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </span>
+                                    }
+                                    <span class="aktion-icon" role="button" @onclick="async () => await EditAsync(user)">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        </Virtualize>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+@if (Input is not null)
+{
+    <Modal Title="@String.Format("Display Irgendwas", Input.DisplayName)"
+       OnClosed="() => Input = null"
+       ModalSize="ModalSize.LG"
+       HideFooter="true">
+
+        <EditForm Model="Input" @ref="_form">
+            <FluentValidationValidator />
+            <ValidationSummary />
+            <div class="row">
+                <div class="col-12">
+                    @if (Input.Origin is "local")
+                    {
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Username" class="form-control" id="user-username" placeholder="User name" />
+                            <label for="user-username">User name</label>
+                            <ValidationMessage For="() => Input.Username" />
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.DisplayName" class="form-control" id="user-displayname" placeholder="Name" />
+                            <label for="user-displayname">Name</label>
+                            <ValidationMessage For="() => Input.DisplayName" />
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Email" class="form-control" id="user-email" placeholder="Email" type="email" />
+                            <label for="user-email">Email</label>
+                            <ValidationMessage For="() => Input.Email" />
+                        </div>
+
+                        @if (Input.UserId is 0)
+                        {
+                            <div class="form-floating mb-3">
+                                <InputText @bind-Value="Input.Password" class="form-control" id="user-password" placeholder="Password" type="password" />
+                                <label for="user-password">Password</label>
+                                <ValidationMessage For="() => Input.Password" />
+                            </div>
+                        }
+                    }
+
+
+
+                    <h4>Permissions</h4>
+
+                    @if (_loggedInUser is not null && Input.UserId == _loggedInUser.UserId)
+                    {
+                        <p>Own Permissons</p>
+                    }
+                    else
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-lg">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var permission in Input.Permissions)
+                                    {
+                                        @*                                        var description = permission.GetLocalization(CultureInfo.CurrentCulture);
+                            <tr>
+                            <td class="text-bold-500">@description?.Name</td>
+                            <td>@description?.Description</td>
+                            <td>
+                            <button type="button" class="btn btn-danger" @onclick="() => Input.Permissions.Remove(permission)">
+                            <i class="fa-solid fa-trash"></i>
+                            </button>
+                            </td>
+                            </tr>*@
+                                    }
+
+                                    @if (Input.Permissions.Count != AppdatenService.Permissions.Count)
+                                    {
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="input-group">
+                                                    <select @onchange="PermissionSelectionChangedAsync" class="form-select" id="inputGroupSelect04" aria-label="Berechtigung">
+                                                        @if (SelectedPermission is null)
+                                                        {
+                                                            <option value="0" selected>Choose</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="0">Choose</option>
+                                                        }
+
+                                                        @foreach (var permission in AppdatenService.Permissions)
+                                                        {
+                                                            @*                                                            var userberechtigung = Input.Permissions.FirstOrDefault(x => x.PermissionId == permission.PermissionId);
+                                            var description = permission.GetLocalization(CultureInfo.CurrentCulture);
+                                            @if (userberechtigung is null)
+                                            {
+                                            <option value="@permission.PermissionId">@description?.Name</option>
+                                            }*@
+                                                        }
+                                                    </select>
+
+                                                    <button @onclick="AddPermissionAsync" class="btn btn-success" type="button" disabled="@(SelectedPermission is null)">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </EditForm>
+
+        <div class="toolbar">
+            <button type="button" class="btn btn-danger" @onclick="() => Input = null">Cancel</button>
+            <button type="button" class="btn btn-success" @onclick="SaveAsync">Save</button>
+        </div>
+    </Modal>
+}
+
+@if (SelectedForDeletion is not null)
+{
+    <ConfirmModal Title="Delete"
+              OnClosed="() => SelectedForDeletion = null"
+              OnConfirmed="DeleteAsync">
+        <p>@String.Format("Delete Text", SelectedForDeletion.DisplayName)</p>
+    </ConfirmModal>
+}
+
+
