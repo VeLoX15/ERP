@@ -11,18 +11,18 @@
     <div class="col-12 col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Informationen</h4>
+                <h4 class="card-title">Information</h4>
             </div>
             <div class="card-content">
                 <div class="card-body">
                     <p class="card-text">
-                        Die folgenden Information von Ihnen werden von der App verwendet.
+                        The following information will be used by the app.
                     </p>
                     <div class="table-responsive">
                         <table class="table table-lg">
                             <tbody>
                                 <tr>
-                                    <td class="text-bold-500">Anzeigename</td>
+                                    <td class="text-bold-500">Name</td>
                                     <td>@CurrentUser.DisplayName</td>
                                 </tr>
                                 <tr>
@@ -34,13 +34,13 @@
                                     <td>@CurrentUser.UserId</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">E-Mail</td>
+                                    <td class="text-bold-500">Email</td>
                                     <td>@CurrentUser.Email</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-bold-500">Kontotyp</td>
+                                    <td class="text-bold-500">Account type</td>
                                     <td>
-                                        <p>@(CurrentUser.ActiveDirectoryGuid != null ? "Active Directory" : "Lokal")</p>
+                                        <p>@(CurrentUser.ActiveDirectoryGuid != null ? "Active Directory" : "Local")</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -54,19 +54,19 @@
     <div class="col-12 col-lg-6">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Berechtigungen</h4>
+                <h4 class="card-title">Permissions</h4>
             </div>
             <div class="card-content">
                 <div class="card-body">
                     <p class="card-text">
-                        Nachfolgend erhalten Sie eine Übersicht Ihre Berechtigungen.
+                        Overview of all your permissions.
                     </p>
                     <div class="table-responsive">
                         <table class="table table-lg">
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Beschreibung</th>
+                                    <th>Description</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,20 +74,19 @@
                                 {
                                     @foreach (var permission in CurrentUser.Permissions)
                                     {
-@*                                        @if (_user?.IsInRole(permission.Identifier) == true)
+                                        @if (_user?.IsInRole(permission.Identifier) == true)
                                         {
-                                            var description = permission.GetLocalization(CultureInfo.CurrentCulture);
                                             <tr>
-                                                <td class="text-bold-500">@description?.Name</td>
-                                                <td>@description?.Description</td>
+                                                <td class="text-bold-500">@permission.Name</td>
+                                                <td>@permission.Description</td>
                                             </tr>
-                                        }*@
+                                        }
                                     }
                                 }
                                 else
                                 {
                                     <tr>
-                                        <td colspan="2">Sie haben keine erweiterten Berechtigungen.</td>
+                                        <td colspan="2">You do not have extended permissions.</td>
                                     </tr>
                                 }
                             </tbody>

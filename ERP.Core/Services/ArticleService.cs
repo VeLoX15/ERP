@@ -19,7 +19,7 @@ namespace ERP.Core.Services
 `weight`,
 `length`,
 `stock`,
-`assortment_intake`,
+`inclusion_date`,
 `purchase_price`,
 `selling_price`,
 `is_bundle`
@@ -33,7 +33,7 @@ VALUES
 @WEIGHT,
 @LENGTH,
 @STOCK,
-@ASSORTMENT_INTAKE,
+@INCLUSION_DATE,
 @PURCHASE_PRICE,
 @SELLING_PRICE,
 @IS_BUNDLE
@@ -90,7 +90,7 @@ VALUES
                 { "WEIGHT", filter.Weight },
                 { "LENGTH", filter.Length },
                 { "STOCK", filter.Stock },
-                { "ASSORTMENT_INTAKE", filter.AssortmentIntake },
+                { "INCLUSION_DATE", filter.InclusionDate },
                 { "PURCHASE_PRICE", filter.PurchasePrice },
                 { "SELLING_PRICE", filter.SellingPrice },
                 { "IS_BUNDLE", filter.IsBundle }
@@ -119,7 +119,7 @@ VALUES
             }
             //if (filter.AssortmentIntake)
             //{
-            //    sqlBuilder.AppendLine(@" AND 'assortment_intake' = @ASSORTMENT_INTAKE");
+            //    sqlBuilder.AppendLine(@" AND 'inclusion_date' = @INCLUSION_DATE");
             //}
             if (filter.PurchasePrice > 0)
             {
@@ -161,7 +161,7 @@ VALUES
 `weight` = @WEIGHT,
 `length` = @LENGTH,
 `stock` = @STOCK,
-`assortment_intake` = @ASSORTMENT_INTAKE,
+`inclusion_date` = @INCLUSION_DATE,
 `purchase_price` = @PURCHASE_PRICE,
 `selling_price` = @SELLING_PRICE,
 `is_bundle` = @IS_BUNDLE

@@ -24,16 +24,6 @@ namespace ERP.Core.Models
 
         public List<Permission> Permissions { get; set; } = new();
         public int Id => UserId;
-        /// <summary>
-        /// Gets or sets a flag for a form manager to receive an email for new form entries
-        /// </summary>
-        [CompareField("receive_email")]
-        public bool EmailEnabled { get; set; }
-        /// <summary>
-        /// Used to identify form managers which are able to approve forms with approval <see cref="FormStatus"/>
-        /// </summary>
-        [CompareField("can_approve")]
-        public bool CanApprove { get; set; }
 
         public Dictionary<string, object?> GetParameters()
         {

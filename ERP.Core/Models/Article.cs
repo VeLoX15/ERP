@@ -2,7 +2,7 @@
 
 namespace ERP.Core.Models
 {
-    public class Article
+    public class Article : IDbModel
     {
         [CompareField("article_id")]
         public int ArticleId { get; set; }
@@ -30,6 +30,7 @@ namespace ERP.Core.Models
         public List<Category> Categories { get; set; } = new List<Category>();
         public List<Material> Materials { get; set; } = new List<Material>();
 
+        public int Id => ArticleId;
 
         public Dictionary<string, object?> GetParameters()
         {

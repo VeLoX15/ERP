@@ -1,6 +1,4 @@
-﻿using DbController;
-using ERP.Core.Constants;
-using ERP.Core.Filters.Abstract;
+﻿using ERP.Core.Filters.Abstract;
 
 namespace ERP.Core.Filters
 {
@@ -17,13 +15,13 @@ namespace ERP.Core.Filters
         public decimal SellingPrice { get; set; }
         public bool IsBundle { get; set; }
 
-        public FilterCondition ArticleNumberCondition { get; set; }
-        public FilterCondition WeightCondition { get; set; }
-        public FilterCondition LengthCondition { get; set; }
-        public FilterCondition StockCondition { get; set; }
-        public FilterCondition AssortmentIntakeCondition { get; set; }
-        public FilterCondition PurchasePriceCondition { get; set; }
-        public FilterCondition SellingPriceCondition { get; set; }
+        public int ArticleNumberCondition { get; set; }
+        public int WeightCondition { get; set; }
+        public int LengthCondition { get; set; }
+        public int StockCondition { get; set; }
+        public int AssortmentIntakeCondition { get; set; }
+        public int PurchasePriceCondition { get; set; }
+        public int SellingPriceCondition { get; set; }
 
         public int ArticleNumberRange { get; set; }
         public decimal WeightRange { get; set; }

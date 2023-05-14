@@ -1,0 +1,19 @@
+﻿@page "/Management/Customers/Filter"
+@attribute [Authorize(Roles = Roles.VIEW_CUSTOMERS)]
+@inject CustomerService customerService
+@inject NavigationManager navigationManager
+@inject AuthService authService
+@inject IJSRuntime jsRuntime
+<PageTitle>Customer Filter</PageTitle>
+
+<h3>Customer Filter</h3>
+<hr />
+<EditForm Model="Input">
+    <FluentValidationValidator Validator="Validator" />
+    <div class="col-4">
+
+
+        <hr />
+        <ValidationSummary />
+    </div>
+</EditForm>

@@ -10,16 +10,16 @@
         </NavLink>
     </li>
 
-    <AuthorizeView Roles="@($"{Roles.EDIT_WAREHOUSES}, {Roles.EDIT_STOCKS}, {Roles.EDIT_ARTICLES}, {Roles.EDIT_ORDERS}, {Roles.EDIT_CUSTOMERS}, {Roles.EDIT_USERS}")">
+    <AuthorizeView Roles="@($"{Roles.VIEW_WAREHOUSES}, {Roles.VIEW_STOCKS}, {Roles.VIEW_ARTICLES}, {Roles.VIEW_ORDERS}, {Roles.VIEW_CUSTOMERS}, {Roles.VIEW_USERS}")">
         <Authorized>
             <li class="sidebar-title">Managements</li>
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_WAREHOUSES)">
+    <AuthorizeView Roles="@(Roles.VIEW_WAREHOUSES)">
         <Authorized>
             <li class="sidebar-item">
-                <NavLink href="/Management/Warehouse" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
+                <NavLink href="/Management/Warehouses/Filter" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
                     <i class="bi bi-stack"></i>
                     <span>Warehoues</span>
                 </NavLink>
@@ -27,10 +27,10 @@
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_STOCKS)">
+    <AuthorizeView Roles="@(Roles.VIEW_STOCKS)">
         <Authorized>
             <li class="sidebar-item">
-                <NavLink href="/Management/Stock" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
+                <NavLink href="/Management/Stocks/Filter" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
                     <i class="bi bi-box-fill"></i>
                     <span>Stocks</span>
                 </NavLink>
@@ -38,10 +38,10 @@
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_ARTICLES)">
+    <AuthorizeView Roles="@(Roles.VIEW_ARTICLES)">
         <Authorized>
             <li class="sidebar-item">
-                <NavLink href="/Management/Article" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
+                <NavLink href="/Management/Articles/Filter" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
                     <i class="bi bi-archive-fill"></i>
                     <span>Articles</span>
                 </NavLink>
@@ -49,10 +49,10 @@
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_ORDERS)">
+    <AuthorizeView Roles="@(Roles.VIEW_ORDERS)">
         <Authorized>
             <li class="sidebar-item">
-                <NavLink href="/Management/Order" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
+                <NavLink href="/Management/Orders/Filter" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
                     <i class="bi bi-cart-fill"></i>
                     <span>Orders</span>
                 </NavLink>
@@ -60,10 +60,10 @@
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_CUSTOMERS)">
+    <AuthorizeView Roles="@(Roles.VIEW_CUSTOMERS)">
         <Authorized>
             <li class="sidebar-item">
-                <NavLink href="/Management/Customer" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
+                <NavLink href="/Management/Customers/Filter" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
                     <i class="bi bi-person-vcard-fill"></i>
                     <span>Customers</span>
                 </NavLink>
@@ -71,10 +71,10 @@
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_USERS)">
+    <AuthorizeView Roles="@(Roles.VIEW_USERS)">
         <Authorized>
             <li class="sidebar-item">
-                <NavLink href="/Management/User" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
+                <NavLink href="/Management/Users" class='sidebar-link blazor-link' Match="NavLinkMatch.All">
                     <i class="bi bi-people-fill"></i>
                     <span>Users</span>
                 </NavLink>
@@ -84,13 +84,13 @@
 
 
 
-    <AuthorizeView Roles="@($"{Roles.EDIT_STATISTICS}")">
+    <AuthorizeView Roles="@($"{Roles.VIEW_STATISTICS}")">
         <Authorized>
             <li class="sidebar-title">Statistics</li>
         </Authorized>
     </AuthorizeView>
 
-    <AuthorizeView Roles="@(Roles.EDIT_STATISTICS)">
+    <AuthorizeView Roles="@(Roles.VIEW_STATISTICS)">
         <Authorized>
             <li class="sidebar-item">
                 <NavLink href="/Statistics" class='sidebar-link blazor-link' Match="NavLinkMatch.All">

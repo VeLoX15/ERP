@@ -1,0 +1,19 @@
+﻿@page "/Management/Warehouses/Filter"
+@attribute [Authorize(Roles = Roles.VIEW_WAREHOUSES)]
+@inject WarehouseService warehouseService
+@inject NavigationManager navigationManager
+@inject AuthService authService
+@inject IJSRuntime jsRuntime
+<PageTitle>Warehouse Filter</PageTitle>
+
+<h3>Warehouse Filter</h3>
+<hr />
+<EditForm Model="Input">
+    <FluentValidationValidator Validator="Validator" />
+    <div class="col-4">
+
+
+        <hr />
+        <ValidationSummary />
+    </div>
+</EditForm>

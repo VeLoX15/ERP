@@ -1,9 +1,21 @@
 ﻿namespace ERP.Core.Constants
 {
-    public enum FilterCondition
+    public static class FilterCondition
     {
-        FromTo,
-        GreaterThan,
-        LessThan
+        public static readonly List<string> NumberCondition = new List<string>
+        {
+            "",
+            "To",
+            "<",
+            ">",
+            "<=",
+            ">=",
+        };
+
+        public static readonly List<string> DateCondition = new List<string>
+        {
+            "",
+            "To"
+        };
     }
 }

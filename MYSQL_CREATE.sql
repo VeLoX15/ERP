@@ -15,23 +15,14 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
     `last_name` VARCHAR(50) NOT NULL,
     `email` VARCHAR(50) NOT NULL,
     `telefon` VARCHAR (50),
+    `standard_payment_method` VARCHAR(50) NOT NULL,
     `delivery_address_id` INT,
     `billing_address_id` INT,
     `registration_date` DATETIME NOT NULL,
-    `is_blocked` INT NOT NULL DEFAULT 0,
+    `customer_status` INT NOT NULL DEFAULT 0,
     `comment` TEXT NOT NULL DEFAULT '',
 
     PRIMARY KEY (`customer_id`)
-); 
-
--- -----------------------------------------------------
--- Table `erp`.`shopping_cart`
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS `erp`.`shopping_cart` (
-    `shopping_cart_id` INT NOT NULL AUTO_INCREMENT,
-
-    PRIMARY KEY (`shopping_cart_id`)
 ); 
 
 -- -----------------------------------------------------
@@ -39,16 +30,15 @@ CREATE TABLE IF NOT EXISTS `erp`.`shopping_cart` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
     `address_id` INT NOT NULL AUTO_INCREMENT,
-    `customer_id` INT NOT NULL,
-    `warehouse_id` INT NOT NULL,
     `street` VARCHAR(50) NOT NULL,
     `house_number` INT NOT NULL,
     `city` VARCHAR(50) NOT NULL,
-    `zip_code` VARCHAR(8) NOT NULL,
+    `state` VARCHAR(255),
+    `postal_code` VARCHAR(8) NOT NULL,
+    `country_id` INT NOT NULL,
 
     PRIMARY KEY(`address_id`),
-    --FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customer_id`),
-    --FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouse`(`warehouse_id`)
+    FOREIGN KEY(`country_id`) REFERENCES `erp`.`countries`(`country_id`)
 );
 -- -----------------------------------------------------
 -- Table `erp`.`order`
@@ -58,15 +48,21 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `order_number` INT NOT NULL,
     `customer_id` INT NOT NULL,
     `weight` DECIMAL NOT NULL,
+    `size` DECIMAL NOT NULL,
     `payment_method` VARCHAR(50) NOT NULL,
     `shipping_method` VARCHAR(50) NOT NULL,
+    `delivery_address_id` INT,
+    `billing_address_id` INT,
     `order_date` DATE NOT NULL,
     `delivery_date` DATE NOT NULL,
     `invoice_date` DATE NOT NULL,
-    `status` INT NOT NULL,
+    `order_status_public` INT NOT NULL,
+    `order_status_intern` INT NOT NULL,
+    `discount_code` VARCHAR(36) NOT NULL,
+    `order_note` VARCHAR(255),
 
     PRIMARY KEY(`order_id`),
-    --FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customers_id`)
+    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customers_id`)
 );
 
 -- -----------------------------------------------------
@@ -76,7 +72,6 @@ CREATE TABLE IF NOT EXISTS `erp`.`countries` (
   `country_id` INT(11) NOT NULL AUTO_INCREMENT,
   `iso` CHAR(2) NOT NULL,
   `name` VARCHAR(80) NOT NULL,
-  `nicename` VARCHAR(80) NOT NULL,
   `iso3` CHAR(3) DEFAULT NULL,
   `numcode` smallint(6) DEFAULT NULL,
   `phonecode` int(5) NOT NULL,
@@ -91,11 +86,11 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
     `article_id` INT NOT NULL AUTO_INCREMENT,
     `article_number` INT(12) NOT NULL,
     `name` VARCHAR(50) NOT NULL,
-    `category_id` INT NOT NULL,
-    `stock` INT NOT NULL,
     `description` TEXT NOT NULL DEFAULT '',
     `weight` DECIMAL NOT NULL,
     `length` DECIMAL NOT NULL,
+    `purchase_price` DECIMAL NOT NULL,
+    `selling_price` DECIMAL NOT NULL,
     `inclusion_date` DATE NOT NULL,
 
     PRIMARY KEY(`article_id`)
@@ -106,42 +101,65 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`categories` (
     `category_id` INT NOT NULL AUTO_INCREMENT,
-    `article_id` INT NOT NULL,
     `name` VARCHAR(50),
+    `description` TEXT NOT NULL DEFAULT '',
     
-    PRIMARY KEY(`category_id`),
-    --FOREIGN KEY(`article_id`) REFERENCES `erp`.`articles`(`article_id`)
+    PRIMARY KEY(`category_id`)
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`items`
+-- Table `erp`.`article_categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`items` (
-    `item_id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `erp`.`article_categories` (
     `article_id` INT NOT NULL,
+    `category_id` INT NOT NULL,
+    
+    PRIMARY KEY(`article_id`, `category_id`),
+    FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`category_id`) REFERENCES `erp`.`categories`(`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`item`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`item` (
+    `item_id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
     `stock` INT NOT NULL,
     `weight` DECIMAL NOT NULL,
     `length` DECIMAL NOT NULL,
 
-    PRIMARY KEY(`item_id`),
-    --FOREIGN KEY(`article_id`) REFERENCES `erp`.`articles`(`article_id`)
+    PRIMARY KEY(`item_id`)
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`warehouse`
+-- Table `erp`.`article_items`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`article_items` (
+    `article_id` INT NOT NULL,
+    `item_id` INT NOT NULL,
+
+    PRIMARY KEY(`item`, `article_id`),
+	FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`item_id`) REFERENCES `erp`.`items`(`item_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`warehouses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`warehouses` (
     `warehouse_id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
     `number` INT NOT NULL,
     `sort_number` INT NOT NULL,
+    `address_id` INT NOT NULL,
 
-    PRIMARY KEY(`warehouse_id`)
+    PRIMARY KEY(`warehouse_id`),
+    FOREIGN KEY (`address_id`) REFERENCES `erp`.`addresses`(`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`section`
+-- Table `erp`.`sections`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`sections` (
     `section_id` INT NOT NULL AUTO_INCREMENT,
@@ -151,11 +169,11 @@ CREATE TABLE IF NOT EXISTS `erp`.`sections` (
     `sort_number` INT NOT NULL,
 
     PRIMARY KEY(`section_id`),
-    --FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouse`(`warehouse_id`)
+    FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`row`
+-- Table `erp`.`rows`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`rows` (
     `row_id` INT NOT NULL AUTO_INCREMENT,
@@ -166,12 +184,12 @@ CREATE TABLE IF NOT EXISTS `erp`.`rows` (
     `sort_number` INT NOT NULL,
 
     PRIMARY KEY(`row_id`),
-    --FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouse`(`warehouse_id`),
-    --FOREIGN KEY(`section_id`) REFERENCES `erp`.`section`(`section_id`)
+    FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`section_id`) REFERENCES `erp`.`sections`(`section_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`rack`
+-- Table `erp`.`racks`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`racks` (
     `rack_id` INT NOT NULL AUTO_INCREMENT,
@@ -183,13 +201,13 @@ CREATE TABLE IF NOT EXISTS `erp`.`racks` (
     `sort_number` INT NOT NULL,
 
     PRIMARY KEY(`rack_id`),
-    --FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouse`(`warehouse_id`),
-    --FOREIGN KEY(`section_id`) REFERENCES `erp`.`section`(`section_id`),
-    --FOREIGN KEY(`row_id`) REFERENCES `erp`.`row`(`row_id`)
+    FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`section_id`) REFERENCES `erp`.`sections`(`section_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`row_id`) REFERENCES `erp`.`rows`(`row_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`compartment`
+-- Table `erp`.`compartments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`compartments` (
     `compartment_id` INT NOT NULL AUTO_INCREMENT,
@@ -200,12 +218,14 @@ CREATE TABLE IF NOT EXISTS `erp`.`compartments` (
     `name` VARCHAR(50) NOT NULL,
     `number` INT NOT NULL,
     `sort_number` INT NOT NULL,
+    `article_id` INT NOT NULL,
 
     PRIMARY KEY(`compartment_id`),
-    --FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouse`(`warehouse_id`),
-    --FOREIGN KEY(`section_id`) REFERENCES `erp`.`section`(`section_id`),
-    --FOREIGN KEY(`row_id`) REFERENCES `erp`.`row`(`row_id`),
-    --FOREIGN KEY(`rack_id`) REFERENCES `erp`.`rack`(`rack_id`)
+    FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`section_id`) REFERENCES `erp`.`sections`(`section_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`row_id`) REFERENCES `erp`.`rows`(`row_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`rack_id`) REFERENCES `erp`.`racks`(`rack_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`article_id`) REFERENCES `erp`.`articles`(`article_id`)
 );
 
 -- -----------------------------------------------------
@@ -220,6 +240,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`users` (
 	`password` VARCHAR(255) NOT NULL,
 	`salt` VARCHAR(255) NOT NULL,
 	`origin` VARCHAR(5) NOT NULL,
+
 	PRIMARY KEY(`user_id`)
 );
 
@@ -230,7 +251,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`permissions` (
 	`permission_id` INTEGER NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(50) NOT NULL,
 	`identifier` VARCHAR(50) NOT NULL,
-	`description` text NOT NULL,
+	`description` TEXT NOT NULL,
+
 	PRIMARY KEY (`permission_id`)
 );
 
@@ -240,7 +262,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`permissions` (
 CREATE TABLE IF NOT EXISTS `erp`.`user_permissions` (
 	`user_id` INTEGER NOT NULL,
 	`permission_id` INTEGER NOT NULL,
+
 	PRIMARY KEY(`user_id`, `permission_id`),
-	--FOREIGN KEY (`user_id`) REFERENCES `erp`.`users`(`user_id`),
-	--FOREIGN KEY (`permission_id`) REFERENCES `erp`.`permissions`(`permission_id`)
+	FOREIGN KEY (`user_id`) REFERENCES `erp`.`users`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`permission_id`) REFERENCES `erp`.`permissions`(`permission_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );

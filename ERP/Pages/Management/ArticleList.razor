@@ -1,0 +1,98 @@
+﻿@page "/Management/Articles/List"
+@inherits ManagementBasePage<Article, ArticleService>
+@attribute [Authorize(Roles = Roles.VIEW_ARTICLES)]
+<PageTitle>Article Listt</PageTitle>
+<h3>Article List</h3>
+
+-<div class="col-lg-9 col-sm-12">
+
+    <div class="card">
+        <div class="card-content">
+            <!-- Table with no outer spacing -->
+            <div class="table-responsive">
+                <table class="table mb-0 table-lg">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <Virtualize Items="Data" Context="article">
+                            <tr>
+                                <td>@article.ArticleNumber</td>
+                                <td>@article.Name</td>
+                                <td class="text-right">
+                                    <AuthorizeView Roles="@(Roles.DELETE_ARTICLES)">
+                                        <Authorized>
+                                            <span class="aktion-icon" role="button" @onclick="() => SelectedForDeletion = article">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </span>
+                                        </Authorized>
+                                    </AuthorizeView>
+                                    <AuthorizeView Roles="@(Roles.EDIT_ARTICLES)">
+                                        <Authorized>
+                                            <span class="aktion-icon" role="button" @onclick="async () => await EditAsync(article)">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </span>
+                                        </Authorized>
+                                    </AuthorizeView>
+                                </td>
+                            </tr>
+                        </Virtualize>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+@if (Input is not null)
+{
+    <Modal Title="@String.Format("New User", Input.ArticleNumber)"
+       OnClosed="() => Input = null"
+       ModalSize="ModalSize.LG"
+       HideFooter="true">
+
+        <EditForm Model="Input" @ref="_form">
+            <FluentValidationValidator />
+            <ValidationSummary />
+            <div class="row">
+                <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <InputNumber @bind-Value="Input.ArticleNumber" class="form-control" id="article-article-number" placeholder="Article Number" />
+                            <label for="article-article_number">Article Number</label>
+                            <ValidationMessage For="() => Input.ArticleNumber" />
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Name" class="form-control" id="article-name" placeholder="Article Name" />
+                            <label for="article-name">Name</label>
+                            <ValidationMessage For="() => Input.Name" />
+                        </div>
+                </div>
+            </div>
+        </EditForm>
+
+        <div class="toolbar">
+            <button type="button" class="btn btn-danger" @onclick="() => Input = null">Cancel</button>
+            <button type="button" class="btn btn-success" @onclick="SaveAsync">Save</button>
+        </div>
+    </Modal>
+}
+
+@if (SelectedForDeletion is not null)
+{
+    <ConfirmModal Title="Delete"
+              OnClosed="() => SelectedForDeletion = null"
+              OnConfirmed="DeleteAsync">
+        <p>@String.Format("Delete Text", SelectedForDeletion.Name)</p>
+    </ConfirmModal>
+}

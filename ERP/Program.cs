@@ -35,6 +35,7 @@ namespace ERP
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<ArticleService>();
+            builder.Services.AddScoped<CustomerService>();
             builder.Services.AddScoped<WarehouseService>();
             builder.Services.AddScoped<SectionService>();
             builder.Services.AddScoped<RowService>();

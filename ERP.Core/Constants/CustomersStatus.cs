@@ -1,6 +1,6 @@
 ﻿namespace ERP.Core.Constants
 {
-    public enum CustomersStatus
+    public enum CustomerStatus
     {
         RegisteredUser = 1,
         NewCustomer = 2,

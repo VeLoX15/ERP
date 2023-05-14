@@ -8,7 +8,7 @@ using ERP.Core.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Identity;
 
-namespace ERP.Pages.Management.Users
+namespace ERP.Pages.Management
 {
     public partial class UserManagement : IHasPagination
     {
