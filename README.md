@@ -1,5 +1,5 @@
 # ERP
-Tablebricks ERP system is an enterprise resource planning software to manage customer data, order information, articles and other important data. Also integrated are a digital warehouses to retrieve all stocks in a short time.
+Tablebricks ERP system is an enterprise resource planning software to manage customer data, order information, articles and other important data. Also integrated are digital warehouses to retrieve all stocks in a short time.
 
 ## Requirements
 * MariaDB Database
