@@ -10,7 +10,7 @@ namespace ERP.Core.Filters
         public decimal Weight { get; set; }
         public decimal Length { get; set; }
         public int Stock { get; set; }
-        public DateTime AssortmentIntake { get; set; }
+        public DateTime InclusionDate { get; set; }
         public decimal PurchasePrice { get; set; }
         public decimal SellingPrice { get; set; }
         public bool IsBundle { get; set; }
@@ -19,7 +19,7 @@ namespace ERP.Core.Filters
         public int WeightCondition { get; set; }
         public int LengthCondition { get; set; }
         public int StockCondition { get; set; }
-        public int AssortmentIntakeCondition { get; set; }
+        public int InclusionDateCondition { get; set; }
         public int PurchasePriceCondition { get; set; }
         public int SellingPriceCondition { get; set; }
 
@@ -27,7 +27,7 @@ namespace ERP.Core.Filters
         public decimal WeightRange { get; set; }
         public decimal LengthRange { get; set; }
         public int StockRange { get; set; }
-        public DateTime AssortmentIntakeRange { get; set; }
+        public DateTime InclusionDateRange { get; set; }
         public decimal PurchasePriceRange { get; set; }
         public decimal SellingPriceRange { get; set; }
 

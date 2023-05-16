@@ -117,7 +117,7 @@ VALUES
             {
                 sqlBuilder.AppendLine(@" AND 'length' = @LENGTH");
             }
-            //if (filter.AssortmentIntake)
+            //if (filter.InclusionDate > 0)
             //{
             //    sqlBuilder.AppendLine(@" AND 'inclusion_date' = @INCLUSION_DATE");
             //}

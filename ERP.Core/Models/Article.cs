@@ -18,8 +18,8 @@ namespace ERP.Core.Models
         public decimal Length { get; set; }
         [CompareField("stock")]
         public int Stock { get; set; }
-        [CompareField("assortment_intake")]
-        public DateTime AssortmentIntake { get; set; }
+        [CompareField("inclusion_date")]
+        public DateTime InclusionDate { get; set; }
         [CompareField("purchase_price")]
         public decimal PurchasePrice { get; set; }
         [CompareField("selling_price")]
@@ -43,7 +43,7 @@ namespace ERP.Core.Models
                 { "WEIGHT", Weight },
                 { "LENGTH", Length },
                 { "STOCK", Stock },
-                { "ASSORTMENT_INTAKE", AssortmentIntake },
+                { "INCLUSION_DATE", InclusionDate },
                 { "PURCHASE_PRICE", PurchasePrice },
                 { "SELLING_PRICE", SellingPrice },
                 { "IS_BUNDLE", IsBundle }
