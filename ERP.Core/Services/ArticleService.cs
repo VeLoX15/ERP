@@ -2,7 +2,6 @@
 using ERP.Core.Filters;
 using ERP.Core.Models;
 using System.Text;
-using System.Xml.Linq;
 
 namespace ERP.Core.Services
 {
@@ -84,7 +83,6 @@ VALUES
         {
             return new Dictionary<string, object?>
             {
-                { "ARTICLE_ID", filter.ArticleId },
                 { "ARTICLE_NUMBER", filter.ArticleNumber },
                 { "NAME", filter.Name },
                 { "WEIGHT", filter.Weight },
@@ -93,7 +91,23 @@ VALUES
                 { "INCLUSION_DATE", filter.InclusionDate },
                 { "PURCHASE_PRICE", filter.PurchasePrice },
                 { "SELLING_PRICE", filter.SellingPrice },
-                { "IS_BUNDLE", filter.IsBundle }
+                { "IS_BUNDLE", filter.IsBundle },
+
+                { "ARTICLE_NUMBER_RANGE_OPERATOR", filter.ArticleNumberOperator },
+                { "WEIGHT_RANGE_OPERATOR", filter.WeightOperator },
+                { "LENGTH_RANGE_OPERATOR", filter.LengthOperator },
+                { "STOCK_RANGE_OPERATOR", filter.StockOperator },
+                { "INCLUSION_DATE_RANGE_OPERATOR", filter.InclusionDateOperator },
+                { "PURCHASE_PRICE_RANGE_OPERATOR", filter.PurchasePriceOperator },
+                { "SELLING_PRICE_RANGE_OPERATOR", filter.SellingPriceOperator },
+
+                { "ARTICLE_NUMBER_RANGE", filter.ArticleNumberRange },
+                { "WEIGHT_RANGE", filter.WeightRange },
+                { "LENGTH_RANGE", filter.LengthRange },
+                { "STOCK_RANGE", filter.StockRange },
+                { "INCLUSION_DATE_RANGE", filter.InclusionDateRange },
+                { "PURCHASE_PRICE_RANGE", filter.PurchasePriceRange },
+                { "SELLING_PRICE_RANGE", filter.SellingPriceRange }
             };
         }
 
@@ -101,37 +115,12 @@ VALUES
         {
             StringBuilder sqlBuilder = new StringBuilder();
 
-            if (filter.ArticleNumber > 0)
+            Dictionary<string, object?> filterParameters = GetFilterParameter(filter);
+
+            for (int i = 0; i < 9; i++)
             {
-                sqlBuilder.AppendLine(@" AND 'article_number' = @ARTICLE_NUMBER");
-            }
-            if (filter.Name is not null)
-            {
-                sqlBuilder.AppendLine(@" AND 'name' = @NAME");
-            }
-            if (filter.Weight > 0)
-            {
-                sqlBuilder.AppendLine(@" AND 'weight' = @WEIGHT");
-            }
-            if (filter.Length > 0)
-            {
-                sqlBuilder.AppendLine(@" AND 'length' = @LENGTH");
-            }
-            //if (filter.InclusionDate > 0)
-            //{
-            //    sqlBuilder.AppendLine(@" AND 'inclusion_date' = @INCLUSION_DATE");
-            //}
-            if (filter.PurchasePrice > 0)
-            {
-                sqlBuilder.AppendLine(@" AND 'purchase_price' = @PURCHASE_PRICE");
-            }
-            if (filter.SellingPrice > 0)
-            {
-                sqlBuilder.AppendLine(@" AND 'selling_price' = @SELLING_PRICE");
-            }
-            if (filter.IsBundle is true)
-            {
-                sqlBuilder.AppendLine(@" AND 'is_bundle' = @IS_BUNDLE");
+                string conditionSql = ConditionFilter.FilterToSql(filterParameters, i);
+                sqlBuilder.AppendLine(conditionSql);
             }
 
             string sql = sqlBuilder.ToString();

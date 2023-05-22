@@ -15,13 +15,13 @@ namespace ERP.Core.Filters
         public decimal SellingPrice { get; set; }
         public bool IsBundle { get; set; }
 
-        public int ArticleNumberCondition { get; set; }
-        public int WeightCondition { get; set; }
-        public int LengthCondition { get; set; }
-        public int StockCondition { get; set; }
-        public int InclusionDateCondition { get; set; }
-        public int PurchasePriceCondition { get; set; }
-        public int SellingPriceCondition { get; set; }
+        public int ArticleNumberOperator { get; set; }
+        public int WeightOperator { get; set; }
+        public int LengthOperator { get; set; }
+        public int StockOperator { get; set; }
+        public int InclusionDateOperator { get; set; }
+        public int PurchasePriceOperator { get; set; }
+        public int SellingPriceOperator { get; set; }
 
         public int ArticleNumberRange { get; set; }
         public decimal WeightRange { get; set; }
