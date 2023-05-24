@@ -4,7 +4,8 @@ using ERP.Core.Filters;
 using ERP.Core.Services;
 using ERP.Core.Validators;
 using ERP.Core.Models;
-using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System.Text.Json;
 
 namespace ERP.Pages.Management
 {
@@ -17,13 +18,18 @@ namespace ERP.Pages.Management
 
         public ArticleValidator Validator { get; set; } = new();
 
-        private EventCallback<List<Article>> FilteredArticle { get; set; }
+        public List<Article> FilterData { get; set; } = new ();
 
-        private async Task HandleFilteredArticleAsync()
+        private async Task SendDataAsync()
         {
             using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
-            var list = await articleService.GetAsync(Filter, dbController);
-            await FilteredArticle.InvokeAsync(list);
+            FilterData = await articleService.GetAsync(Filter, dbController);
+
+            string serializedArticles = JsonSerializer.Serialize(FilterData);
+            await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "articles");
+            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "articles", serializedArticles);
+
+            navigationManager.NavigateTo("/Management/Articles/List");
         }
     }
 }

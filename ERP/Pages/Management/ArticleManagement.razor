@@ -2,8 +2,7 @@
 @attribute [Authorize(Roles = Roles.VIEW_ARTICLES)]
 @inject ArticleService articleService
 @inject NavigationManager navigationManager
-@inject AuthService authService
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JSRuntime
 
 <h3>Article Filter</h3>
 <hr />
@@ -13,14 +12,14 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="article_number">Article Number:</label>
-                <InputNumber id="article_number" @bind-Value="Filter.ArticleNumber" class="form-control" />
+                <InputText id="article_number" @bind-Value="Filter.ArticleNumber" class="form-control" />
             </div>
             <div class="form-group col-md-2">
-                <label for="article_number_condition">Condition:</label>
+                <label for="article_number_condition"></label>
                 <InputSelect id="article_number_condition" @bind-Value="Filter.ArticleNumberOperator" class="form-control">
-                    @for (int i = 0; i < FilterCondition.NumberCondition.Count; i++)
+                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
                     {
-                        <option value="@i">@FilterCondition.NumberCondition[i]</option>
+                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
                     }
                 </InputSelect>
             </div>
@@ -28,7 +27,7 @@
                 {
                     <div class="form-group col-md-4">
                         <label for="article_number_range"></label>
-                        <InputNumber id="article_number_range" @bind-Value="Filter.ArticleNumberRange" class="form-control" />
+                        <InputText id="article_number_range" @bind-Value="Filter.ArticleNumberRange" class="form-control" />
                     </div>
                 }
         </div>
@@ -42,11 +41,11 @@
                 <InputNumber id="weight" @bind-Value="Filter.Weight" class="form-control" />
             </div>
             <div class="form-group col-md-2">
-                <label for="weight_condition">Condition:</label>
+                <label for="weight_condition"></label>
                 <InputSelect id="weight_condition" @bind-Value="Filter.WeightOperator" class="form-control">
-                    @for (int i = 0; i < FilterCondition.NumberCondition.Count; i++)
+                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
                     {
-                        <option value="@i">@FilterCondition.NumberCondition[i]</option>
+                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
                     }
                 </InputSelect>
             </div>
@@ -64,11 +63,11 @@
                 <InputNumber id="length" @bind-Value="Filter.Length" class="form-control" />
             </div>
             <div class="form-group col-md-2">
-                <label for="length_condition">Condition:</label>
+                <label for="length_condition"></label>
                 <InputSelect id="length_condition" @bind-Value="Filter.LengthOperator" class="form-control">
-                    @for (int i = 0; i < FilterCondition.NumberCondition.Count; i++)
+                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
                     {
-                        <option value="@i">@FilterCondition.NumberCondition[i]</option>
+                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
                     }
                 </InputSelect>
             </div>
@@ -86,11 +85,11 @@
                 <InputDate id="inclusion_date" @bind-Value="Filter.InclusionDate" class="form-control" />
             </div>
             <div class="form-group col-md-2">
-                <label for="inclusion_date_condition">Condition:</label>
+                <label for="inclusion_date_condition"></label>
                 <InputSelect id="inclusion_date_condition" @bind-Value="Filter.InclusionDateOperator" class="form-control">
-                    @for (int i = 0; i < FilterCondition.DateCondition.Count; i++)
+                    @for (int i = 0; i < ConditionFilter.DateOperator.Count; i++)
                     {
-                        <option value="@i">@FilterCondition.DateCondition[i]</option>
+                        <option value="@i">@ConditionFilter.DateOperator[i]</option>
                     }
                 </InputSelect>
             </div>
@@ -108,11 +107,11 @@
                 <InputNumber id="purchase_price" @bind-Value="Filter.PurchasePrice" class="form-control" />
             </div>
             <div class="form-group col-md-2">
-                <label for="purchase_price_condition">Condition:</label>
+                <label for="purchase_price_condition"></label>
                 <InputSelect id="purchase_price_condition" @bind-Value="Filter.PurchasePriceOperator" class="form-control">
-                    @for (int i = 0; i < FilterCondition.NumberCondition.Count; i++)
+                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
                     {
-                        <option value="@i">@FilterCondition.NumberCondition[i]</option>
+                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
                     }
                 </InputSelect>
             </div>
@@ -130,11 +129,11 @@
                 <InputNumber id="selling_price" @bind-Value="Filter.SellingPrice" class="form-control" />
             </div>
             <div class="form-group col-md-2">
-                <label for="selling_price_condition">Condition:</label>
+                <label for="selling_price_condition"></label>
                 <InputSelect id="selling_price_condition" @bind-Value="Filter.SellingPriceOperator" class="form-control">
-                    @for (int i = 0; i < FilterCondition.NumberCondition.Count; i++)
+                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
                     {
-                        <option value="@i">@FilterCondition.NumberCondition[i]</option>
+                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
                     }
                 </InputSelect>
             </div>
@@ -152,7 +151,7 @@
         </div>
 
         <div class="toolbar">
-            <button type="submit" class="btn btn-primary" @onclick="async () => await HandleFilteredArticleAsync()">Search</button>
+            <button type="submit" class="btn btn-primary" @onclick="async () => await SendDataAsync()">Search</button>
         </div>
 
         <hr />

@@ -7,7 +7,7 @@ namespace ERP.Core.Models
         [CompareField("article_id")]
         public int ArticleId { get; set; }
         [CompareField("article_number")]
-        public int ArticleNumber { get; set; }
+        public string ArticleNumber { get; set; } = string.Empty;
         [CompareField("name")]
         public string Name { get; set; } = string.Empty;
         [CompareField("description")]
@@ -16,8 +16,6 @@ namespace ERP.Core.Models
         public decimal Weight { get; set; }
         [CompareField("length")]
         public decimal Length { get; set; }
-        [CompareField("stock")]
-        public int Stock { get; set; }
         [CompareField("inclusion_date")]
         public DateTime InclusionDate { get; set; }
         [CompareField("purchase_price")]
@@ -42,7 +40,6 @@ namespace ERP.Core.Models
                 { "DESCRIPTION", Description },
                 { "WEIGHT", Weight },
                 { "LENGTH", Length },
-                { "STOCK", Stock },
                 { "INCLUSION_DATE", InclusionDate },
                 { "PURCHASE_PRICE", PurchasePrice },
                 { "SELLING_PRICE", SellingPrice },

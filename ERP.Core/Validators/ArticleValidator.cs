@@ -1,5 +1,6 @@
 ﻿using ERP.Core.Models;
 using FluentValidation;
+using System.Data;
 
 namespace ERP.Core.Validators
 {

@@ -8,7 +8,7 @@ USE `erp`;
 CREATE TABLE IF NOT EXISTS `erp`.`customers` (
     `customer_id` INT NOT NULL AUTO_INCREMENT,
     `customer_number` INT NOT NULL,
-    `user_name` VARCHAR(50) NOT NULL,
+    `username` VARCHAR(50) NOT NULL,
     `password` VARCHAR(50) NOT NULL,
     `salutation` INT NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
@@ -26,22 +26,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
 ); 
 
 -- -----------------------------------------------------
--- Table `erp`.`addresses`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
-    `address_id` INT NOT NULL AUTO_INCREMENT,
-    `street` VARCHAR(50) NOT NULL,
-    `house_number` INT NOT NULL,
-    `city` VARCHAR(50) NOT NULL,
-    `state` VARCHAR(255),
-    `postal_code` VARCHAR(8) NOT NULL,
-    `country_id` INT NOT NULL,
-
-    PRIMARY KEY(`address_id`),
-    FOREIGN KEY(`country_id`) REFERENCES `erp`.`countries`(`country_id`)
-);
--- -----------------------------------------------------
--- Table `erp`.`order`
+-- Table `erp`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `order_id` INT NOT NULL AUTO_INCREMENT,
@@ -62,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `order_note` VARCHAR(255),
 
     PRIMARY KEY(`order_id`),
-    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customers_id`)
+    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customer_id`)
 );
 
 -- -----------------------------------------------------
@@ -80,11 +65,27 @@ CREATE TABLE IF NOT EXISTS `erp`.`countries` (
 );
 
 -- -----------------------------------------------------
+-- Table `erp`.`addresses`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
+    `address_id` INT NOT NULL AUTO_INCREMENT,
+    `street` VARCHAR(50) NOT NULL,
+    `house_number` INT NOT NULL,
+    `city` VARCHAR(50) NOT NULL,
+    `state` VARCHAR(255),
+    `postal_code` VARCHAR(8) NOT NULL,
+    `country_id` INT NOT NULL,
+
+    PRIMARY KEY(`address_id`),
+    FOREIGN KEY(`country_id`) REFERENCES `erp`.`countries`(`country_id`)
+);
+
+-- -----------------------------------------------------
 -- Table `erp`.`articles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`articles` (
     `article_id` INT NOT NULL AUTO_INCREMENT,
-    `article_number` INT(12) NOT NULL,
+    `article_number` VARCHAR(12) NOT NULL,
     `name` VARCHAR(50) NOT NULL,
     `description` TEXT NOT NULL DEFAULT '',
     `weight` DECIMAL NOT NULL,
@@ -92,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
     `purchase_price` DECIMAL NOT NULL,
     `selling_price` DECIMAL NOT NULL,
     `inclusion_date` DATE NOT NULL,
+    `is_bundle` BOOLEAN NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY(`article_id`)
 );
@@ -120,28 +122,15 @@ CREATE TABLE IF NOT EXISTS `erp`.`article_categories` (
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`item`
+-- Table `erp`.`bundle_articles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`item` (
-    `item_id` INT NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(50) NOT NULL,
-    `stock` INT NOT NULL,
-    `weight` DECIMAL NOT NULL,
-    `length` DECIMAL NOT NULL,
-
-    PRIMARY KEY(`item_id`)
-);
-
--- -----------------------------------------------------
--- Table `erp`.`article_items`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`article_items` (
+CREATE TABLE IF NOT EXISTS `erp`.`bundle_articles` (
+    `bundle_id` INT NOT NULL,
     `article_id` INT NOT NULL,
-    `item_id` INT NOT NULL,
 
-    PRIMARY KEY(`item`, `article_id`),
-	FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (`item_id`) REFERENCES `erp`.`items`(`item_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    PRIMARY KEY(`bundle_id`, `article_id`),
+	FOREIGN KEY (`bundle_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------

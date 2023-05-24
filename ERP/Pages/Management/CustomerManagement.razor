@@ -2,16 +2,90 @@
 @attribute [Authorize(Roles = Roles.VIEW_CUSTOMERS)]
 @inject CustomerService customerService
 @inject NavigationManager navigationManager
-@inject AuthService authService
-@inject IJSRuntime jsRuntime
-<PageTitle>Customer Filter</PageTitle>
+@inject IJSRuntime JSRuntime
 
 <h3>Customer Filter</h3>
 <hr />
-<EditForm Model="Input">
+<EditForm Model="Filter">
     <FluentValidationValidator Validator="Validator" />
-    <div class="col-4">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="customer_number">Customer Number:</label>
+                <InputNumber id="customer_number" @bind-Value="Filter.CustomerNumber" class="form-control" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="customer_number_condition"></label>
+                <InputSelect id="customer_number_condition" @bind-Value="Filter.CustomerNumberOperator" class="form-control">
+                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
+                    {
+                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
+                    }
+                </InputSelect>
+            </div>
+            @if (Filter.CustomerNumberOperator == 1)
+            {
+                <div class="form-group col-md-4">
+                    <label for="customer_number_range"></label>
+                    <InputNumber id="customer_number_range" @bind-Value="Filter.CustomerNumberRange" class="form-control" />
+                </div>
+            }
+        </div>
+        <div class="form-group col-md-10">
+            <label for="username">Username:</label>
+            <InputText id="username" @bind-Value="Filter.UserName" class="form-control" />
+        </div>
+        <div class="form-group col-md-10">
+            <label for="first-name">First Name:</label>
+            <InputText id="first-name" @bind-Value="Filter.FirstName" class="form-control" />
+        </div>
+                <div class="form-group col-md-10">
+            <label for="last-name">Last Name:</label>
+            <InputText id="last-name" @bind-Value="Filter.LastName" class="form-control" />
+        </div>
+        <div class="form-group col-md-10">
+            <label for="email">Email:</label>
+            <InputText id="email" @bind-Value="Filter.Email" class="form-control" />
+        </div>
+        <div class="form-group col-md-10">
+            <label for="telefon">Telefon:</label>
+            <InputText id="telefon" @bind-Value="Filter.Telefon" class="form-control" />
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="registration-date">Registration Date:</label>
+                <InputDate id="registration-date" @bind-Value="Filter.RegistrationDate" class="form-control" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="registration-date-condition"></label>
+                <InputSelect id="registration-date-condition" @bind-Value="Filter.RegistrationDateOperator" class="form-control">
+                    @for (int i = 0; i < ConditionFilter.DateOperator.Count; i++)
+                    {
+                        <option value="@i">@ConditionFilter.DateOperator[i]</option>
+                    }
+                </InputSelect>
+            </div>
+            @if (Filter.RegistrationDateOperator == 1)
+            {
+                <div class="form-group col-md-4">
+                    <label for="registration-date-range"></label>
+                    <InputDate id="registration-date-range" @bind-Value="Filter.RegistrationDateRange" class="form-control" />
+                </div>
+            }
+        </div>
+        <div class="form-group col-md-2">
+            <label for="customer-status">Customer Status:</label>
+            <InputSelect id="customer-status" @bind-Value="Filter.CustomerStatus" class="form-control">
+                @foreach (CustomerStatus status in Enum.GetValues(typeof(CustomerStatus)))
+                {
+                    <option value="@status">@status</option>
+                }
+            </InputSelect>
+        </div>
 
+        <div class="toolbar">
+            <button type="submit" class="btn btn-primary" @onclick="async () => await SendDataAsync()">Search</button>
+        </div>
 
         <hr />
         <ValidationSummary />

@@ -1,7 +1,7 @@
 ﻿@page "/Management/Articles/List"
 @attribute [Authorize(Roles = Roles.VIEW_ARTICLES)]
 @inherits ManagementBasePage<Article, ArticleService>
-<PageTitle>Article Listt</PageTitle>
+<PageTitle>Article List</PageTitle>
 <h3>Article List</h3>
 
 <div class="col-lg-9 col-sm-12">
@@ -13,16 +13,30 @@
                 <table class="table mb-0 table-lg">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Username</th>
+                            <th>Article Number</th>
+                            <th>Article Name</th>
+                            <th>Bundle</th>
+                            <th>Purchase Price</th>
+                            <th>Selling Price</th>
                             <th class="text-right">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <Virtualize Items="FilteredArticles" Context="article">
+                        <Virtualize Items="FilterData" Context="article">
                             <tr>
                                 <td>@article.ArticleNumber</td>
                                 <td>@article.Name</td>
+                                <td>
+                                    @if(article.IsBundle)
+                                    {
+                                        <i class="bi bi-check-lg text-success"></i>
+                                    } else
+                                    {
+                                        <i class="bi bi-x-lg text-danger"></i>
+                                    }
+                                </td>
+                                <td>@article.PurchasePrice</td>
+                                <td>@article.SellingPrice</td>
                                 <td class="text-right">
                                     <AuthorizeView Roles="@(Roles.DELETE_ARTICLES)">
                                         <Authorized>
@@ -50,10 +64,6 @@
 
 </div>
 
-
-
-
-
 @if (Input is not null)
 {
     <Modal Title="@String.Format("Edit Article", Input.ArticleNumber)"
@@ -66,16 +76,46 @@
             <ValidationSummary />
             <div class="row">
                 <div class="col-12">
-                        <div class="form-floating mb-3">
-                            <InputNumber @bind-Value="Input.ArticleNumber" class="form-control" id="article-article-number" placeholder="Article Number" />
-                            <label for="article-article_number">Article Number</label>
-                            <ValidationMessage For="() => Input.ArticleNumber" />
-                        </div>
-                        <div class="form-floating mb-3">
-                            <InputText @bind-Value="Input.Name" class="form-control" id="article-name" placeholder="Article Name" />
-                            <label for="article-name">Name</label>
-                            <ValidationMessage For="() => Input.Name" />
-                        </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.ArticleNumber" class="form-control" id="article-article-number" placeholder="Article Number" />
+                        <label for="article-article_number">Article Number</label>
+                        <ValidationMessage For="() => Input.ArticleNumber" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Name" class="form-control" id="article-name" placeholder="Article Name" />
+                        <label for="article-name">Name</label>
+                        <ValidationMessage For="() => Input.Name" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Description" class="form-control" id="article-description" placeholder="Description" />
+                        <label for="article-description">Description</label>
+                        <ValidationMessage For="() => Input.Description" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.Weight" class="form-control" id="article-weight" placeholder="Weight" />
+                        <label for="article-weight">Weight</label>
+                        <ValidationMessage For="() => Input.Weight" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.Length" class="form-control" id="article-length" placeholder="Length" />
+                        <label for="article-length">Length</label>
+                        <ValidationMessage For="() => Input.Length" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.SellingPrice" class="form-control" id="article-selling-price" placeholder="SellingPrice" />
+                        <label for="article-selling-price">SellingPrice</label>
+                        <ValidationMessage For="() => Input.SellingPrice" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.PurchasePrice" class="form-control" id="article-purchase-price" placeholder="PurchasePrice" />
+                        <label for="article-purchase-price">PurchasePrice</label>
+                        <ValidationMessage For="() => Input.PurchasePrice" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <InputCheckbox @bind-Value="Input.IsBundle" class="form-checkbox" id="article-is-bundle" />
+                        <label for="article-is-bundle">Bundle</label>
+                        <ValidationMessage For="() => Input.IsBundle" />
+                    </div>
                 </div>
             </div>
         </EditForm>
@@ -92,6 +132,6 @@
     <ConfirmModal Title="Delete"
               OnClosed="() => SelectedForDeletion = null"
               OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.Name)</p>
+        <p>@String.Format("Delete Text", SelectedForDeletion.ArticleNumber)</p>
     </ConfirmModal>
 }

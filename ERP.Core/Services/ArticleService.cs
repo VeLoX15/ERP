@@ -17,12 +17,10 @@ namespace ERP.Core.Services
 `description`,
 `weight`,
 `length`,
-`stock`,
 `inclusion_date`,
 `purchase_price`,
 `selling_price`,
 `is_bundle`
-
 )
 VALUES
 (
@@ -31,7 +29,6 @@ VALUES
 @DESCRIPTION,
 @WEIGHT,
 @LENGTH,
-@STOCK,
 @INCLUSION_DATE,
 @PURCHASE_PRICE,
 @SELLING_PRICE,
@@ -66,10 +63,10 @@ VALUES
         {
             cancellationToken.ThrowIfCancellationRequested();
             StringBuilder sqlBuilder = new();
-            sqlBuilder.AppendLine("SELECT a.* FROM 'article' a");
-            sqlBuilder.AppendLine("WHERE 1 = 1");
+            sqlBuilder.AppendLine("SELECT a.* FROM `articles` a ");
+            sqlBuilder.AppendLine("WHERE 1 = 1 ");
             sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"  ORDER BY 'article_id' DESC");
+            sqlBuilder.AppendLine(@$"ORDER BY `article_id` DESC ");
             sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
 
             string sql = sqlBuilder.ToString();
@@ -87,24 +84,21 @@ VALUES
                 { "NAME", filter.Name },
                 { "WEIGHT", filter.Weight },
                 { "LENGTH", filter.Length },
-                { "STOCK", filter.Stock },
                 { "INCLUSION_DATE", filter.InclusionDate },
                 { "PURCHASE_PRICE", filter.PurchasePrice },
                 { "SELLING_PRICE", filter.SellingPrice },
                 { "IS_BUNDLE", filter.IsBundle },
 
-                { "ARTICLE_NUMBER_RANGE_OPERATOR", filter.ArticleNumberOperator },
-                { "WEIGHT_RANGE_OPERATOR", filter.WeightOperator },
-                { "LENGTH_RANGE_OPERATOR", filter.LengthOperator },
-                { "STOCK_RANGE_OPERATOR", filter.StockOperator },
-                { "INCLUSION_DATE_RANGE_OPERATOR", filter.InclusionDateOperator },
-                { "PURCHASE_PRICE_RANGE_OPERATOR", filter.PurchasePriceOperator },
-                { "SELLING_PRICE_RANGE_OPERATOR", filter.SellingPriceOperator },
+                { "ARTICLE_NUMBER_OPERATOR", filter.ArticleNumberOperator },
+                { "WEIGHT_OPERATOR", filter.WeightOperator },
+                { "LENGTH_OPERATOR", filter.LengthOperator },
+                { "INCLUSION_DATE_OPERATOR", filter.InclusionDateOperator },
+                { "PURCHASE_PRICE_OPERATOR", filter.PurchasePriceOperator },
+                { "SELLING_PRICE_OPERATOR", filter.SellingPriceOperator },
 
                 { "ARTICLE_NUMBER_RANGE", filter.ArticleNumberRange },
                 { "WEIGHT_RANGE", filter.WeightRange },
                 { "LENGTH_RANGE", filter.LengthRange },
-                { "STOCK_RANGE", filter.StockRange },
                 { "INCLUSION_DATE_RANGE", filter.InclusionDateRange },
                 { "PURCHASE_PRICE_RANGE", filter.PurchasePriceRange },
                 { "SELLING_PRICE_RANGE", filter.SellingPriceRange }
@@ -117,7 +111,7 @@ VALUES
 
             Dictionary<string, object?> filterParameters = GetFilterParameter(filter);
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i <= 7; i++)
             {
                 string conditionSql = ConditionFilter.FilterToSql(filterParameters, i);
                 sqlBuilder.AppendLine(conditionSql);
@@ -149,7 +143,6 @@ VALUES
 `description` = @DESCRIPTION,
 `weight` = @WEIGHT,
 `length` = @LENGTH,
-`stock` = @STOCK,
 `inclusion_date` = @INCLUSION_DATE,
 `purchase_price` = @PURCHASE_PRICE,
 `selling_price` = @SELLING_PRICE,
