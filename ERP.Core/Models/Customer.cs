@@ -7,7 +7,7 @@ namespace ERP.Core.Models
         [CompareField("customer_id")]
         public int CustomerId { get; set; }
         [CompareField("customer_number")]
-        public int CustomerNumber { get; set; }
+        public string CustomerNumber { get; set; } = string.Empty;
         [CompareField("username")]
         public string UserName { get; set; } = string.Empty;
         [CompareField("password")]

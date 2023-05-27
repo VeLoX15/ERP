@@ -1,5 +1,5 @@
 DROP SCHEMA IF EXISTS `erp` ;
-CREATE SCHEMA IF NOT EXISTS `erp` DEFAULT CHARACTER SET latin2;
+CREATE SCHEMA IF NOT EXISTS `erp` DEFAULT CHARACTER SET utf8;
 USE `erp`;
 
 -- -----------------------------------------------------
@@ -24,7 +24,9 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
     `customer_status` INT NOT NULL DEFAULT 0,
     `comment` TEXT NOT NULL DEFAULT '',
 
-    PRIMARY KEY (`customer_id`)
+    PRIMARY KEY (`customer_id`),
+    FOREIGN KEY (`delivery_address_id`) REFERENCES `erp`.`addresses`(`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`billing_address_id`) REFERENCES `erp`.`addresses`(`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ); 
 
 -- -----------------------------------------------------
@@ -34,12 +36,13 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `order_id` INT NOT NULL AUTO_INCREMENT,
     `order_number` INT NOT NULL,
     `customer_id` INT NOT NULL,
+    `total_price` DECIMAL NOT NULL,
     `weight` DECIMAL NOT NULL,
     `size` DECIMAL NOT NULL,
     `payment_method` VARCHAR(50) NOT NULL,
     `shipping_method` VARCHAR(50) NOT NULL,
-    `delivery_address_id` INT,
-    `billing_address_id` INT,
+    `delivery_address_id` INT NOT NULL,
+    `billing_address_id` INT NOT NULL,
     `order_date` DATE NOT NULL,
     `delivery_date` DATE NOT NULL,
     `invoice_date` DATE NOT NULL,
@@ -53,6 +56,31 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
 );
 
 -- -----------------------------------------------------
+-- Table `erp`.`order_articles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`order_articles` (
+    `order_id` INT NOT NULL,
+    `article_id` INT NOT NULL,
+    `count` INT NOT NULL,
+
+    PRIMARY KEY(`order_id`, `article_id`),
+    FOREIGN KEY(`order_id`) REFERENCES `erp`.`orders`(`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`discounts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`discounts` (
+    `discount_id` INT NOT NULL AUTO_INCREMENT,
+    `discount_code` VARCHAR(36) NOT NULL,
+    `start_date` DATE NOT NULL,
+    `expiration_date` DATE NOT NULL,
+
+    PRIMARY KEY(`discount_id`)
+);
+
+-- -----------------------------------------------------
 -- Table `erp`.`countries`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`countries` (
@@ -60,8 +88,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`countries` (
   `iso` CHAR(2) NOT NULL,
   `name` VARCHAR(80) NOT NULL,
   `iso3` CHAR(3) DEFAULT NULL,
-  `numcode` smallint(6) DEFAULT NULL,
-  `phonecode` int(5) NOT NULL,
+  `numcode` SMALLINT(6) DEFAULT NULL,
+  `phonecode` INT(5) NOT NULL,
 
   PRIMARY KEY(`country_id`)
 );
@@ -124,6 +152,29 @@ CREATE TABLE IF NOT EXISTS `erp`.`article_categories` (
 );
 
 -- -----------------------------------------------------
+-- Table `erp`.`materials`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`materials` (
+    `material_id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50),
+    `description` TEXT NOT NULL DEFAULT '',
+    
+    PRIMARY KEY(`material_id`)
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`article_materials`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`article_materials` (
+    `article_id` INT NOT NULL,
+    `material_id` INT NOT NULL,
+    
+    PRIMARY KEY(`article_id`, `material_id`),
+    FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`material_id`) REFERENCES `erp`.`materials`(`material_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -----------------------------------------------------
 -- Table `erp`.`bundle_articles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`bundle_articles` (
@@ -142,7 +193,6 @@ CREATE TABLE IF NOT EXISTS `erp`.`warehouses` (
     `warehouse_id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
     `number` INT NOT NULL,
-    `sort_number` INT NOT NULL,
     `address_id` INT NOT NULL,
 
     PRIMARY KEY(`warehouse_id`),

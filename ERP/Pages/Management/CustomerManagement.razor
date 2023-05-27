@@ -9,27 +9,9 @@
 <EditForm Model="Filter">
     <FluentValidationValidator Validator="Validator" />
     <div class="col-md-8">
-        <div class="row">
-            <div class="form-group col-md-4">
-                <label for="customer_number">Customer Number:</label>
-                <InputNumber id="customer_number" @bind-Value="Filter.CustomerNumber" class="form-control" />
-            </div>
-            <div class="form-group col-md-2">
-                <label for="customer_number_condition"></label>
-                <InputSelect id="customer_number_condition" @bind-Value="Filter.CustomerNumberOperator" class="form-control">
-                    @for (int i = 0; i < ConditionFilter.NumberOperator.Count; i++)
-                    {
-                        <option value="@i">@ConditionFilter.NumberOperator[i]</option>
-                    }
-                </InputSelect>
-            </div>
-            @if (Filter.CustomerNumberOperator == 1)
-            {
-                <div class="form-group col-md-4">
-                    <label for="customer_number_range"></label>
-                    <InputNumber id="customer_number_range" @bind-Value="Filter.CustomerNumberRange" class="form-control" />
-                </div>
-            }
+        <div class="form-group col-md-10">
+            <label for="customer-number">Customer Number:</label>
+            <InputText id="customer-number" @bind-Value="Filter.CustomerNumber" class="form-control" />
         </div>
         <div class="form-group col-md-10">
             <label for="username">Username:</label>

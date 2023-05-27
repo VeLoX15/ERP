@@ -53,7 +53,7 @@ VALUES
 
             Article? article = await dbController.GetFirstAsync<Article>(sql, new
             {
-                FORM_ID = articleId,
+                ARTICLE_ID = articleId,
             }, cancellationToken);
 
             return article;
@@ -89,14 +89,12 @@ VALUES
                 { "SELLING_PRICE", filter.SellingPrice },
                 { "IS_BUNDLE", filter.IsBundle },
 
-                { "ARTICLE_NUMBER_OPERATOR", filter.ArticleNumberOperator },
                 { "WEIGHT_OPERATOR", filter.WeightOperator },
                 { "LENGTH_OPERATOR", filter.LengthOperator },
                 { "INCLUSION_DATE_OPERATOR", filter.InclusionDateOperator },
                 { "PURCHASE_PRICE_OPERATOR", filter.PurchasePriceOperator },
                 { "SELLING_PRICE_OPERATOR", filter.SellingPriceOperator },
 
-                { "ARTICLE_NUMBER_RANGE", filter.ArticleNumberRange },
                 { "WEIGHT_RANGE", filter.WeightRange },
                 { "LENGTH_RANGE", filter.LengthRange },
                 { "INCLUSION_DATE_RANGE", filter.InclusionDateRange },
@@ -107,7 +105,7 @@ VALUES
 
         public string GetFilterWhere(ArticleFilter filter)
         {
-            StringBuilder sqlBuilder = new StringBuilder();
+            StringBuilder sqlBuilder = new();
 
             Dictionary<string, object?> filterParameters = GetFilterParameter(filter);
 
@@ -137,6 +135,7 @@ VALUES
 
         public async Task UpdateAsync(Article input, IDbController dbController, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             string sql = @"UPDATE `articles` SET
 `article_number` = @ARTICLE_NUMBER,
 `name` = @NAME,
@@ -149,7 +148,7 @@ VALUES
 `is_bundle` = @IS_BUNDLE
 WHERE `article_id` = @ARTICLE_ID";
 
-            await dbController.QueryAsync(sql, input.GetParameters());
+            await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
         }
     }
 }

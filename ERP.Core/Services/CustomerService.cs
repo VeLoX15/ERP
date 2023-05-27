@@ -100,13 +100,8 @@ VALUES
                 { "TELEFON", filter.Telefon },
                 { "REGISTRATION_DATE", filter.RegistrationDate },
 
-
-
-                { "CUSTOMER_NUMBER_OPERATOR", filter.CustomerNumberOperator },
                 { "REGISTRATION_DATE_OPERATOR", filter.RegistrationDateOperator },
 
-
-                { "CUSTOMER_NUMBER_RANGE", filter.CustomerNumberRange },
                 { "REGISTRATION_DATE_RANGE", filter.RegistrationDateRange }
 
             };
@@ -114,7 +109,7 @@ VALUES
 
         public string GetFilterWhere(CustomerFilter filter)
         {
-            StringBuilder sqlBuilder = new StringBuilder();
+            StringBuilder sqlBuilder = new();
 
             Dictionary<string, object?> filterParameters = GetFilterParameter(filter);
 
@@ -144,6 +139,7 @@ VALUES
 
         public async Task UpdateAsync(Customer input, IDbController dbController, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             string sql = @"UPDATE `customers` SET
 `customer_number` = @CUSTOMER_NUMBER,
 `username` = @USERNAME,
@@ -162,7 +158,7 @@ VALUES
 `comment` = @COMMENT
 WHERE `customer_id` = @CUSTOMER_ID";
 
-            await dbController.QueryAsync(sql, input.GetParameters());
+            await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
         }
     }
 }

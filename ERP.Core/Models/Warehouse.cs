@@ -12,6 +12,7 @@ namespace ERP.Core.Models
         public int Number { get; set; }
         [CompareField("sort_number")]
         public int SortNumber { get; set; }
+        public Address Address { get; set; } = new();
 
         public Dictionary<string, object?> GetParameters()
         {

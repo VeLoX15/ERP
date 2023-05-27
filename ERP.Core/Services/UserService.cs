@@ -147,7 +147,7 @@ namespace ERP.Core.Services
 
         public string GetFilterWhere(UserFilter filter)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
 
             if (!string.IsNullOrWhiteSpace(filter.SearchPhrase))
             {

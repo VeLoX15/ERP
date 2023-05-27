@@ -361,6 +361,38 @@ INSERT INTO `erp`.`customers` (`customer_id`, `customer_number`, `username`, `pa
 INSERT INTO `erp`.`customers` (`customer_id`, `customer_number`, `username`, `password`, `salt`, `origin`, `salutation`, `first_name`, `last_name`, `email`, `telefon`, `standard_payment_method`, `delivery_address_id`, `billing_address_id`, `registration_date`, `customer_status`, `comment`) VALUES (10, 1010, 'user10', 'password10', 'salt10', 'origin10', 2, 'Emma', 'Thomas', 'emma.thomas@example.com', '456123789', 'payment10', 10, 10, '2023-05-23 14:30:00', 1, 'Comment 10');
 # 10 records
 
+#
+# Dumping data for table 'addresses'
+#
+
+INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (1, 'Main Street', 123, 'City 1', 'State 1', '12345', 1);
+INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (2, 'Broadway', 456, 'City 2', 'State 2', '67890', 2);
+INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (3, 'Oak Avenue', 789, 'City 3', 'State 3', '54321', 3);
+# 3 records
+
+#
+# Dumping data for table 'warehouses'
+#
+
+INSERT INTO `erp`.`warehouses` (`warehouse_id`, `name`, `number`, `address_id`) VALUES (1, 'Warehouse 1', 1, 1);
+INSERT INTO `erp`.`warehouses` (`warehouse_id`, `name`, `number`, `address_id`) VALUES (2, 'Warehouse 2', 2, 2);
+INSERT INTO `erp`.`warehouses` (`warehouse_id`, `name`, `number`, `address_id`) VALUES (3, 'Warehouse 3', 3, 3);
+# 3 records
+
+#
+# Dumping data for table 'sections'
+#
+
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (1, 1, 'Section 1-1', 1, 1);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (2, 1, 'Section 1-2', 2, 2);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (3, 1, 'Section 1-3', 3, 3);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (4, 2, 'Section 2-1', 1, 1);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (5, 2, 'Section 2-2', 2, 2);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (6, 2, 'Section 2-3', 3, 3);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (7, 3, 'Section 3-1', 1, 1);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (8, 3, 'Section 3-2', 2, 2);
+INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (9, 3, 'Section 3-3', 3, 3);
+# 9 records
 
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

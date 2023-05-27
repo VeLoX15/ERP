@@ -53,6 +53,7 @@ namespace ERP.Pages.Management
             await base.DeleteAsync();
             await LoadAsync();
         }
+
         protected override Task NewAsync()
         {
             Input = new User
@@ -63,6 +64,7 @@ namespace ERP.Pages.Management
 
             return Task.CompletedTask;
         }
+
         private Task AddPermissionAsync()
         {
             if (Input is not null)
@@ -77,6 +79,7 @@ namespace ERP.Pages.Management
 
             return Task.CompletedTask;
         }
+
         private Task PermissionSelectionChangedAsync(ChangeEventArgs e)
         {
             int permissionId = Convert.ToInt32(e.Value);

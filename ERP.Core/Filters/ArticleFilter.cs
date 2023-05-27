@@ -4,8 +4,8 @@ namespace ERP.Core.Filters
 {
     public class ArticleFilter : PageFilterBase
     {
-        public string? ArticleNumber { get; set; } = string.Empty;
-        public string Name { get; set; } = string.Empty;
+        public string? ArticleNumber { get; set; }
+        public string Name { get; set; }
         public decimal? Weight { get; set; }
         public decimal? Length { get; set; }
         public DateTime? InclusionDate { get; set; }
@@ -20,7 +20,7 @@ namespace ERP.Core.Filters
         public int PurchasePriceOperator { get; set; }
         public int SellingPriceOperator { get; set; }
 
-        public string? ArticleNumberRange { get; set; } = string.Empty;
+        public string? ArticleNumberRange { get; set; }
         public decimal? WeightRange { get; set; }
         public decimal? LengthRange { get; set; }
         public DateTime? InclusionDateRange { get; set; }

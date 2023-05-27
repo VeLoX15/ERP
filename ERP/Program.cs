@@ -36,10 +36,12 @@ namespace ERP
             builder.Services.AddScoped<AuthService>();
             builder.Services.AddScoped<ArticleService>();
             builder.Services.AddScoped<CustomerService>();
+            builder.Services.AddScoped<OrderService>();
             builder.Services.AddScoped<WarehouseService>();
             builder.Services.AddScoped<SectionService>();
             builder.Services.AddScoped<RowService>();
             builder.Services.AddScoped<RackService>();
+            builder.Services.AddScoped<CompartmentService>();
 
             builder.Configuration.AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json"), false, true);
 

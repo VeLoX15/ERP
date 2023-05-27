@@ -1,17 +1,50 @@
 ﻿@page "/Management/Warehouses/Filter"
 @attribute [Authorize(Roles = Roles.VIEW_WAREHOUSES)]
 @inject WarehouseService warehouseService
+@inject SectionService sectionService
 @inject NavigationManager navigationManager
-@inject AuthService authService
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JSRuntime
+
 <PageTitle>Warehouse Filter</PageTitle>
-
 <h3>Warehouse Filter</h3>
-<hr />
-<EditForm Model="Input">
-    <FluentValidationValidator Validator="Validator" />
-    <div class="col-4">
 
+<AuthorizeView Roles="@(Roles.EDIT_WAREHOUSES)">
+    <Authorized>
+        <div class="toolbar">
+            <button type="button" class="btn btn-success" @*@onclick="NewAsync"*@><i class="bi bi-plus-lg"></i></button>
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+<EditForm Model="Filter">
+    <FluentValidationValidator Validator="Validator" />
+    <div class="col-md-8">
+        <div class="form-group col-md-2">
+            <label for="warehouses"></label>
+            <InputSelect id="warehouses" @bind-Value="SelectedWarehouse" class="form-control">
+                @foreach (Warehouse item in Warehouses)
+                {
+                    <option value="@item.WarehouseId">@item.Name</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="sections"></label>
+            <InputSelect id="sections" @bind-Value="SelectedSection" class="form-control">
+                @foreach (Section item in Sections)
+                {
+                    <option value="@item.SectionId">@item.Name</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="form-group col-md-10">
+            <label for="name">Storage Location:</label>
+            <InputText id="name" @bind-Value="Filter.Name" class="form-control" />
+        </div>
+
+        <div class="toolbar">
+            <button type="submit" class="btn btn-primary" @*@onclick="async () => await SendDataAsync()" *@>Search</button>
+        </div>
 
         <hr />
         <ValidationSummary />
