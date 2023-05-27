@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ERP.Core.Models
+﻿namespace ERP.Core.Models
 {
-    internal class Size
+    public class Size
     {
+        public decimal length { get; set; }
+        public decimal width { get; set; }
+        public decimal height { get; set; }
     }
 }

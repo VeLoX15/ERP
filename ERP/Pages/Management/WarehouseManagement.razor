@@ -20,7 +20,7 @@
     <FluentValidationValidator Validator="Validator" />
     <div class="col-md-8">
         <div class="form-group col-md-2">
-            <label for="warehouses"></label>
+            <label for="warehouses">Warehouse:</label>
             <InputSelect id="warehouses" @bind-Value="SelectedWarehouse" class="form-control">
                 @foreach (Warehouse item in Warehouses)
                 {
@@ -29,7 +29,7 @@
             </InputSelect>
         </div>
         <div class="form-group col-md-2">
-            <label for="sections"></label>
+            <label for="sections">Section:</label>
             <InputSelect id="sections" @bind-Value="SelectedSection" class="form-control">
                 @foreach (Section item in Sections)
                 {
