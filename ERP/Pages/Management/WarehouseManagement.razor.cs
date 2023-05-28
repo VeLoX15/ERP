@@ -2,10 +2,9 @@ using ERP.Core.Filters;
 using ERP.Core.Services;
 using ERP.Core.Validators;
 using ERP.Core.Models;
-using ERP.Core.Extensions;
 using DbController.MySql;
 using DbController;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Components;
 
 namespace ERP.Pages.Management
 {
@@ -19,20 +18,33 @@ namespace ERP.Pages.Management
         public WarehouseValidator Validator { get; set; } = new();
 
         public List<Warehouse> Warehouses { get; set; } = new();
-        public Warehouse SelectedWarehouse { get; set; } = new();
+        public int SelectedWarehouse { get; set; }
         public List<Section> Sections { get; set; } = new();
-        public Section SelectedSection { get; set; } = new();
+        public int SelectedSection { get; set; }
 
-        //protected override async Task OnInitializedAsync()
-        //{
-        //    using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
-        //    Warehouses = await warehouseService.GetAllAsync(dbController);
-        //}
 
-        //private async Task OnChange()
-        //{
-        //    using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
-        //    Sections = await sectionService.GetSectionsByWarehouseId(SelectedWarehouse.WarehouseId, dbController);
-        //}
+        protected override async Task OnInitializedAsync()
+        {
+            using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
+            Warehouses = await warehouseService.GetAllAsync(dbController);
+        }
+
+        private async Task UpdateSections()
+        {
+            Sections = await GetSectionsForWarehouse(SelectedWarehouse);
+            StateHasChanged();
+        }
+
+        private async Task<List<Section>> GetSectionsForWarehouse(int warehouseId)
+        {
+            using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
+            return await sectionService.GetSectionsByWarehouseId(warehouseId, dbController);
+        }
+
+        private async Task OnSelectedWarehouseChanged(ChangeEventArgs e)
+        {
+            SelectedWarehouse = Convert.ToInt32(e.Value);
+            await UpdateSections();
+        }
     }
 }
