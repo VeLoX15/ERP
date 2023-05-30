@@ -1,28 +1,100 @@
 ﻿using DbController;
+using ERP.Core.Filters;
 using ERP.Core.Models;
+using System.Text;
 
 namespace ERP.Core.Services
 {
-    public class CompartmentService : IModelService<Compartment, int>
+    public class CompartmentService : IModelService<Compartment, int, WarehouseFilter>
     {
-        public Task CreateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
+        public async Task CreateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            string sql = $@"INSERT INTO `compartments`
+(
+`number`
+)
+VALUES
+(
+@NUMBER
+); {dbController.GetLastIdSql()}";
+
+            input.CompartmentId = await dbController.GetFirstAsync<int>(sql, input.GetParameters(), cancellationToken);
         }
 
-        public Task DeleteAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
+        public async Task DeleteAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            string sql = "DELETE FROM `compartments` WHERE `compartment_id` = @COMPARTMENT_ID";
+
+            await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
         }
 
-        public Task<Compartment?> GetAsync(int identifier, IDbController dbController, CancellationToken cancellationToken = default)
+        public async Task<Compartment?> GetAsync(int compartmentId, IDbController dbController, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            string sql = "SELECT * FROM `compartments` WHERE `compartment_id` = @COMPARTMENT_ID";
+
+            Compartment? compartment = await dbController.GetFirstAsync<Compartment>(sql, new
+            {
+                COMPARTMENT_ID = compartmentId,
+            }, cancellationToken);
+
+            return compartment;
         }
 
-        public Task UpdateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
+        public async Task<List<Compartment>> GetAsync(WarehouseFilter filter, IDbController dbController, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            StringBuilder sqlBuilder = new();
+            sqlBuilder.AppendLine("SELECT c.* FROM `compartments` c ");
+            sqlBuilder.AppendLine("WHERE 1 = 1 ");
+            sqlBuilder.AppendLine(GetFilterWhere(filter));
+            sqlBuilder.AppendLine(@$"ORDER BY `compartment_id` DESC ");
+            sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
+
+            string sql = sqlBuilder.ToString();
+
+            List<Compartment> list = await dbController.SelectDataAsync<Compartment>(sql, GetFilterParameter(filter), cancellationToken);
+
+            return list;
+        }
+
+        public Dictionary<string, object?> GetFilterParameter(WarehouseFilter filter)
+        {
+            return new Dictionary<string, object?>
+            {
+                { "WAREHOUSE_ID", filter.WarehouseId }
+            };
+        }
+
+        public string GetFilterWhere(WarehouseFilter filter)
+        {
+            
+        }
+
+        public async Task<int> GetTotalAsync(WarehouseFilter filter, IDbController dbController, CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            StringBuilder sqlBuilder = new();
+            sqlBuilder.AppendLine("SELECT COUNT(*) FROM `compartments` WHERE 1 = 1");
+            sqlBuilder.AppendLine(GetFilterWhere(filter));
+
+            string sql = sqlBuilder.ToString();
+
+            int result = await dbController.GetFirstAsync<int>(sql, GetFilterParameter(filter), cancellationToken);
+
+            return result;
+        }
+
+        public async Task UpdateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            string sql = @"UPDATE `compartments` SET
+`number` = @NUMBER
+WHERE `compartment_id` = @COMPARTMENT_ID";
+
+            await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ERP.Core.Models
 {
-    public class Compartment
+    public class Compartment : IDbModel
     {
         [CompareField("compartment_id")]
         public int CompartmentId { get; set; }
@@ -21,7 +21,9 @@ namespace ERP.Core.Models
         [CompareField("sort_number")]
         public int SortNumber { get; set; }
         [CompareField("article_id")]
-        public int ArticleId { get; set; }
+        public List<Article> Articles { get; set; } = new();
+
+        public int Id => CompartmentId;
 
         public Dictionary<string, object?> GetParameters()
         {
@@ -34,8 +36,7 @@ namespace ERP.Core.Models
                 { "RACK_ID", RackId },
                 { "name", Name },
                 { "number", Number },
-                { "sort_number", SortNumber },
-                { "article_id", ArticleId }
+                { "sort_number", SortNumber }
            };
         }
     }
