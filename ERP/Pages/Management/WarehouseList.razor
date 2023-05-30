@@ -1,5 +1,86 @@
-﻿<h3>WarehouseList</h3>
+﻿@page "/Management/Warehouses/List"
+@attribute [Authorize(Roles = Roles.VIEW_WAREHOUSES)]
+@inherits ManagementBasePage<Compartment, CompartmentService>
+<PageTitle>Storage List</PageTitle>
+<h3>Storage List</h3>
 
-@code {
+<div class="col-lg-9 col-sm-12">
 
+    <div class="card">
+        <div class="card-content">
+            <!-- Table with no outer spacing -->
+            <div class="table-responsive">
+                <table class="table mb-0 table-lg">
+                    <thead>
+                        <tr>
+                            <th>Storage Number</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <Virtualize Items="FilterData" Context="storage">
+                            <tr>
+                                <td>@storage.Number</td>
+                                <td class="text-right">
+                                    <AuthorizeView Roles="@(Roles.DELETE_WAREHOUSES)">
+                                        <Authorized>
+                                            <span class="aktion-icon" role="button" @onclick="() => SelectedForDeletion = storage">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </span>
+                                        </Authorized>
+                                    </AuthorizeView>
+                                    <AuthorizeView Roles="@(Roles.EDIT_WAREHOUSES)">
+                                        <Authorized>
+                                            <span class="aktion-icon" role="button" @onclick="async () => await EditAsync(storage)">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </span>
+                                        </Authorized>
+                                    </AuthorizeView>
+                                </td>
+                            </tr>
+                        </Virtualize>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@if (Input is not null)
+{
+    <Modal Title="@String.Format("Edit Storage", Input.Number)"
+       OnClosed="() => Input = null"
+       ModalSize="ModalSize.LG"
+       HideFooter="true">
+
+        <EditForm Model="Input" @ref="_form">
+            <FluentValidationValidator />
+            <ValidationSummary />
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.Number" class="form-control" id="article-article-number" placeholder="Compartment Number" />
+                        <label for="article-article_number">Compartment Number</label>
+                        <ValidationMessage For="() => Input.Number" />
+                    </div>
+                </div>
+            </div>
+        </EditForm>
+
+        <div class="toolbar">
+            <button type="button" class="btn btn-danger" @onclick="() => Input = null">Cancel</button>
+            <button type="button" class="btn btn-success" @onclick="SaveAsync">Save</button>
+        </div>
+    </Modal>
+}
+
+@if (SelectedForDeletion is not null)
+{
+    <ConfirmModal Title="Delete"
+              OnClosed="() => SelectedForDeletion = null"
+              OnConfirmed="DeleteAsync">
+        <p>@String.Format("Delete Text", SelectedForDeletion.Number)</p>
+    </ConfirmModal>
 }
