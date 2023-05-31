@@ -20,8 +20,14 @@ namespace ERP.Pages.Management
 
         public List<Article> FilterData { get; set; } = new ();
 
+        private bool IsToggled = false;
+
+        private bool IsBundle = false;
+
         private async Task SendDataAsync()
         {
+            CheckBundle();
+
             using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
             FilterData = await articleService.GetAsync(Filter, dbController);
 
@@ -30,6 +36,18 @@ namespace ERP.Pages.Management
             await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "articles", serializedArticles);
 
             navigationManager.NavigateTo("/Management/Articles/List");
+        }
+
+        private void CheckBundle()
+        {
+            if (!IsToggled)
+            {
+                Filter.IsBundle = null;
+            } 
+            else
+            {
+                Filter.IsBundle = IsBundle;
+            }
         }
     }
 }

@@ -18,10 +18,12 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
     `email` VARCHAR(50) NOT NULL,
     `telefon` VARCHAR (50),
     `standard_payment_method` VARCHAR(50) NOT NULL,
+    `standard_delivery_method` VARCHAR(50) NOT NULL,
     `delivery_address_id` INT,
     `billing_address_id` INT,
     `registration_date` DATETIME NOT NULL,
     `customer_status` INT NOT NULL DEFAULT 0,
+    `customer_group` INT NOT NULL DEFAULT 0,
     `comment` TEXT NOT NULL DEFAULT '',
 
     PRIMARY KEY (`customer_id`),
@@ -30,15 +32,29 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
 ); 
 
 -- -----------------------------------------------------
+-- Table `erp`.`invoices`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`invoices` (
+    `invoice_id` INT NOT NULL,
+    `invoice_number` INT NOT NULL,
+    `total_price` INT NOT NULL,
+    `tax` INT NOT NULL,
+    ``
+
+    PRIMARY KEY(`bill_id`, `article_id`)
+);
+
+-- -----------------------------------------------------
 -- Table `erp`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `order_id` INT NOT NULL AUTO_INCREMENT,
-    `order_number` INT NOT NULL,
+    `order_number` VARCHAR(50) NOT NULL,
     `customer_id` INT NOT NULL,
     `total_price` DECIMAL NOT NULL,
+    `tax` DECIMAL NOT NULL,
     `weight` DECIMAL NOT NULL,
-    `size` DECIMAL NOT NULL,
+    `size_id` DECIMAL NOT NULL,
     `payment_method` VARCHAR(50) NOT NULL,
     `shipping_method` VARCHAR(50) NOT NULL,
     `delivery_address_id` INT NOT NULL,
@@ -48,11 +64,15 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `invoice_date` DATE NOT NULL,
     `order_status_public` INT NOT NULL,
     `order_status_intern` INT NOT NULL,
-    `discount_code` VARCHAR(36) NOT NULL,
-    `order_note` VARCHAR(255),
+    `discount_id` VARCHAR(36) NOT NULL,
+    `order_note` TEXT NOT NULL DEFAULT '',
 
     PRIMARY KEY(`order_id`),
-    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customer_id`)
+    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customer_id`),
+    FOREIGN KEY(`size_id`) REFERENCES `erp`.`sizes`(`size_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`delivery_address_id`) REFERENCES `erp`.`addresses`(`delivery_address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`billing_address_id`) REFERENCES `erp`.`addresses`(`billing_address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`discount_id`) REFERENCES `erp`.`discounts`(`discount_id`)
 );
 
 -- -----------------------------------------------------
@@ -62,6 +82,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`order_articles` (
     `order_id` INT NOT NULL,
     `article_id` INT NOT NULL,
     `count` INT NOT NULL,
+    `purchase_price_on_order` DECIMAL NOT NULL,
+    `selling_price_on_order` DECIMAL NOT NULL,
 
     PRIMARY KEY(`order_id`, `article_id`),
     FOREIGN KEY(`order_id`) REFERENCES `erp`.`orders`(`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -78,6 +100,19 @@ CREATE TABLE IF NOT EXISTS `erp`.`discounts` (
     `expiration_date` DATE NOT NULL,
 
     PRIMARY KEY(`discount_id`)
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`sizes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
+    `size_id` INT NOT NULL,
+    `length` DECIMAL NOT NULL,
+    `width` DECIMAL NOT NULL,
+    `hight` DECIMAL NOT NULL,
+    `volume` DECIMAL NOT NULL,
+
+    PRIMARY KEY(`size_id`)
 );
 
 -- -----------------------------------------------------
@@ -118,14 +153,14 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
     `article_number` VARCHAR(12) NOT NULL,
     `name` VARCHAR(50) NOT NULL,
     `description` TEXT NOT NULL DEFAULT '',
-    `weight` DECIMAL NOT NULL,
-    `length` DECIMAL NOT NULL,
+    `size_id` DECIMAL NOT NULL,
     `purchase_price` DECIMAL NOT NULL,
     `selling_price` DECIMAL NOT NULL,
     `inclusion_date` DATE NOT NULL,
     `is_bundle` BOOLEAN NOT NULL DEFAULT FALSE,
 
-    PRIMARY KEY(`article_id`)
+    PRIMARY KEY(`article_id`),
+    FOREIGN KEY (`size_id`) REFERENCES `erp`.`sizes`(`size_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------

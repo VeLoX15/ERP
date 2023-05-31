@@ -2,6 +2,7 @@
 @attribute [Authorize(Roles = Roles.VIEW_WAREHOUSES)]
 @inject WarehouseService warehouseService
 @inject SectionService sectionService
+@inject CompartmentService compartmentService
 @inject NavigationManager navigationManager
 @inject IJSRuntime JSRuntime
 
@@ -18,10 +19,10 @@
 
 <EditForm Model="Filter">
     <FluentValidationValidator Validator="Validator" />
-    <div class="col-md-4">
+    <div class="col-lg-6">
         <div class="form-group col-md-4">
             <label for="warehouses">Warehouse:</label>
-            <InputSelect id="warehouses" @bind-Value="SelectedWarehouse" class="form-control" @oninput="OnSelectedWarehouseChanged">
+            <InputSelect id="warehouses" @bind-Value="Filter.WarehouseId" class="form-control" @oninput="OnSelectedWarehouseChanged">
                 <option value="0">Select</option>
                 @foreach (Warehouse item in Warehouses)
                 {
@@ -31,7 +32,7 @@
         </div>
         <div class="form-group col-md-4">
             <label for="sections">Section:</label>
-            <InputSelect id="sections" @bind-Value="SelectedSection" class="form-control">
+            <InputSelect id="sections" @bind-Value="Filter.SectionId" class="form-control">
                 @foreach (Section item in Sections)
                 {
                     <option value="@item.SectionId">@item.Name</option>
@@ -40,11 +41,11 @@
         </div>
         <div class="form-group col-md-4">
             <label for="name">Storage Location:</label>
-            <InputText id="name" @bind-Value="Filter.Name" class="form-control" />
+            <InputText id="name" @bind-Value="Filter.StorageLocation" class="form-control" />
         </div>
 
         <div class="toolbar">
-            <button type="submit" class="btn btn-primary" @*@onclick="async () => await SendDataAsync()" *@>Search</button>
+            <button type="submit" class="btn btn-primary" @onclick="async () => await SendDataAsync()" >Search</button>
         </div>
 
         <hr />

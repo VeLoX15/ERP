@@ -1,24 +1,28 @@
 ﻿using ERP.Core.Filters.Abstract;
-using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ERP.Core.Filters
 {
     public class WarehouseFilter : PageFilterBase
     {
         public int WarehouseId { get; set; }
-        public int SectionId { get; set; }
-        public int RowId { get; set; }
-        public int RackId { get; set; }
-        public int CompartmentId { get; set; }
+        public int SectionId { get; set; } = 1;
+        public string StorageLocation { get; set; } = string.Empty;
 
-
-        public static string StorageFilter()
+        public string ExtractNumber(string input, string letter)
         {
-            StringBuilder sqlBuilder = new();
-            sqlBuilder.AppendLine("SELECT c.* FROM `compartments` c ");
-            sqlBuilder.AppendLine("WHERE 1 = 1 ");
-            sqlBuilder.AppendLine("");
-            sqlBuilder.AppendLine(@$"ORDER BY `compartment_id` DESC ");
+            string pattern = $@"[{letter.ToLower()}{letter.ToUpper()}](\d+)";
+            Match match = Regex.Match(input, pattern);
+
+            if (match.Success && int.TryParse(match.Groups[1].Value, out int number))
+            {
+                if(number > 0)
+                {
+                    return @$"AND {letter}.`sort_number` = {number} ";
+                }
+            }
+
+            return "";
         }
     }
 }

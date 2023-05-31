@@ -5,6 +5,8 @@ using ERP.Core.Models;
 using DbController.MySql;
 using DbController;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using System.Text.Json;
 
 namespace ERP.Pages.Management
 {
@@ -18,9 +20,8 @@ namespace ERP.Pages.Management
         public WarehouseValidator Validator { get; set; } = new();
 
         public List<Warehouse> Warehouses { get; set; } = new();
-        public int SelectedWarehouse { get; set; }
         public List<Section> Sections { get; set; } = new();
-        public int SelectedSection { get; set; }
+        public List<Compartment> FilterData { get; set; } = new();
 
 
         protected override async Task OnInitializedAsync()
@@ -31,7 +32,7 @@ namespace ERP.Pages.Management
 
         private async Task UpdateSections()
         {
-            Sections = await GetSectionsForWarehouse(SelectedWarehouse);
+            Sections = await GetSectionsForWarehouse(Filter.WarehouseId);
             StateHasChanged();
         }
 
@@ -43,8 +44,20 @@ namespace ERP.Pages.Management
 
         private async Task OnSelectedWarehouseChanged(ChangeEventArgs e)
         {
-            SelectedWarehouse = Convert.ToInt32(e.Value);
+            Filter.WarehouseId = Convert.ToInt32(e.Value);
             await UpdateSections();
+        }
+
+        private async Task SendDataAsync()
+        {
+            using IDbController dbController = new MySqlController(AppdatenService.ConnectionString);
+            FilterData = await compartmentService.GetAsync(Filter, dbController);
+
+            string serializedArticles = JsonSerializer.Serialize(FilterData);
+            await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "storages");
+            await JSRuntime.InvokeVoidAsync("sessionStorage.setItem", "storages", serializedArticles);
+
+            navigationManager.NavigateTo("/Management/Warehouses/List");
         }
     }
 }

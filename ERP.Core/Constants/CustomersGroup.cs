@@ -2,7 +2,7 @@
 {
     public enum CustomerGroup
     {
-        B2B = 1,
-        B2C = 2
+        B2C = 1,
+        B2B = 2
     }
 }

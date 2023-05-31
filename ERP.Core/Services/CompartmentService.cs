@@ -2,6 +2,7 @@
 using ERP.Core.Filters;
 using ERP.Core.Models;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ERP.Core.Services
 {
@@ -47,10 +48,14 @@ VALUES
         {
             cancellationToken.ThrowIfCancellationRequested();
             StringBuilder sqlBuilder = new();
-            sqlBuilder.AppendLine("SELECT c.* FROM `compartments` c ");
+            sqlBuilder.AppendLine("SELECT c.*, r.`sort_number` AS `row_sort_number`, s.`sort_number` AS `rack_sort_number` FROM `compartments` c ");
+            sqlBuilder.AppendLine("JOIN `rows` r ON c.`row_id` = r.`row_id` ");
+            sqlBuilder.AppendLine("JOIN `racks` s ON c.`rack_id` = s.`rack_id` ");
             sqlBuilder.AppendLine("WHERE 1 = 1 ");
+            sqlBuilder.AppendLine(@$"AND c.`warehouse_id` = {filter.WarehouseId} ");
+            sqlBuilder.AppendLine(@$"AND c.`section_id` = {filter.SectionId} ");
             sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"ORDER BY `compartment_id` DESC ");
+            sqlBuilder.AppendLine(@$"ORDER BY c.`sort_number` DESC ");
             sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
 
             string sql = sqlBuilder.ToString();
@@ -70,7 +75,13 @@ VALUES
 
         public string GetFilterWhere(WarehouseFilter filter)
         {
-            
+            StringBuilder sqlBuilder = new();
+            sqlBuilder.AppendLine(filter.ExtractNumber(filter.StorageLocation, "r"));
+            sqlBuilder.AppendLine(filter.ExtractNumber(filter.StorageLocation, "s"));
+            sqlBuilder.AppendLine(filter.ExtractNumber(filter.StorageLocation, "c"));
+            string sql = sqlBuilder.ToString();
+
+            return sql;
         }
 
         public async Task<int> GetTotalAsync(WarehouseFilter filter, IDbController dbController, CancellationToken cancellationToken = default)

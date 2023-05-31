@@ -74,8 +74,9 @@ VALUES
         {
             return new Dictionary<string, object?>
             {
-                { "NAME", filter.Name },
-                { "NUMBER", filter.Number }
+                { "WAREHOUSE_ID", filter.WarehouseId },
+                { "SECTION_ID", filter.SectionId },
+                { "STORAGE_LOCATION", filter.StorageLocation }
             };
         }
 

@@ -14,6 +14,8 @@
                     <thead>
                         <tr>
                             <th>Storage Number</th>
+                            <th>Name</th>
+                            <th>Article</th>
                             <th class="text-right">Action</th>
                         </tr>
                     </thead>
@@ -21,6 +23,8 @@
                         <Virtualize Items="FilterData" Context="storage">
                             <tr>
                                 <td>@storage.Number</td>
+                                <td>@storage.Name</td>
+                                <td>Article</td>
                                 <td class="text-right">
                                     <AuthorizeView Roles="@(Roles.DELETE_WAREHOUSES)">
                                         <Authorized>

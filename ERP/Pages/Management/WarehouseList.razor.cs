@@ -33,7 +33,7 @@ namespace ERP.Pages.Management
 
         protected override async Task OnInitializedAsync()
         {
-            var storedData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "orders");
+            var storedData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "storages");
             if (!string.IsNullOrEmpty(storedData))
             {
                 FilterData = JsonSerializer.Deserialize<List<Compartment>>(storedData);

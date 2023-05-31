@@ -394,5 +394,59 @@ INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `s
 INSERT INTO `erp`.`sections` (`section_id`, `warehouse_id`, `name`, `number`, `sort_number`) VALUES (9, 3, 'Section 3-3', 3, 3);
 # 9 records
 
+#
+# Dumping data for table 'rows'
+#
+INSERT INTO `erp`.`rows` (`row_id`, `warehouse_id`, `section_id`, `name`, `number`, `sort_number`) VALUES (1, 1, 1, 'Row B', 20, 1);
+INSERT INTO `erp`.`rows` (`row_id`, `warehouse_id`, `section_id`, `name`, `number`, `sort_number`) VALUES (2, 1, 1, 'Row C', 30, 2);
+INSERT INTO `erp`.`rows` (`row_id`, `warehouse_id`, `section_id`, `name`, `number`, `sort_number`) VALUES (3, 1, 1, 'Row D', 40, 3);
+# 3 records
+
+#
+# Dumping data for table 'racks'
+#
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (1, 1, 1, 1, 'Rack 1', 1, 1);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (2, 1, 1, 1, 'Rack 2', 2, 2);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (3, 1, 1, 1, 'Rack 3', 3, 3);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (4, 1, 1, 2, 'Rack 1', 1, 1);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (5, 1, 1, 2, 'Rack 2', 2, 2);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (6, 1, 1, 2, 'Rack 3', 3, 3);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (7, 1, 1, 3, 'Rack 1', 1, 1);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (8, 1, 1, 3, 'Rack 2', 2, 2);
+INSERT INTO `erp`.`racks` (`rack_id`, `warehouse_id`, `section_id`, `row_id`, `name`, `number`, `sort_number`) VALUES (9, 1, 1, 3, 'Rack 3', 3, 3);
+# 9 records
+
+#
+# Dumping data for table 'compartments'
+#
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (1, 1, 1, 1, 1, 'Storage 1', 1, 1, 1);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (2, 1, 1, 1, 1, 'Storage 2', 2, 2, 2);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (3, 1, 1, 1, 1, 'Storage 3', 3, 3, 3);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (4, 1, 1, 1, 2, 'Storage 1', 1, 1, 4);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (5, 1, 1, 1, 2, 'Storage 2', 2, 2, 5);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (6, 1, 1, 1, 2, 'Storage 3', 3, 3, 6);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (7, 1, 1, 1, 3, 'Storage 1', 1, 1, 7);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (8, 1, 1, 1, 3, 'Storage 2', 2, 2, 8);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (9, 1, 1, 1, 3, 'Storage 3', 3, 3, 9);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (10, 1, 1, 2, 4, 'Storage 1', 1, 1, 1);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (11, 1, 1, 2, 4, 'Storage 2', 2, 2, 2);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (12, 1, 1, 2, 4, 'Storage 3', 3, 3, 3);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (13, 1, 1, 2, 5, 'Storage 1', 1, 1, 4);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (14, 1, 1, 2, 5, 'Storage 2', 2, 2, 5);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (15, 1, 1, 2, 5, 'Storage 3', 3, 3, 6);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (16, 1, 1, 2, 6, 'Storage 1', 1, 1, 7);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (17, 1, 1, 2, 6, 'Storage 2', 2, 2, 8);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (18, 1, 1, 2, 6, 'Storage 3', 3, 3, 9);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (19, 1, 1, 3, 7, 'Storage 1', 1, 1, 1);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (20, 1, 1, 3, 7, 'Storage 2', 2, 2, 2);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (21, 1, 1, 3, 7, 'Storage 3', 3, 3, 3);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (22, 1, 1, 3, 8, 'Storage 1', 1, 1, 4);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (23, 1, 1, 3, 8, 'Storage 2', 2, 2, 5);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (24, 1, 1, 3, 8, 'Storage 3', 3, 3, 6);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (25, 1, 1, 3, 9, 'Storage 1', 1, 1, 7);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (26, 1, 1, 3, 9, 'Storage 2', 2, 2, 8);
+INSERT INTO `erp`.`compartments` (`compartment_id`, `warehouse_id`, `section_id`, `row_id`, `rack_id`, `name`, `number`, `sort_number`, `article_id`) VALUES (27, 1, 1, 3, 9, 'Storage 3', 3, 3, 9);
+# 27 records
+
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

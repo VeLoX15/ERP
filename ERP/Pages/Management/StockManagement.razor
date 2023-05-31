@@ -1,0 +1,24 @@
+﻿@page "/Management/Stocks/Filter"
+@attribute [Authorize(Roles = Roles.VIEW_STOCKS)]
+@inject CompartmentService compartmentService
+@inject NavigationManager navigationManager
+@inject IJSRuntime JSRuntime
+
+<h3>Stock Search</h3>
+<hr />
+@*<EditForm Model="Filter">
+    <FluentValidationValidator Validator="Validator" />
+    <div class="col-lg-6">
+        <div class="form-group col-md-10">
+            <label for="order-number">Article Number:</label>
+            <InputText id="order-number" @bind-Value="Filter.OrderNumber" class="form-control" />
+        </div>
+
+        <div class="toolbar">
+            <button type="submit" class="btn btn-primary" @onclick="async () => await SendDataAsync()">Search</button>
+        </div>
+
+        <hr />
+        <ValidationSummary />
+    </div>
+</EditForm>*@

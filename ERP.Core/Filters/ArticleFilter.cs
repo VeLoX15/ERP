@@ -5,13 +5,13 @@ namespace ERP.Core.Filters
     public class ArticleFilter : PageFilterBase
     {
         public string? ArticleNumber { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public decimal? Weight { get; set; }
         public decimal? Length { get; set; }
         public DateTime? InclusionDate { get; set; }
         public decimal? PurchasePrice { get; set; }
         public decimal? SellingPrice { get; set; }
-        public bool IsBundle { get; set; }
+        public bool? IsBundle { get; set; }
 
         public int ArticleNumberOperator { get; set; }
         public int WeightOperator { get; set; }
