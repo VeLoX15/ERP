@@ -16,7 +16,6 @@ namespace ERP.Core.Services
 `name`,
 `description`,
 `weight`,
-`length`,
 `inclusion_date`,
 `purchase_price`,
 `selling_price`,
@@ -28,7 +27,6 @@ VALUES
 @NAME,
 @DESCRIPTION,
 @WEIGHT,
-@LENGTH,
 @INCLUSION_DATE,
 @PURCHASE_PRICE,
 @SELLING_PRICE,
@@ -83,20 +81,17 @@ VALUES
                 { "ARTICLE_NUMBER", filter.ArticleNumber },
                 { "NAME", filter.Name },
                 { "WEIGHT", filter.Weight },
-                { "LENGTH", filter.Length },
                 { "INCLUSION_DATE", filter.InclusionDate },
                 { "PURCHASE_PRICE", filter.PurchasePrice },
                 { "SELLING_PRICE", filter.SellingPrice },
                 { "IS_BUNDLE", filter.IsBundle },
 
                 { "WEIGHT_OPERATOR", filter.WeightOperator },
-                { "LENGTH_OPERATOR", filter.LengthOperator },
                 { "INCLUSION_DATE_OPERATOR", filter.InclusionDateOperator },
                 { "PURCHASE_PRICE_OPERATOR", filter.PurchasePriceOperator },
                 { "SELLING_PRICE_OPERATOR", filter.SellingPriceOperator },
 
                 { "WEIGHT_RANGE", filter.WeightRange },
-                { "LENGTH_RANGE", filter.LengthRange },
                 { "INCLUSION_DATE_RANGE", filter.InclusionDateRange },
                 { "PURCHASE_PRICE_RANGE", filter.PurchasePriceRange },
                 { "SELLING_PRICE_RANGE", filter.SellingPriceRange }
@@ -109,7 +104,7 @@ VALUES
 
             Dictionary<string, object?> filterParameters = GetFilterParameter(filter);
 
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i <= 6; i++)
             {
                 string conditionSql = ConditionFilter.FilterToSql(filterParameters, i);
                 sqlBuilder.AppendLine(conditionSql);
@@ -141,7 +136,6 @@ VALUES
 `name` = @NAME,
 `description` = @DESCRIPTION,
 `weight` = @WEIGHT,
-`length` = @LENGTH,
 `inclusion_date` = @INCLUSION_DATE,
 `purchase_price` = @PURCHASE_PRICE,
 `selling_price` = @SELLING_PRICE,

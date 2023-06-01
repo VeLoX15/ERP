@@ -9,7 +9,7 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 
-USE `tabletop`;
+USE `erp`;
 
 #
 # Dumping data for table 'permissions'
@@ -261,7 +261,7 @@ INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `
 INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (217, 'TN', 'Tunisia', 'TUN', 788, 216);
 INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (218, 'TR', 'Turkey', 'TUR', 792, 90);
 INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (219, 'TM', 'Turkmenistan', 'TKM', 795, 7370);
-INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (220, 'TC', 'ISLANDS', 'Turks and Caicos Islands', 'TCA', 796, 1649);
+INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (220, 'TC', 'Turks and Caicos Islands', 'TCA', 796, 1649);
 INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (221, 'TV', 'Tuvalu', 'TUV', 798, 688);
 INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (222, 'UG', 'Uganda', 'UGA', 800, 256);
 INSERT INTO `erp`.`countries` (`country_id`, `iso`, `name`, `iso3`, `numcode`, `phonecode`) VALUES (223, 'UA', 'Ukraine', 'UKR', 804, 380);
@@ -333,17 +333,33 @@ INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 21)
 # Dumping data for table 'articles'
 #
 
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (1, '10902143', 'DC-15A Blastergewehr', '', 15, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (2, '10902144', 'DC-15S Blasterkarabiner', '', 20, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (3, '10902145', 'DC-15X Scharfschützengewehr', '', 17, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (4, '10902146', 'DC-17 Handblaster', '', 11, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (5, '10902147', 'Z-6 Rotationsblaster', '', 26, 10, 3, 5, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (6, '10901010', 'E-5 Blaster', '', 18, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (7, '10901011', 'E-5s-Scharfschützengewehr', '', 21, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (8, '10901012', 'SE-14 Handblaster', '', 12, 10, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (9, '1081019', 'E17D Scharfschützengewehr', '', 26, 10, 3, 4, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `weight`, `length`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (10, '10801020', 'DL-44 Blasterpistole', '', 17, 10, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`sizes` (`size_id`, `length`, `width`, `hight`, `volume`) VALUES (1, 10.5, 8.2, 5.3, 450.1);
+# 1 records
+
+#
+# Dumping data for table 'articles'
+#
+
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (1, '10902143', 'DC-15A Blastergewehr', '', 1, 15, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (2, '10902144', 'DC-15S Blasterkarabiner', '', 1, 20, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (3, '10902145', 'DC-15X Scharfschützengewehr', '', 1, 17, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (4, '10902146', 'DC-17 Handblaster', '', 1, 11, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (5, '10902147', 'Z-6 Rotationsblaster', '', 1, 26, 3, 5, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (6, '10901010', 'E-5 Blaster', '', 1, 18, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (7, '10901011', 'E-5s-Scharfschützengewehr', '', 1, 21, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (8, '10901012', 'SE-14 Handblaster', '', 1, 12, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (9, '1081019', 'E17D Scharfschützengewehr', '', 1, 26, 1, 4, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (10, '10801020', 'DL-44 Blasterpistole', '', 1, 17, 1, 2, '2023-05-23 14:30:00');
 # 10 records
+
+#
+# Dumping data for table 'addresses'
+#
+
+INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (1, 'Main Street', 123, 'City 1', 'State 1', '12345', 1);
+INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (2, 'Broadway', 456, 'City 2', 'State 2', '67890', 2);
+INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (3, 'Oak Avenue', 789, 'City 3', 'State 3', '54321', 3);
+# 3 records
 
 #
 # Dumping data for table 'customers'
@@ -360,15 +376,6 @@ INSERT INTO `erp`.`customers` (`customer_id`, `customer_number`, `username`, `pa
 INSERT INTO `erp`.`customers` (`customer_id`, `customer_number`, `username`, `password`, `salt`, `origin`, `salutation`, `first_name`, `last_name`, `email`, `telefon`, `standard_payment_method`, `delivery_address_id`, `billing_address_id`, `registration_date`, `customer_status`, `comment`) VALUES (9, 1009, 'user9', 'password9', 'salt9', 'origin9', 1, 'Matthew', 'Anderson', 'matthew.anderson@example.com', '123987456', 'payment9', 9, 9, '2023-05-23 14:30:00', 1, 'Comment 9');
 INSERT INTO `erp`.`customers` (`customer_id`, `customer_number`, `username`, `password`, `salt`, `origin`, `salutation`, `first_name`, `last_name`, `email`, `telefon`, `standard_payment_method`, `delivery_address_id`, `billing_address_id`, `registration_date`, `customer_status`, `comment`) VALUES (10, 1010, 'user10', 'password10', 'salt10', 'origin10', 2, 'Emma', 'Thomas', 'emma.thomas@example.com', '456123789', 'payment10', 10, 10, '2023-05-23 14:30:00', 1, 'Comment 10');
 # 10 records
-
-#
-# Dumping data for table 'addresses'
-#
-
-INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (1, 'Main Street', 123, 'City 1', 'State 1', '12345', 1);
-INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (2, 'Broadway', 456, 'City 2', 'State 2', '67890', 2);
-INSERT INTO `erp`.`addresses` (`address_id`, `street`, `house_number`, `city`, `state`, `postal_code`, `country_id`) VALUES (3, 'Oak Avenue', 789, 'City 3', 'State 3', '54321', 3);
-# 3 records
 
 #
 # Dumping data for table 'warehouses'

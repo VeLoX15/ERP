@@ -3,6 +3,36 @@ CREATE SCHEMA IF NOT EXISTS `erp` DEFAULT CHARACTER SET utf8;
 USE `erp`;
 
 -- -----------------------------------------------------
+-- Table `erp`.`countries`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`countries` (
+    `country_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `iso` CHAR(2) NOT NULL,
+    `name` VARCHAR(80) NOT NULL,
+    `iso3` CHAR(3) DEFAULT NULL,
+    `numcode` SMALLINT(6) DEFAULT NULL,
+    `phonecode` INT(5) NOT NULL,
+
+  PRIMARY KEY(`country_id`)
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`addresses`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
+    `address_id` INT NOT NULL AUTO_INCREMENT,
+    `street` VARCHAR(50) NOT NULL,
+    `house_number` INT NOT NULL,
+    `city` VARCHAR(50) NOT NULL,
+    `state` VARCHAR(255),
+    `postal_code` VARCHAR(8) NOT NULL,
+    `country_id` INT NOT NULL,
+
+    PRIMARY KEY(`address_id`),
+    FOREIGN KEY(`country_id`) REFERENCES `erp`.`countries`(`country_id`)
+);
+
+-- -----------------------------------------------------
 -- Table `erp`.`customers`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`customers` (
@@ -35,59 +65,25 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
 -- Table `erp`.`invoices`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`invoices` (
-    `invoice_id` INT NOT NULL,
+    `invoice_id` INT NOT NULL AUTO_INCREMENT,
     `invoice_number` INT NOT NULL,
     `total_price` INT NOT NULL,
     `tax` INT NOT NULL,
-    ``
 
-    PRIMARY KEY(`bill_id`, `article_id`)
+    PRIMARY KEY(`invoice_id`)
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`orders`
+-- Table `erp`.`sizes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`orders` (
-    `order_id` INT NOT NULL AUTO_INCREMENT,
-    `order_number` VARCHAR(50) NOT NULL,
-    `customer_id` INT NOT NULL,
-    `total_price` DECIMAL NOT NULL,
-    `tax` DECIMAL NOT NULL,
-    `weight` DECIMAL NOT NULL,
-    `size_id` DECIMAL NOT NULL,
-    `payment_method` VARCHAR(50) NOT NULL,
-    `shipping_method` VARCHAR(50) NOT NULL,
-    `delivery_address_id` INT NOT NULL,
-    `billing_address_id` INT NOT NULL,
-    `order_date` DATE NOT NULL,
-    `delivery_date` DATE NOT NULL,
-    `invoice_date` DATE NOT NULL,
-    `order_status_public` INT NOT NULL,
-    `order_status_intern` INT NOT NULL,
-    `discount_id` VARCHAR(36) NOT NULL,
-    `order_note` TEXT NOT NULL DEFAULT '',
+CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
+    `size_id` INT NOT NULL AUTO_INCREMENT,
+    `length` DECIMAL NOT NULL,
+    `width` DECIMAL NOT NULL,
+    `hight` DECIMAL NOT NULL,
+    `volume` DECIMAL NOT NULL,
 
-    PRIMARY KEY(`order_id`),
-    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customer_id`),
-    FOREIGN KEY(`size_id`) REFERENCES `erp`.`sizes`(`size_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(`delivery_address_id`) REFERENCES `erp`.`addresses`(`delivery_address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(`billing_address_id`) REFERENCES `erp`.`addresses`(`billing_address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(`discount_id`) REFERENCES `erp`.`discounts`(`discount_id`)
-);
-
--- -----------------------------------------------------
--- Table `erp`.`order_articles`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`order_articles` (
-    `order_id` INT NOT NULL,
-    `article_id` INT NOT NULL,
-    `count` INT NOT NULL,
-    `purchase_price_on_order` DECIMAL NOT NULL,
-    `selling_price_on_order` DECIMAL NOT NULL,
-
-    PRIMARY KEY(`order_id`, `article_id`),
-    FOREIGN KEY(`order_id`) REFERENCES `erp`.`orders`(`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY(`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    PRIMARY KEY(`size_id`)
 );
 
 -- -----------------------------------------------------
@@ -103,46 +99,34 @@ CREATE TABLE IF NOT EXISTS `erp`.`discounts` (
 );
 
 -- -----------------------------------------------------
--- Table `erp`.`sizes`
+-- Table `erp`.`orders`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
+CREATE TABLE IF NOT EXISTS `erp`.`orders` (
+    `order_id` INT NOT NULL AUTO_INCREMENT,
+    `order_number` VARCHAR(50) NOT NULL,
+    `customer_id` INT NOT NULL,
+    `invoice_id` INT NOT NULL,
     `size_id` INT NOT NULL,
-    `length` DECIMAL NOT NULL,
-    `width` DECIMAL NOT NULL,
-    `hight` DECIMAL NOT NULL,
-    `volume` DECIMAL NOT NULL,
+    `weight` DECIMAL NOT NULL,
+    `payment_method` VARCHAR(50) NOT NULL,
+    `shipping_method` VARCHAR(50) NOT NULL,
+    `delivery_address_id` INT NOT NULL,
+    `billing_address_id` INT NOT NULL,
+    `order_date` DATE NOT NULL,
+    `delivery_date` DATE NOT NULL,
+    `invoice_date` DATE NOT NULL,
+    `order_status_public` INT NOT NULL,
+    `order_status_intern` INT NOT NULL,
+    `discount_id` INT NOT NULL,
+    `order_note` TEXT NOT NULL DEFAULT '',
 
-    PRIMARY KEY(`size_id`)
-);
-
--- -----------------------------------------------------
--- Table `erp`.`countries`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`countries` (
-  `country_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `iso` CHAR(2) NOT NULL,
-  `name` VARCHAR(80) NOT NULL,
-  `iso3` CHAR(3) DEFAULT NULL,
-  `numcode` SMALLINT(6) DEFAULT NULL,
-  `phonecode` INT(5) NOT NULL,
-
-  PRIMARY KEY(`country_id`)
-);
-
--- -----------------------------------------------------
--- Table `erp`.`addresses`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
-    `address_id` INT NOT NULL AUTO_INCREMENT,
-    `street` VARCHAR(50) NOT NULL,
-    `house_number` INT NOT NULL,
-    `city` VARCHAR(50) NOT NULL,
-    `state` VARCHAR(255),
-    `postal_code` VARCHAR(8) NOT NULL,
-    `country_id` INT NOT NULL,
-
-    PRIMARY KEY(`address_id`),
-    FOREIGN KEY(`country_id`) REFERENCES `erp`.`countries`(`country_id`)
+    PRIMARY KEY(`order_id`),
+    FOREIGN KEY(`customer_id`) REFERENCES `erp`.`customers`(`customer_id`),
+    FOREIGN KEY(`invoice_id`) REFERENCES `erp`.`invoices`(`invoice_id`),
+    FOREIGN KEY(`size_id`) REFERENCES `erp`.`sizes`(`size_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`delivery_address_id`) REFERENCES `erp`.`addresses`(`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`billing_address_id`) REFERENCES `erp`.`addresses`(`address_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`discount_id`) REFERENCES `erp`.`discounts`(`discount_id`)
 );
 
 -- -----------------------------------------------------
@@ -153,7 +137,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
     `article_number` VARCHAR(12) NOT NULL,
     `name` VARCHAR(50) NOT NULL,
     `description` TEXT NOT NULL DEFAULT '',
-    `size_id` DECIMAL NOT NULL,
+    `size_id` INT NOT NULL,
+    `weight` DECIMAL NOT NULL,
     `purchase_price` DECIMAL NOT NULL,
     `selling_price` DECIMAL NOT NULL,
     `inclusion_date` DATE NOT NULL,
@@ -161,6 +146,21 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
 
     PRIMARY KEY(`article_id`),
     FOREIGN KEY (`size_id`) REFERENCES `erp`.`sizes`(`size_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -----------------------------------------------------
+-- Table `erp`.`order_articles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `erp`.`order_articles` (
+    `order_id` INT NOT NULL,
+    `article_id` INT NOT NULL,
+    `count` INT NOT NULL,
+    `purchase_price_on_order` DECIMAL NOT NULL,
+    `selling_price_on_order` DECIMAL NOT NULL,
+
+    PRIMARY KEY(`order_id`, `article_id`),
+    FOREIGN KEY(`order_id`) REFERENCES `erp`.`orders`(`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- -----------------------------------------------------
