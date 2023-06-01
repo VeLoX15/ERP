@@ -49,5 +49,7 @@ namespace ERP.Pages.Management
                 Filter.IsBundle = IsBundle;
             }
         }
+
+
     }
 }

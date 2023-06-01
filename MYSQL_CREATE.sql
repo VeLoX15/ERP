@@ -92,8 +92,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
 CREATE TABLE IF NOT EXISTS `erp`.`discounts` (
     `discount_id` INT NOT NULL AUTO_INCREMENT,
     `discount_code` VARCHAR(36) NOT NULL,
-    `start_date` DATE NOT NULL,
-    `expiration_date` DATE NOT NULL,
+    `start_date` DATETIME NOT NULL,
+    `expiration_date` DATETIME NOT NULL,
 
     PRIMARY KEY(`discount_id`)
 );
@@ -112,9 +112,9 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `shipping_method` VARCHAR(50) NOT NULL,
     `delivery_address_id` INT NOT NULL,
     `billing_address_id` INT NOT NULL,
-    `order_date` DATE NOT NULL,
-    `delivery_date` DATE NOT NULL,
-    `invoice_date` DATE NOT NULL,
+    `order_date` DATETIME NOT NULL,
+    `delivery_date` DATETIME NOT NULL,
+    `invoice_date` DATETIME NOT NULL,
     `order_status_public` INT NOT NULL,
     `order_status_intern` INT NOT NULL,
     `discount_id` INT NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
     `weight` DECIMAL NOT NULL,
     `purchase_price` DECIMAL NOT NULL,
     `selling_price` DECIMAL NOT NULL,
-    `inclusion_date` DATE NOT NULL,
+    `inclusion_date` DATETIME NOT NULL,
     `is_bundle` BOOLEAN NOT NULL DEFAULT FALSE,
 
     PRIMARY KEY(`article_id`),

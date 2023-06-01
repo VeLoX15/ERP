@@ -340,16 +340,16 @@ INSERT INTO `erp`.`sizes` (`size_id`, `length`, `width`, `hight`, `volume`) VALU
 # Dumping data for table 'articles'
 #
 
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (1, '10902143', 'DC-15A Blastergewehr', '', 1, 15, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (2, '10902144', 'DC-15S Blasterkarabiner', '', 1, 20, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (3, '10902145', 'DC-15X Scharfschützengewehr', '', 1, 17, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (4, '10902146', 'DC-17 Handblaster', '', 1, 11, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (5, '10902147', 'Z-6 Rotationsblaster', '', 1, 26, 3, 5, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (6, '10901010', 'E-5 Blaster', '', 1, 18, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (7, '10901011', 'E-5s-Scharfschützengewehr', '', 1, 21, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (8, '10901012', 'SE-14 Handblaster', '', 1, 12, 1, 2, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (9, '1081019', 'E17D Scharfschützengewehr', '', 1, 26, 1, 4, '2023-05-23 14:30:00');
-INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (10, '10801020', 'DL-44 Blasterpistole', '', 1, 17, 1, 2, '2023-05-23 14:30:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (1, '10902143', 'DC-15A Blastergewehr', '', 1, 15, 1, 2, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (2, '10902144', 'DC-15S Blasterkarabiner', '', 1, 20, 1, 2, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (3, '10902145', 'DC-15X Scharfschützengewehr', '', 1, 17, 1, 2, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (4, '10902146', 'DC-17 Handblaster', '', 1, 11, 1, 2, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (5, '10902147', 'Z-6 Rotationsblaster', '', 1, 26, 3, 5, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (6, '10901010', 'E-5 Blaster', '', 1, 18, 1, 2, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (7, '10901011', 'E-5s-Scharfschützengewehr', '', 1, 21, 1, 2, '2023-05-21210030:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (8, '10901012', 'SE-14 Handblaster', '', 1, 12, 1, 2, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (9, '1081019', 'E17D Scharfschützengewehr', '', 1, 26, 1, 4, '2023-05-23 12:00:00');
+INSERT INTO `erp`.`articles` (`article_id`, `article_number`, `name`, `description`, `size_id`, `weight`, `purchase_price`, `selling_price`, `inclusion_date`) VALUES (10, '10801020', 'DL-44 Blasterpistole', '', 1, 17, 1, 2, '2023-05-23 12:00:00');
 # 10 records
 
 #

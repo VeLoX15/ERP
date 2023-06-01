@@ -17,7 +17,7 @@
     </Authorized>
 </AuthorizeView>
 
-<EditForm Model="Filter">
+<EditForm Model="Filter" OnValidSubmit="async () => await SendDataAsync()">
     <FluentValidationValidator Validator="Validator" />
     <div class="col-lg-6">
         <div class="form-group col-md-4">

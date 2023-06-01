@@ -36,7 +36,7 @@ namespace ERP.Pages.Management
             var storedData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "storages");
             if (!string.IsNullOrEmpty(storedData))
             {
-                FilterData = JsonSerializer.Deserialize<List<Compartment>>(storedData);
+                FilterData = JsonSerializer.Deserialize<List<Compartment>>(storedData) ?? new();
             }
             else
             {

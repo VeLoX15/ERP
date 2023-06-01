@@ -98,13 +98,18 @@
                     </div>
                     <div class="form-floating mb-3">
                         <InputNumber @bind-Value="Input.SellingPrice" class="form-control" id="article-selling-price" placeholder="SellingPrice" />
-                        <label for="article-selling-price">SellingPrice</label>
+                        <label for="article-selling-price">Selling Price</label>
                         <ValidationMessage For="() => Input.SellingPrice" />
                     </div>
                     <div class="form-floating mb-3">
                         <InputNumber @bind-Value="Input.PurchasePrice" class="form-control" id="article-purchase-price" placeholder="PurchasePrice" />
-                        <label for="article-purchase-price">PurchasePrice</label>
+                        <label for="article-purchase-price">Purchase Price</label>
                         <ValidationMessage For="() => Input.PurchasePrice" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputDate @bind-Value="Input.InclusionDate" class="form-control" id="inclusion-date-price" placeholder="PurchasePrice" />
+                        <label for="inclusion-date-price">Inclusion Date</label>
+                        <ValidationMessage For="() => Input.InclusionDate" />
                     </div>
                     <div class="form-group mb-3">
                         <InputCheckbox @bind-Value="Input.IsBundle" class="form-checkbox" id="article-is-bundle" />

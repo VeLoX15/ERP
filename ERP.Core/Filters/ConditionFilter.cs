@@ -7,12 +7,10 @@ namespace ERP.Core.Filters
         public static string FilterToSql(Dictionary<string, object?> dict, int i)
         {
             string sql = string.Empty;
-
             var value = dict.Values.ElementAt(i);
-
             string key = dict.Keys.ElementAt(i);
 
-            if ((value is int || value is decimal) && value is not null)
+            if (value is int || value is decimal)
             {
                 switch (dict[$"{key}_OPERATOR"])
                 {
@@ -30,32 +28,28 @@ namespace ERP.Core.Filters
                         break;
                 }
             }
-            else if (value is string stringValue && !string.IsNullOrWhiteSpace(value as string))
+            else if (value is string stringValue && !string.IsNullOrWhiteSpace(stringValue))
             {
                 sql = $@"AND UPPER(`{key.ToLower()}`) LIKE '%{stringValue.ToUpper()}%' ";
             }
-            else if (value is DateTime && value is not null)
+            else if (value is DateTime dateTime)
             {
                 switch (dict[$"{key}_OPERATOR"])
                 {
                     case 0:
-                        sql = $@" AND `{key.ToLower()}` = {value} ";
+                        sql = $@" AND `{key.ToLower()}` = '{dateTime:yyyy-MM-dd HH:mm:ss}' ";
                         break;
                     case 1:
-                        sql = $@" AND `{key.ToLower()}` BETWEEN {value} AND {dict[$"{key}_RANGE"]} ";
+                        if (DateTime.TryParse(dict[$"{key}_RANGE"]?.ToString(), out var dateTimeRange))
+                        {
+                            sql = $@" AND `{key.ToLower()}` BETWEEN '{dateTime:yyyy-MM-dd HH:mm:ss}' AND '{dateTimeRange:yyyy-MM-dd HH:mm:ss}' ";
+                        }
                         break;
                 }
             }
-            else if (value is bool boolean && value is not null)
+            else if (value is bool boolean)
             {
-                if (boolean)
-                {
-                    sql = $@" AND `{key.ToLower()}` = TRUE ";
-                } 
-                else
-                {
-                    sql = $@" AND `{key.ToLower()}` = FALSE ";
-                }
+                sql = $@" AND `{key.ToLower()}` = {(boolean ? "TRUE" : "FALSE")} ";
             }
 
             return sql;
