@@ -1,4 +1,5 @@
 ﻿using ERP.Core.Filters.Abstract;
+using ERP.Core.Models;
 using System.Text.RegularExpressions;
 
 namespace ERP.Core.Filters
@@ -9,7 +10,7 @@ namespace ERP.Core.Filters
         public int SectionId { get; set; } = 1;
         public string StorageLocation { get; set; } = string.Empty;
 
-        public string ExtractNumber(string input, string letter)
+        public static string ExtractNumber(string input, string letter)
         {
             string pattern = $@"[{letter.ToLower()}{letter.ToUpper()}](\d+)";
             Match match = Regex.Match(input, pattern);
@@ -24,5 +25,7 @@ namespace ERP.Core.Filters
 
             return "";
         }
+
+        public string ArticleNumber { get; set; } = string.Empty;
     }
 }

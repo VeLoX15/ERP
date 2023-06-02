@@ -20,7 +20,9 @@ namespace ERP.Core.Models
         public int Number { get; set; }
         [CompareField("sort_number")]
         public int SortNumber { get; set; }
-        public Article Articles { get; set; } = new();
+        [CompareField("stock")]
+        public int Stock { get; set; }
+        public Article Article { get; set; } = new();
 
         public int Id => CompartmentId;
 
@@ -35,7 +37,11 @@ namespace ERP.Core.Models
                 { "RACK_ID", RackId },
                 { "NAME", Name },
                 { "NUMBER", Number },
-                { "SORT_NUMBER", SortNumber }
+                { "SORT_NUMBER", SortNumber },
+                { "STOCK", Stock },
+
+                { "ARTICLE_NUMBER", Article.ArticleNumber },
+                { "ARTICLE_NAME", Article.Name }
            };
         }
     }

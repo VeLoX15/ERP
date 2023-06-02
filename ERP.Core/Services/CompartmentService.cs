@@ -2,7 +2,6 @@
 using ERP.Core.Filters;
 using ERP.Core.Models;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace ERP.Core.Services
 {
@@ -52,10 +51,10 @@ VALUES
             sqlBuilder.AppendLine("JOIN `rows` r ON c.`row_id` = r.`row_id` ");
             sqlBuilder.AppendLine("JOIN `racks` s ON c.`rack_id` = s.`rack_id` ");
             sqlBuilder.AppendLine("WHERE 1 = 1 ");
-            sqlBuilder.AppendLine(@$"AND c.`warehouse_id` = {filter.WarehouseId} ");
-            sqlBuilder.AppendLine(@$"AND c.`section_id` = {filter.SectionId} ");
+            sqlBuilder.AppendLine($@"AND c.`warehouse_id` = {filter.WarehouseId} ");
+            sqlBuilder.AppendLine($@"AND c.`section_id` = {filter.SectionId} ");
             sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"ORDER BY c.`sort_number` DESC ");
+            sqlBuilder.AppendLine($@"ORDER BY c.`sort_number` DESC ");
             sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
 
             string sql = sqlBuilder.ToString();
@@ -76,12 +75,28 @@ VALUES
         public string GetFilterWhere(WarehouseFilter filter)
         {
             StringBuilder sqlBuilder = new();
-            sqlBuilder.AppendLine(filter.ExtractNumber(filter.StorageLocation, "r"));
-            sqlBuilder.AppendLine(filter.ExtractNumber(filter.StorageLocation, "s"));
-            sqlBuilder.AppendLine(filter.ExtractNumber(filter.StorageLocation, "c"));
+            sqlBuilder.AppendLine(WarehouseFilter.ExtractNumber(filter.StorageLocation, "r"));
+            sqlBuilder.AppendLine(WarehouseFilter.ExtractNumber(filter.StorageLocation, "s"));
+            sqlBuilder.AppendLine(WarehouseFilter.ExtractNumber(filter.StorageLocation, "c"));
             string sql = sqlBuilder.ToString();
 
             return sql;
+        }
+
+        public async Task<List<Compartment>> GetCompartmentsByArticleIdAsync(WarehouseFilter filter, IDbController dbController, CancellationToken cancellationToken = default)
+        {
+            StringBuilder sqlBuilder = new();
+            sqlBuilder.AppendLine("SELECT c.*, a.`article_number` AS `article_number`, a.`name` AS `name` FROM `compartments` c ");
+            sqlBuilder.AppendLine("JOIN `articles` a ON c.`article_id` = a.`article_id` ");
+            sqlBuilder.AppendLine("WHERE 1 = 1 ");
+            sqlBuilder.AppendLine($@"AND a.`article_number` = '{filter.ArticleNumber}' ");
+            sqlBuilder.AppendLine($@"ORDER BY a.`article_number` DESC ");
+            sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
+            string sql = sqlBuilder.ToString();
+
+            List<Compartment> list = await dbController.SelectDataAsync<Compartment>(sql, GetFilterParameter(filter), cancellationToken);
+
+            return list;
         }
 
         public async Task<int> GetTotalAsync(WarehouseFilter filter, IDbController dbController, CancellationToken cancellationToken = default)

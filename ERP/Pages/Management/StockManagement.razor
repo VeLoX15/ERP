@@ -6,12 +6,12 @@
 
 <h3>Stock Search</h3>
 <hr />
-@*<EditForm Model="Filter">
+<EditForm Model="Filter">
     <FluentValidationValidator Validator="Validator" />
     <div class="col-lg-6">
         <div class="form-group col-md-10">
             <label for="order-number">Article Number:</label>
-            <InputText id="order-number" @bind-Value="Filter.OrderNumber" class="form-control" />
+            <InputText id="order-number" @bind-Value="Filter.ArticleNumber" class="form-control" />
         </div>
 
         <div class="toolbar">
@@ -21,4 +21,4 @@
         <hr />
         <ValidationSummary />
     </div>
-</EditForm>*@
+</EditForm>

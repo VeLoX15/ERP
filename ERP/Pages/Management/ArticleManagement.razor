@@ -108,15 +108,15 @@
         <div class="row">
             <div class="col-auto">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="toggleSwitch" @bind="IsToggled" />
+                    <input class="form-check-input" type="checkbox" id="toggleSwitch" @bind="_isToggled" />
                     <label class="form-check-label" for="toggleSwitch">Bundle:</label>
                 </div>
             </div>
             <div class="col">
-                @if (IsToggled)
+                @if (_isToggled)
                 {
                     <div>
-                        <InputCheckbox id="is_bundle" @bind-Value="IsBundle" class="form-checkbox" />
+                        <InputCheckbox id="is_bundle" @bind-Value="_isBundle" class="form-checkbox" />
                     </div>
                 }
             </div>

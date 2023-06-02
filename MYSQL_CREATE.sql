@@ -6,12 +6,12 @@ USE `erp`;
 -- Table `erp`.`countries`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`countries` (
-    `country_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `country_id` INTEGER(11) NOT NULL AUTO_INCREMENT,
     `iso` CHAR(2) NOT NULL,
     `name` VARCHAR(80) NOT NULL,
     `iso3` CHAR(3) DEFAULT NULL,
     `numcode` SMALLINT(6) DEFAULT NULL,
-    `phonecode` INT(5) NOT NULL,
+    `phonecode` INTEGER(5) NOT NULL,
 
   PRIMARY KEY(`country_id`)
 );
@@ -20,13 +20,13 @@ CREATE TABLE IF NOT EXISTS `erp`.`countries` (
 -- Table `erp`.`addresses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
-    `address_id` INT NOT NULL AUTO_INCREMENT,
+    `address_id` INTEGER NOT NULL AUTO_INCREMENT,
     `street` VARCHAR(50) NOT NULL,
-    `house_number` INT NOT NULL,
+    `house_number` INTEGER NOT NULL,
     `city` VARCHAR(50) NOT NULL,
     `state` VARCHAR(255),
     `postal_code` VARCHAR(8) NOT NULL,
-    `country_id` INT NOT NULL,
+    `country_id` INTEGER NOT NULL,
 
     PRIMARY KEY(`address_id`),
     FOREIGN KEY(`country_id`) REFERENCES `erp`.`countries`(`country_id`)
@@ -36,24 +36,24 @@ CREATE TABLE IF NOT EXISTS `erp`.`addresses` (
 -- Table `erp`.`customers`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`customers` (
-    `customer_id` INT NOT NULL AUTO_INCREMENT,
-    `customer_number` INT NOT NULL,
+    `customer_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `customer_number` INTEGER NOT NULL,
     `username` VARCHAR(50) NOT NULL,
 	`password` VARCHAR(255) NOT NULL,
 	`salt` VARCHAR(255) NOT NULL,
 	`origin` VARCHAR(255) NOT NULL,
-    `salutation` INT NOT NULL,
+    `salutation` INTEGER NOT NULL,
     `first_name` VARCHAR(50) NOT NULL,
     `last_name` VARCHAR(50) NOT NULL,
     `email` VARCHAR(50) NOT NULL,
     `telefon` VARCHAR (50),
     `standard_payment_method` VARCHAR(50) NOT NULL,
     `standard_delivery_method` VARCHAR(50) NOT NULL,
-    `delivery_address_id` INT,
-    `billing_address_id` INT,
+    `delivery_address_id` INTEGER,
+    `billing_address_id` INTEGER,
     `registration_date` DATETIME NOT NULL,
-    `customer_status` INT NOT NULL DEFAULT 0,
-    `customer_group` INT NOT NULL DEFAULT 0,
+    `customer_status` INTEGER NOT NULL DEFAULT 0,
+    `customer_group` INTEGER NOT NULL DEFAULT 0,
     `comment` TEXT NOT NULL DEFAULT '',
 
     PRIMARY KEY (`customer_id`),
@@ -65,10 +65,10 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
 -- Table `erp`.`invoices`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`invoices` (
-    `invoice_id` INT NOT NULL AUTO_INCREMENT,
-    `invoice_number` INT NOT NULL,
-    `total_price` INT NOT NULL,
-    `tax` INT NOT NULL,
+    `invoice_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `invoice_number` INTEGER NOT NULL,
+    `total_price` INTEGER NOT NULL,
+    `tax` INTEGER NOT NULL,
 
     PRIMARY KEY(`invoice_id`)
 );
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`invoices` (
 -- Table `erp`.`sizes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
-    `size_id` INT NOT NULL AUTO_INCREMENT,
+    `size_id` INTEGER NOT NULL AUTO_INCREMENT,
     `length` DECIMAL NOT NULL,
     `width` DECIMAL NOT NULL,
     `hight` DECIMAL NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
 -- Table `erp`.`discounts`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`discounts` (
-    `discount_id` INT NOT NULL AUTO_INCREMENT,
+    `discount_id` INTEGER NOT NULL AUTO_INCREMENT,
     `discount_code` VARCHAR(36) NOT NULL,
     `start_date` DATETIME NOT NULL,
     `expiration_date` DATETIME NOT NULL,
@@ -102,22 +102,22 @@ CREATE TABLE IF NOT EXISTS `erp`.`discounts` (
 -- Table `erp`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`orders` (
-    `order_id` INT NOT NULL AUTO_INCREMENT,
+    `order_id` INTEGER NOT NULL AUTO_INCREMENT,
     `order_number` VARCHAR(50) NOT NULL,
-    `customer_id` INT NOT NULL,
-    `invoice_id` INT NOT NULL,
-    `size_id` INT NOT NULL,
+    `customer_id` INTEGER NOT NULL,
+    `invoice_id` INTEGER NOT NULL,
+    `size_id` INTEGER NOT NULL,
     `weight` DECIMAL NOT NULL,
     `payment_method` VARCHAR(50) NOT NULL,
     `shipping_method` VARCHAR(50) NOT NULL,
-    `delivery_address_id` INT NOT NULL,
-    `billing_address_id` INT NOT NULL,
+    `delivery_address_id` INTEGER NOT NULL,
+    `billing_address_id` INTEGER NOT NULL,
     `order_date` DATETIME NOT NULL,
     `delivery_date` DATETIME NOT NULL,
     `invoice_date` DATETIME NOT NULL,
-    `order_status_public` INT NOT NULL,
-    `order_status_intern` INT NOT NULL,
-    `discount_id` INT NOT NULL,
+    `order_status_public` INTEGER NOT NULL,
+    `order_status_intern` INTEGER NOT NULL,
+    `discount_id` INTEGER NOT NULL,
     `order_note` TEXT NOT NULL DEFAULT '',
 
     PRIMARY KEY(`order_id`),
@@ -133,11 +133,11 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
 -- Table `erp`.`articles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`articles` (
-    `article_id` INT NOT NULL AUTO_INCREMENT,
+    `article_id` INTEGER NOT NULL AUTO_INCREMENT,
     `article_number` VARCHAR(12) NOT NULL,
     `name` VARCHAR(50) NOT NULL,
     `description` TEXT NOT NULL DEFAULT '',
-    `size_id` INT NOT NULL,
+    `size_id` INTEGER NOT NULL,
     `weight` DECIMAL NOT NULL,
     `purchase_price` DECIMAL NOT NULL,
     `selling_price` DECIMAL NOT NULL,
@@ -152,9 +152,9 @@ CREATE TABLE IF NOT EXISTS `erp`.`articles` (
 -- Table `erp`.`order_articles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`order_articles` (
-    `order_id` INT NOT NULL,
-    `article_id` INT NOT NULL,
-    `count` INT NOT NULL,
+    `order_id` INTEGER NOT NULL,
+    `article_id` INTEGER NOT NULL,
+    `count` INTEGER NOT NULL,
     `purchase_price_on_order` DECIMAL NOT NULL,
     `selling_price_on_order` DECIMAL NOT NULL,
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`order_articles` (
 -- Table `erp`.`categories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`categories` (
-    `category_id` INT NOT NULL AUTO_INCREMENT,
+    `category_id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50),
     `description` TEXT NOT NULL DEFAULT '',
     
@@ -178,8 +178,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`categories` (
 -- Table `erp`.`article_categories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`article_categories` (
-    `article_id` INT NOT NULL,
-    `category_id` INT NOT NULL,
+    `article_id` INTEGER NOT NULL,
+    `category_id` INTEGER NOT NULL,
     
     PRIMARY KEY(`article_id`, `category_id`),
     FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`article_categories` (
 -- Table `erp`.`materials`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`materials` (
-    `material_id` INT NOT NULL AUTO_INCREMENT,
+    `material_id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50),
     `description` TEXT NOT NULL DEFAULT '',
     
@@ -201,8 +201,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`materials` (
 -- Table `erp`.`article_materials`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`article_materials` (
-    `article_id` INT NOT NULL,
-    `material_id` INT NOT NULL,
+    `article_id` INTEGER NOT NULL,
+    `material_id` INTEGER NOT NULL,
     
     PRIMARY KEY(`article_id`, `material_id`),
     FOREIGN KEY (`article_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -213,8 +213,8 @@ CREATE TABLE IF NOT EXISTS `erp`.`article_materials` (
 -- Table `erp`.`bundle_articles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`bundle_articles` (
-    `bundle_id` INT NOT NULL,
-    `article_id` INT NOT NULL,
+    `bundle_id` INTEGER NOT NULL,
+    `article_id` INTEGER NOT NULL,
 
     PRIMARY KEY(`bundle_id`, `article_id`),
 	FOREIGN KEY (`bundle_id`) REFERENCES `erp`.`articles`(`article_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -225,10 +225,10 @@ CREATE TABLE IF NOT EXISTS `erp`.`bundle_articles` (
 -- Table `erp`.`warehouses`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`warehouses` (
-    `warehouse_id` INT NOT NULL AUTO_INCREMENT,
+    `warehouse_id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    `number` INT NOT NULL,
-    `address_id` INT NOT NULL,
+    `number` INTEGER NOT NULL,
+    `address_id` INTEGER NOT NULL,
 
     PRIMARY KEY(`warehouse_id`),
     FOREIGN KEY (`address_id`) REFERENCES `erp`.`addresses`(`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -238,11 +238,11 @@ CREATE TABLE IF NOT EXISTS `erp`.`warehouses` (
 -- Table `erp`.`sections`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`sections` (
-    `section_id` INT NOT NULL AUTO_INCREMENT,
-    `warehouse_id` INT NOT NULL,
+    `section_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `warehouse_id` INTEGER NOT NULL,
     `name` VARCHAR(50) NOT NULL,
-    `number` INT NOT NULL,
-    `sort_number` INT NOT NULL,
+    `number` INTEGER NOT NULL,
+    `sort_number` INTEGER NOT NULL,
 
     PRIMARY KEY(`section_id`),
     FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -252,12 +252,12 @@ CREATE TABLE IF NOT EXISTS `erp`.`sections` (
 -- Table `erp`.`rows`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`rows` (
-    `row_id` INT NOT NULL AUTO_INCREMENT,
-    `warehouse_id` INT NOT NULL,
-    `section_id` INT NOT NULL,
+    `row_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `warehouse_id` INTEGER NOT NULL,
+    `section_id` INTEGER NOT NULL,
     `name` VARCHAR(50) NOT NULL,
-    `number` INT NOT NULL,
-    `sort_number` INT NOT NULL,
+    `number` INTEGER NOT NULL,
+    `sort_number` INTEGER NOT NULL,
 
     PRIMARY KEY(`row_id`),
     FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -268,13 +268,13 @@ CREATE TABLE IF NOT EXISTS `erp`.`rows` (
 -- Table `erp`.`racks`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`racks` (
-    `rack_id` INT NOT NULL AUTO_INCREMENT,
-    `warehouse_id` INT NOT NULL,
-    `section_id` INT NOT NULL,
-    `row_id` INT NOT NULL,
+    `rack_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `warehouse_id` INTEGER NOT NULL,
+    `section_id` INTEGER NOT NULL,
+    `row_id` INTEGER NOT NULL,
     `name` VARCHAR(50) NOT NULL,
-    `number` INT NOT NULL,
-    `sort_number` INT NOT NULL,
+    `number` INTEGER NOT NULL,
+    `sort_number` INTEGER NOT NULL,
 
     PRIMARY KEY(`rack_id`),
     FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -286,15 +286,16 @@ CREATE TABLE IF NOT EXISTS `erp`.`racks` (
 -- Table `erp`.`compartments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `erp`.`compartments` (
-    `compartment_id` INT NOT NULL AUTO_INCREMENT,
-    `warehouse_id` INT NOT NULL,
-    `section_id` INT NOT NULL,
-    `row_id` INT NOT NULL,
-    `rack_id` INT NOT NULL,
+    `compartment_id` INTEGER NOT NULL AUTO_INCREMENT,
+    `warehouse_id` INTEGER NOT NULL,
+    `section_id` INTEGER NOT NULL,
+    `row_id` INTEGER NOT NULL,
+    `rack_id` INTEGER NOT NULL,
     `name` VARCHAR(50) NOT NULL,
-    `number` INT NOT NULL,
-    `sort_number` INT NOT NULL,
-    `article_id` INT NOT NULL,
+    `number` INTEGER NOT NULL,
+    `sort_number` INTEGER NOT NULL,
+    `article_id` INTEGER NOT NULL,
+    `stock` INTEGER NULL,
 
     PRIMARY KEY(`compartment_id`),
     FOREIGN KEY(`warehouse_id`) REFERENCES `erp`.`warehouses`(`warehouse_id`) ON DELETE CASCADE ON UPDATE CASCADE,

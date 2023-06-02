@@ -9,10 +9,10 @@ using System.Text.Json;
 
 namespace ERP.Pages.Management
 {
-    public partial class OrderList
+    public partial class StockList
     {
         private int _page = 1;
-        public OrderFilter Filter { get; set; } = new()
+        public WarehouseFilter Filter { get; set; } = new()
         {
             Limit = AppdatenService.PageLimit
         };
@@ -21,7 +21,7 @@ namespace ERP.Pages.Management
         public int Id { get; set; }
 
         [Parameter]
-        public List<Order> FilterData { get; set; } = new();
+        public List<Compartment> FilterData { get; set; } = new();
 
         public int Page { get => _page; set => _page = value < 1 ? 1 : value; }
         public int TotalItems { get; set; }
@@ -33,14 +33,14 @@ namespace ERP.Pages.Management
 
         protected override async Task OnInitializedAsync()
         {
-            var storedData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "orders");
+            var storedData = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "stocks");
             if (!string.IsNullOrEmpty(storedData))
             {
-                FilterData = JsonSerializer.Deserialize<List<Order>>(storedData) ?? new();
+                FilterData = JsonSerializer.Deserialize<List<Compartment>>(storedData) ?? new();
             }
             else
             {
-                FilterData = new List<Order>();
+                FilterData = new List<Compartment>();
             }
         }
 

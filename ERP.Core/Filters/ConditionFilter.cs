@@ -10,7 +10,7 @@ namespace ERP.Core.Filters
             var value = dict.Values.ElementAt(i);
             string key = dict.Keys.ElementAt(i);
 
-            if (value is int || value is decimal)
+            if (value is int or decimal)
             {
                 switch (dict[$"{key}_OPERATOR"])
                 {
@@ -55,7 +55,7 @@ namespace ERP.Core.Filters
             return sql;
         }
 
-        public static readonly List<string> NumberOperator = new List<string>
+        public static readonly List<string> NumberOperator = new()
         {
             "Select",
             "To",
@@ -63,7 +63,7 @@ namespace ERP.Core.Filters
             ">="
         };
 
-        public static readonly List<string> DateOperator = new List<string>
+        public static readonly List<string> DateOperator = new()
         {
             "Select",
             "To"

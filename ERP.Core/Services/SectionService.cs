@@ -1,11 +1,9 @@
 ﻿using DbController;
-using ERP.Core.Filters;
 using ERP.Core.Models;
-using System.Text;
 
 namespace ERP.Core.Services
 {
-    public class SectionService : IModelService<Section, int, SectionFilter>
+    public class SectionService : IModelService<Section, int>
     {
         public async Task CreateAsync(Section input, IDbController dbController, CancellationToken cancellationToken = default)
         {
@@ -59,53 +57,6 @@ VALUES
                 return sections;
             }
             return new();
-        }
-
-        public async Task<List<Section>> GetAsync(SectionFilter filter, IDbController dbController, CancellationToken cancellationToken = default)
-        {
-            cancellationToken.ThrowIfCancellationRequested();
-            StringBuilder sqlBuilder = new();
-            sqlBuilder.AppendLine("SELECT w.* FROM `sections` w ");
-            sqlBuilder.AppendLine("WHERE 1 = 1 ");
-            sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"ORDER BY `section_id` DESC ");
-            sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
-
-            string sql = sqlBuilder.ToString();
-
-            List<Section> list = await dbController.SelectDataAsync<Section>(sql, GetFilterParameter(filter), cancellationToken);
-
-            return list;
-        }
-
-        public Dictionary<string, object?> GetFilterParameter(SectionFilter filter)
-        {
-            return new Dictionary<string, object?>
-            {
-                { "NAME", filter.Name },
-                { "NUMBER", filter.Number }
-            };
-        }
-
-        public string GetFilterWhere(SectionFilter filter)
-        {
-            StringBuilder sqlBuilder = new();
-
-            Dictionary<string, object?> filterParameters = GetFilterParameter(filter);
-
-            for (int i = 0; i <= 1; i++)
-            {
-                string conditionSql = ConditionFilter.FilterToSql(filterParameters, i);
-                sqlBuilder.AppendLine(conditionSql);
-            }
-
-            string sql = sqlBuilder.ToString();
-            return sql;
-        }
-
-        public Task<int> GetTotalAsync(SectionFilter filter, IDbController dbController, CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task UpdateAsync(Section input, IDbController dbController, CancellationToken cancellationToken = default)

@@ -20,9 +20,9 @@ namespace ERP.Pages.Management
 
         public List<Article> FilterData { get; set; } = new ();
 
-        private bool IsToggled = false;
+        private bool _isToggled = false;
 
-        private bool IsBundle = false;
+        private bool _isBundle = false;
 
         private async Task SendDataAsync()
         {
@@ -40,13 +40,13 @@ namespace ERP.Pages.Management
 
         private void CheckBundle()
         {
-            if (!IsToggled)
+            if (!_isToggled)
             {
                 Filter.IsBundle = null;
             } 
             else
             {
-                Filter.IsBundle = IsBundle;
+                Filter.IsBundle = _isBundle;
             }
         }
 
