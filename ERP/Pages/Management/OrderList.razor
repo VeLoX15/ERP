@@ -50,7 +50,7 @@
 
 @if (Input is not null)
 {
-    <Modal Title="@String.Format("Edit Order", Input.OrderNumber)"
+    <Modal Title="@String.Format("Edit order '{0}'", Input.OrderNumber)"
        OnClosed="() => Input = null"
        ModalSize="ModalSize.LG"
        HideFooter="true">
@@ -81,6 +81,6 @@
     <ConfirmModal Title="Delete"
               OnClosed="() => SelectedForDeletion = null"
               OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.OrderNumber)</p>
+        <p>@String.Format("Should the order '{0}' really be deleted?", SelectedForDeletion.OrderNumber)</p>
     </ConfirmModal>
 }

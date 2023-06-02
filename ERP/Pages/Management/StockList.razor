@@ -28,13 +28,6 @@
                                 <td>@storage.Article.Name</td>
                                 <td>@storage.Stock</td>
                                 <td class="text-right">
-                                    <AuthorizeView Roles="@(Roles.DELETE_WAREHOUSES)">
-                                        <Authorized>
-                                            <span class="aktion-icon" role="button" @onclick="() => SelectedForDeletion = storage">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </span>
-                                        </Authorized>
-                                    </AuthorizeView>
                                     <AuthorizeView Roles="@(Roles.EDIT_WAREHOUSES)">
                                         <Authorized>
                                             <span class="aktion-icon" role="button" @onclick="async () => await EditAsync(storage)">
@@ -80,13 +73,4 @@
             <button type="button" class="btn btn-success" @onclick="SaveAsync">Save</button>
         </div>
     </Modal>
-}
-
-@if (SelectedForDeletion is not null)
-{
-    <ConfirmModal Title="Delete"
-              OnClosed="() => SelectedForDeletion = null"
-              OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.Number)</p>
-    </ConfirmModal>
 }

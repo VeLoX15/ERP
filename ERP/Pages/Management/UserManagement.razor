@@ -218,6 +218,6 @@
     <ConfirmModal Title="Delete"
               OnClosed="() => SelectedForDeletion = null"
               OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.DisplayName)</p>
+        <p>@String.Format($@"Should the user '{0}' really be deleted?", SelectedForDeletion.DisplayName)</p>
     </ConfirmModal>
 }

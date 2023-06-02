@@ -22,8 +22,6 @@ namespace ERP.Core.Services
 `email`,
 `telefon`,
 `standard_payment_methode`,
-`delivery_address`,
-`billing_address`,
 `registration_date`,
 `customer_status`,
 `comment`
@@ -40,8 +38,6 @@ VALUES
 @EMAIL,
 @TELEFON,
 @STANDARD_PAYMENT_METHODE,
-@DELIVERY_ADDRESS,
-@BILLING_ADDRESS,
 @REGISTRATION_DATE,
 @CUSTOMER_STATUS,
 @COMMENT
@@ -151,8 +147,6 @@ VALUES
 `email` = @EMAIL,
 `telefon` = @TELEFON,
 `standard_payment_methode` = @STANDARD_PAYMENT_METHODE,
-`delivery_address` = @DELIVERY_ADDRESS,
-`billing_address` = @BILLING_ADDRESS,
 `registration_date` = @REGISTRATION_DATE,
 `customer_status` = @CUSTOMER_STATUS,
 `comment` = @COMMENT

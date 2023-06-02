@@ -54,7 +54,7 @@
 
 @if (Input is not null)
 {
-    <Modal Title="@String.Format("Edit Article", Input.CustomerNumber)"
+    <Modal Title="@String.Format("Edit customer '{0}'", Input.CustomerNumber)"
        OnClosed="() => Input = null"
        ModalSize="ModalSize.LG"
        HideFooter="true">
@@ -65,9 +65,54 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-floating mb-3">
-                        <InputNumber @bind-Value="Input.CustomerNumber" class="form-control" id="article-customer-number" placeholder="Customer Number" />
-                        <label for="article-customer-number">Customer Number</label>
+                        <InputText @bind-Value="Input.CustomerNumber" class="form-control" id="customer-number" placeholder="Customer Number" />
+                        <label for="customer-number">Customer Number</label>
                         <ValidationMessage For="() => Input.CustomerNumber" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.UserName" class="form-control" id="customer-username" placeholder="Username" />
+                        <label for="customer-username">Username</label>
+                        <ValidationMessage For="() => Input.UserName" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Salutation" class="form-control" id="salutation" placeholder="Salutation" />
+                        <label for="salutation">Salutation</label>
+                        <ValidationMessage For="() => Input.Salutation" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.FirstName" class="form-control" id="article-name" placeholder="Article Name" />
+                        <label for="article-name">First Name</label>
+                        <ValidationMessage For="() => Input.FirstName" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.LastName" class="form-control" id="article-name" placeholder="Article Name" />
+                        <label for="article-name">Last Name</label>
+                        <ValidationMessage For="() => Input.LastName" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Email" class="form-control" id="customer-email" placeholder="Email" />
+                        <label for="customer-email">Email</label>
+                        <ValidationMessage For="() => Input.Email" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Telefon" class="form-control" id="customer-telefon" placeholder="Telefon" />
+                        <label for="customer-telefon">Telefon</label>
+                        <ValidationMessage For="() => Input.Telefon" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputDate @bind-Value="Input.RegistrationDate" class="form-control" id="article-name" placeholder="Article Name" />
+                        <label for="article-name">Telefon</label>
+                        <ValidationMessage For="() => Input.RegistrationDate" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.CustomerStatus" class="form-control" id="customer-status" placeholder="Customer Status" />
+                        <label for="customer-status">Customer Status</label>
+                        <ValidationMessage For="() => Input.CustomerStatus" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputTextArea @bind-Value="Input.Comment" class="form-control" id="customer-comment" placeholder="Customer Comment" />
+                        <label for="article-comment">Comment</label>
+                        <ValidationMessage For="() => Input.Comment" />
                     </div>
                 </div>
             </div>
@@ -85,6 +130,6 @@
     <ConfirmModal Title="Delete"
               OnClosed="() => SelectedForDeletion = null"
               OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.CustomerNumber)</p>
+        <p>@String.Format("Should the customer '{0}' really be deleted?", SelectedForDeletion.CustomerNumber)</p>
     </ConfirmModal>
 }

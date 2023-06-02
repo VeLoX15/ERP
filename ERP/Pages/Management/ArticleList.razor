@@ -66,7 +66,7 @@
 
 @if (Input is not null)
 {
-    <Modal Title="@String.Format("Edit Article", Input.ArticleNumber)"
+    <Modal Title="@String.Format("Edit article '{0}'", Input.ArticleNumber)"
        OnClosed="() => Input = null"
        ModalSize="ModalSize.LG"
        HideFooter="true">
@@ -87,7 +87,7 @@
                         <ValidationMessage For="() => Input.Name" />
                     </div>
                     <div class="form-floating mb-3">
-                        <InputText @bind-Value="Input.Description" class="form-control" id="article-description" placeholder="Description" />
+                        <InputTextArea @bind-Value="Input.Description" class="form-control" id="article-description" placeholder="Description" />
                         <label for="article-description">Description</label>
                         <ValidationMessage For="() => Input.Description" />
                     </div>
@@ -132,6 +132,6 @@
     <ConfirmModal Title="Delete"
               OnClosed="() => SelectedForDeletion = null"
               OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.ArticleNumber)</p>
+        <p>@String.Format("Should the article '{0}' really be deleted?", SelectedForDeletion.ArticleNumber)</p>
     </ConfirmModal>
 }

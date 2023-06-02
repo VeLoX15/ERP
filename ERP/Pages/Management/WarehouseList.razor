@@ -54,7 +54,7 @@
 
 @if (Input is not null)
 {
-    <Modal Title="@String.Format("Edit Storage", Input.Number)"
+    <Modal Title="@String.Format("Edit storage '{0}'", Input.Number)"
        OnClosed="() => Input = null"
        ModalSize="ModalSize.LG"
        HideFooter="true">
@@ -85,6 +85,6 @@
     <ConfirmModal Title="Delete"
               OnClosed="() => SelectedForDeletion = null"
               OnConfirmed="DeleteAsync">
-        <p>@String.Format("Delete Text", SelectedForDeletion.Number)</p>
+        <p>@String.Format("Should the storage '{0}' really be deleted?", SelectedForDeletion.Number)</p>
     </ConfirmModal>
 }
