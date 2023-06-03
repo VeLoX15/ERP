@@ -22,6 +22,8 @@ namespace ERP.Core.Models
         public decimal SellingPrice { get; set; }
         [CompareField("is_bundle")]
         public bool IsBundle { get; set; }
+        [CompareField("size_id")]
+        public int SizeId { get; set; }
         public Size Size { get; set; } = new();
         public List<Article> BundleArticles { get; set; } = new();
         public List<Category> Categories { get; set; } = new();

@@ -91,6 +91,33 @@
                         <label for="article-description">Description</label>
                         <ValidationMessage For="() => Input.Description" />
                     </div>
+                    <hr />
+                    <div class="mb-3">
+                        <label>Size</label>
+                        <div class="row">
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Length" class="form-control" id="article-length" placeholder="Length" />
+                                <label for="article-length">Length</label>
+                                <ValidationMessage For="() => Input.Size.Length" />
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Width" class="form-control" id="article-width" placeholder="Width" />
+                                <label for="article-width">Width</label>
+                                <ValidationMessage For="() => Input.Size.Width" />
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Height" class="form-control" id="article-height" placeholder="Height" />
+                                <label for="article-height">Height</label>
+                                <ValidationMessage For="() => Input.Size.Height" />
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputNumber @bind-Value="Input.Size.Volume" class="form-control" id="article-volume" placeholder="Volume" />
+                            <label for="article-volume">Volume</label>
+                            <ValidationMessage For="() => Input.Size.Volume" />
+                        </div>
+                    </div>
+                    <hr />
                     <div class="form-floating mb-3">
                         <InputNumber @bind-Value="Input.Weight" class="form-control" id="article-weight" placeholder="Weight" />
                         <label for="article-weight">Weight</label>

@@ -14,32 +14,38 @@ namespace ERP.Core.Services
 (
 `customer_number`,
 `username`,
-`password`,
-`salt`,
 `salutation`,
 `first_name`,
 `last_name`,
 `email`,
 `telefon`,
 `standard_payment_methode`,
+`standard_delivery_methode`,
+`delivery_address_id`,
+`billing_address_id`,
 `registration_date`,
+`last_login`,
 `customer_status`,
+`customer_group`,
 `comment`
 )
 VALUES
 (
 @CUSTOMER_NUMBER,
 @USERNAME,
-@PASSWORD,
-@SALT,
 @SALUTATION,
 @FIRST_NAME,
 @LAST_NAME,
 @EMAIL,
 @TELEFON,
 @STANDARD_PAYMENT_METHODE,
+@STANDARD_DELIVERY_METHODE,
+@DELIVERY_ADDRESS_ID,
+@BILLING_ADDRESS_ID,
 @REGISTRATION_DATE,
+@LAST_LOGIN,
 @CUSTOMER_STATUS,
+@CUSTOMER_GROUP,
 @COMMENT
 ); {dbController.GetLastIdSql()}";
 
@@ -74,12 +80,35 @@ VALUES
             sqlBuilder.AppendLine("SELECT c.* FROM `customers` c ");
             sqlBuilder.AppendLine("WHERE 1 = 1 ");
             sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"ORDER BY `customer_id` DESC ");
+            sqlBuilder.AppendLine(@$"ORDER BY `customer_number` DESC ");
             sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
-
             string sql = sqlBuilder.ToString();
 
             List<Customer> list = await dbController.SelectDataAsync<Customer>(sql, GetFilterParameter(filter), cancellationToken);
+
+            if (list.Any())
+            {
+                IEnumerable<int> addressIds = list.Select(x => x.DeliveryAddressId);
+                sql = $"SELECT * FROM `addresses` WHERE `address_id` IN ({string.Join(",", addressIds)})";
+                List<Address> addresses = await dbController.SelectDataAsync<Address>(sql, null, cancellationToken);
+
+                foreach (var item in list)
+                {
+                    item.DeliveryAddress = addresses.FirstOrDefault(x => x.AddressId == item.DeliveryAddressId) ?? new();
+                }
+            }
+
+            if (list.Any())
+            {
+                IEnumerable<int> addressIds = list.Select(x => x.BillingAddressId);
+                sql = $"SELECT * FROM `addresses` WHERE `address_id` IN ({string.Join(",", addressIds)})";
+                List<Address> addresses = await dbController.SelectDataAsync<Address>(sql, null, cancellationToken);
+
+                foreach (var item in list)
+                {
+                    item.BillingAddress = addresses.FirstOrDefault(x => x.AddressId == item.BillingAddressId) ?? new();
+                }
+            }
 
             return list;
         }
@@ -139,16 +168,19 @@ VALUES
             string sql = @"UPDATE `customers` SET
 `customer_number` = @CUSTOMER_NUMBER,
 `username` = @USERNAME,
-`password` = @PASSWORD,
-`salt` = @SALT,
 `salutation` = @SALUTATION,
 `first_name` = @FIRST_NAME,
 `last_name` = @LAST_NAME,
 `email` = @EMAIL,
 `telefon` = @TELEFON,
 `standard_payment_methode` = @STANDARD_PAYMENT_METHODE,
+`standard_delivery_methode` = @STANDARD_DELIVERY_METHODE,
+`delivery_address_id` = @DELIVERY_ADDRESS_ID,
+`billing_address_id` = @BILLING_ADDRESS_ID,
 `registration_date` = @REGISTRATION_DATE,
+`last_login` = @LAST_LOGIN,
 `customer_status` = @CUSTOMER_STATUS,
+`customer_group` = @CUSTOMER_GROUP,
 `comment` = @COMMENT
 WHERE `customer_id` = @CUSTOMER_ID";
 

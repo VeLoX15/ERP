@@ -64,12 +64,24 @@ VALUES
             sqlBuilder.AppendLine("SELECT a.* FROM `articles` a ");
             sqlBuilder.AppendLine("WHERE 1 = 1 ");
             sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"ORDER BY `article_id` DESC ");
+            sqlBuilder.AppendLine(@$"ORDER BY `article_number` DESC ");
             sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
 
             string sql = sqlBuilder.ToString();
 
             List<Article> list = await dbController.SelectDataAsync<Article>(sql, GetFilterParameter(filter), cancellationToken);
+
+            if (list.Any())
+            {
+                IEnumerable<int> sizeIds = list.Select(x => x.SizeId);
+                sql = $"SELECT * FROM `sizes` WHERE `size_id` IN ({string.Join(",", sizeIds)})";
+                List<Size> sizes = await dbController.SelectDataAsync<Size>(sql, null, cancellationToken);
+
+                foreach (var item in list)
+                {
+                    item.Size = sizes.FirstOrDefault(x => x.SizeId == item.SizeId) ?? new();
+                }
+            }
 
             return list;
         }

@@ -52,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
     `delivery_address_id` INTEGER,
     `billing_address_id` INTEGER,
     `registration_date` DATETIME NOT NULL,
+    `last_login`DATETIME NOT NULL,
     `customer_status` INTEGER NOT NULL DEFAULT 0,
     `customer_group` INTEGER NOT NULL DEFAULT 0,
     `comment` TEXT NOT NULL DEFAULT '',
@@ -80,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`sizes` (
     `size_id` INTEGER NOT NULL AUTO_INCREMENT,
     `length` DECIMAL NOT NULL,
     `width` DECIMAL NOT NULL,
-    `hight` DECIMAL NOT NULL,
+    `height` DECIMAL NOT NULL,
     `volume` DECIMAL NOT NULL,
 
     PRIMARY KEY(`size_id`)
@@ -317,6 +318,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`users` (
 	`password` VARCHAR(255) NOT NULL,
 	`salt` VARCHAR(255) NOT NULL,
 	`origin` VARCHAR(5) NOT NULL,
+    `last_login` DATETIME NOT NULL,
 
 	PRIMARY KEY(`user_id`)
 );

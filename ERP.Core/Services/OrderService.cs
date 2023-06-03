@@ -80,7 +80,7 @@ VALUES
             sqlBuilder.AppendLine("SELECT o.* FROM `orders` o ");
             sqlBuilder.AppendLine("WHERE 1 = 1 ");
             sqlBuilder.AppendLine(GetFilterWhere(filter));
-            sqlBuilder.AppendLine(@$"ORDER BY `order_id` DESC ");
+            sqlBuilder.AppendLine(@$"ORDER BY `order_number` DESC ");
             sqlBuilder.AppendLine(dbController.GetPaginationSyntax(filter.PageNumber, filter.Limit));
 
             string sql = sqlBuilder.ToString();

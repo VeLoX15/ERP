@@ -12,8 +12,10 @@ namespace ERP.Core.Models
         public int HouseNumber { get; set; }
         [CompareField("city")]
         public string City { get; set; } = string.Empty;
-        [CompareField("zip_code")]
-        public string ZipCode { get; set; } = string.Empty;
+        [CompareField("state")]
+        public string State { get; set; } = string.Empty;
+        [CompareField("postal_code")]
+        public string PostalCode { get; set; } = string.Empty;
         [CompareField("country_id")]
         public int CountryId { get; set; }
 
@@ -21,12 +23,13 @@ namespace ERP.Core.Models
         {
             return new Dictionary<string, object?>
             {
-                { "address_id", AddressId },
-                { "street", Street },
-                { "house_number", HouseNumber },
-                { "city", City },
-                { "zip_code", ZipCode },
-                { "country_id", CountryId }
+                { "ADDRESS_ID", AddressId },
+                { "STREET", Street },
+                { "HOUSE_NUMBER", HouseNumber },
+                { "CITY", City },
+                { "STATE", State },
+                { "POSTAL_CODE", PostalCode },
+                { "COUNTRY_ID", CountryId }
            };
         }
     }

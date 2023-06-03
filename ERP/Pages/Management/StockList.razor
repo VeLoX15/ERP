@@ -60,9 +60,24 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-floating mb-3">
-                        <InputNumber @bind-Value="Input.Number" class="form-control" id="article-article-number" placeholder="Compartment Number" />
-                        <label for="article-article_number">Compartment Number</label>
+                        <InputNumber @bind-Value="Input.Number" class="form-control" id="compartment-number" placeholder="Compartment Number" />
+                        <label for="compartment-number">Compartment Number</label>
                         <ValidationMessage For="() => Input.Number" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Article.ArticleNumber" class="form-control" id="article-article-number" placeholder="Article Number" />
+                        <label for="article-number">Article Number</label>
+                        <ValidationMessage For="() => Input.Article.ArticleNumber" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputText @bind-Value="Input.Article.Name" class="form-control" id="article-name" placeholder="Article Name" />
+                        <label for="name">Article Name</label>
+                        <ValidationMessage For="() => Input.Article.Name" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.Stock" class="form-control" id="article-stock" placeholder="Stock" />
+                        <label for="article-stock">Stock</label>
+                        <ValidationMessage For="() => Input.Stock" />
                     </div>
                 </div>
             </div>

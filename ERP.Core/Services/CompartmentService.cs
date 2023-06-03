@@ -96,6 +96,19 @@ VALUES
 
             List<Compartment> list = await dbController.SelectDataAsync<Compartment>(sql, GetFilterParameter(filter), cancellationToken);
 
+            if (list.Any())
+            {
+                IEnumerable<int> articleIds = list.Select(x => x.ArticleId);
+                sql = $"SELECT * FROM `articles` WHERE `article_id` IN ({string.Join(",", articleIds)})";
+                List<Article> articles = await dbController.SelectDataAsync<Article>(sql, null, cancellationToken);
+
+                foreach (var item in list)
+                {
+                    item.Article = articles.FirstOrDefault(x => x.ArticleId == item.ArticleId) ?? new();
+                }
+
+            }
+
             return list;
         }
 
