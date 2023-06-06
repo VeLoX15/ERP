@@ -10,10 +10,12 @@ namespace ERP.Core.Models
         public string OrderNumber { get; set; } = string.Empty;
         [CompareField("customer_id")]
         public int CustomerId { get; set; }
+        [CompareField("invoice_id")]
+        public int InvoiceId { get; set; }
+        [CompareField("size_id")]
+        public int SizeId { get; set; }
         [CompareField("weight")]
         public decimal Weight { get; set; }
-        [CompareField("length")]
-        public decimal Length { get; set; }
         [CompareField("payment_method")]
         public string PaymentMethod { get; set; } = string.Empty;
         [CompareField("shipping_method")]
@@ -32,33 +34,37 @@ namespace ERP.Core.Models
         public string OrderStatusPublic { get; set; } = string.Empty;
         [CompareField("order_status_intern")]
         public string OrderStatusIntern { get; set; } = string.Empty;
-        [CompareField("discount_code")]
-        public Guid DiscoutCode { get; set; }
+        [CompareField("discount_id")]
+        public int DiscountId { get; set; }
         [CompareField("order_note")]
         public string OrderNote { get; set; } = string.Empty;
 
+        public Size Size { get; set; } = new();
+        public Address DeliveryAddress { get; set; } = new();
+        public Address BillingAddress { get; set; } = new();
+         
         public int Id => OrderId;
 
         public Dictionary<string, object?> GetParameters()
         {
             return new Dictionary<string, object?>
             {
-                { "order_id", OrderId },
-                { "order_number", OrderNumber },
-                { "customer_id", CustomerId },
-                { "weight", Weight },
-                { "length", Length },
-                { "payment_methode", PaymentMethod },
-                { "shipping_method", ShippingMethod },
-                { "delivery_address_id", DeliveryAddressId },
-                { "billing_address_id", BillingAddressId },
-                { "order_date", OrderDate },
-                { "delivery_date", DeliveryDate },
-                { "invoice_date", InvoiceDate },
-                { "order_status_public", OrderStatusPublic },
-                { "order_status_intern", OrderStatusIntern },
-                { "discount_code", DiscoutCode },
-                { "order_note", OrderNote }
+                { "ORDER_ID", OrderId },
+                { "ORDER_NUMBER", OrderNumber },
+                { "CUSTOMER_ID", CustomerId },
+                { "SIZE_ID", SizeId },
+                { "WEIGHT", Weight },
+                { "PAYMENT_METHOD", PaymentMethod },
+                { "SHIPPING_METHOD", ShippingMethod },
+                { "DELIVERY_ADDRESS_ID", DeliveryAddressId },
+                { "BILLING_ADDRESS_ID", BillingAddressId },
+                { "ORDER_DATE", OrderDate },
+                { "DELIVERY_DATE", DeliveryDate },
+                { "INVOICE_DATE", InvoiceDate },
+                { "ORDER_STATUS_PUBLIC", OrderStatusPublic },
+                { "ORDER_STATUS_INTERN", OrderStatusIntern },
+                { "DISCOUNT_ID", DiscountId },
+                { "ORDER_NOTE", OrderNote }
            };
         }
     }

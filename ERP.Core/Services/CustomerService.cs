@@ -7,6 +7,13 @@ namespace ERP.Core.Services
 {
     public class CustomerService : IModelService<Customer, int, CustomerFilter>
     {
+        private readonly AddressService _addressService;
+
+        public CustomerService(AddressService addressService)
+        {
+            _addressService = addressService;
+        }
+
         public async Task CreateAsync(Customer input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -50,6 +57,9 @@ VALUES
 ); {dbController.GetLastIdSql()}";
 
             input.CustomerId = await dbController.GetFirstAsync<int>(sql, input.GetParameters(), cancellationToken);
+
+            await _addressService.CreateAsync(input.DeliveryAddress, dbController, cancellationToken);
+            await _addressService.CreateAsync(input.BillingAddress, dbController, cancellationToken);
         }
 
         public async Task DeleteAsync(Customer input, IDbController dbController, CancellationToken cancellationToken = default)
@@ -58,6 +68,9 @@ VALUES
             string sql = "DELETE FROM `customers` WHERE `customer_id` = @CUSTOMER_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
+
+            await _addressService.DeleteAsync(input.DeliveryAddress, dbController, cancellationToken);
+            await _addressService.DeleteAsync(input.BillingAddress, dbController, cancellationToken);
         }
 
         public async Task<Customer?> GetAsync(int customerId, IDbController dbController, CancellationToken cancellationToken = default)
@@ -69,6 +82,12 @@ VALUES
             {
                 CUSTOMER_ID = customerId,
             }, cancellationToken);
+
+            if (customer is not null)
+            {
+                customer.DeliveryAddress = await _addressService.GetAsync(customer.DeliveryAddressId, dbController, cancellationToken) ?? new();
+                customer.DeliveryAddress = await _addressService.GetAsync(customer.BillingAddressId, dbController, cancellationToken) ?? new();
+            }
 
             return customer;
         }
@@ -185,6 +204,9 @@ VALUES
 WHERE `customer_id` = @CUSTOMER_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
+
+            await _addressService.UpdateAsync(input.DeliveryAddress, dbController, cancellationToken);
+            await _addressService.UpdateAsync(input.BillingAddress, dbController, cancellationToken);
         }
     }
 }

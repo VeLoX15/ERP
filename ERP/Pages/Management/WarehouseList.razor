@@ -15,6 +15,7 @@
                         <tr>
                             <th>Storage Number</th>
                             <th>Name</th>
+                            <th>Article Number</th>
                             <th>Article</th>
                             <th class="text-right">Action</th>
                         </tr>
@@ -24,6 +25,7 @@
                             <tr>
                                 <td>@storage.Number</td>
                                 <td>@storage.Name</td>
+                                <td>@storage.Article.ArticleNumber</td>
                                 <td>@storage.Article.Name</td>
                                 <td class="text-right">
                                     <AuthorizeView Roles="@(Roles.DELETE_WAREHOUSES)">

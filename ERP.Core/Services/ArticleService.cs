@@ -1,12 +1,20 @@
 ﻿using DbController;
 using ERP.Core.Filters;
 using ERP.Core.Models;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ERP.Core.Services
 {
     public class ArticleService : IModelService<Article, int, ArticleFilter>
     {
+        private readonly SizeService _sizeService;
+
+        public ArticleService(SizeService sizeService)
+        {
+            _sizeService = sizeService;
+        }
+
         public async Task CreateAsync(Article input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -34,6 +42,8 @@ VALUES
 ); {dbController.GetLastIdSql()}";
 
             input.ArticleId = await dbController.GetFirstAsync<int>(sql, input.GetParameters(), cancellationToken);
+
+            await _sizeService.CreateAsync(input.Size, dbController, cancellationToken);
         }
 
         public async Task DeleteAsync(Article input, IDbController dbController, CancellationToken cancellationToken = default)
@@ -42,6 +52,8 @@ VALUES
             string sql = "DELETE FROM `articles` WHERE `article_id` = @ARTICLE_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
+
+            await _sizeService.DeleteAsync(input.Size, dbController, cancellationToken);
         }
 
         public async Task<Article?> GetAsync(int articleId, IDbController dbController, CancellationToken cancellationToken = default)
@@ -53,6 +65,11 @@ VALUES
             {
                 ARTICLE_ID = articleId,
             }, cancellationToken);
+
+            if(article is not null)
+            {
+                await _sizeService.GetAsync(article.SizeId, dbController, cancellationToken);
+            }
 
             return article;
         }
@@ -155,6 +172,8 @@ VALUES
 WHERE `article_id` = @ARTICLE_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
+
+            await _sizeService.UpdateAsync(input.Size, dbController, cancellationToken);
         }
     }
 }

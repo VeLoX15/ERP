@@ -53,7 +53,7 @@ VALUES
             string sql = @"UPDATE `sizes` SET
 `length` = @LENGTH,
 `width` = @WIDTH,
-`hight` = @HIGHT,
+`height` = @HEIGHT,
 `volume` = @VOLUME
 WHERE `size_id` = @SIZE_ID";
 

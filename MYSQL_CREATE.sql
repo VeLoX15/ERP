@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`orders` (
     `invoice_date` DATETIME NOT NULL,
     `order_status_public` INTEGER NOT NULL,
     `order_status_intern` INTEGER NOT NULL,
-    `discount_id` INTEGER NOT NULL,
+    `discount_id` INTEGER NULL,
     `order_note` TEXT NOT NULL DEFAULT '',
 
     PRIMARY KEY(`order_id`),
