@@ -39,6 +39,8 @@ namespace ERP.Core.Models
         [CompareField("order_note")]
         public string OrderNote { get; set; } = string.Empty;
 
+        public Customer Customer { get; set; } = new();
+        public Invoice Invoice { get; set; } = new();
         public Size Size { get; set; } = new();
         public Address DeliveryAddress { get; set; } = new();
         public Address BillingAddress { get; set; } = new();

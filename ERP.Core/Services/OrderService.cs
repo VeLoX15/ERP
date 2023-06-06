@@ -7,11 +7,15 @@ namespace ERP.Core.Services
 {
     public class OrderService : IModelService<Order, int, OrderFilter>
     {
+        private readonly CustomerService _customerService;
+        private readonly InvoiceService _invoiceService;
         private readonly AddressService _addressService;
         private readonly SizeService _sizeService;
 
-        public OrderService(AddressService addressService, SizeService sizeService)
+        public OrderService(CustomerService customerService, InvoiceService invoiceService, AddressService addressService, SizeService sizeService)
         {
+            _customerService = customerService;
+            _invoiceService = invoiceService;
             _addressService = addressService;
             _sizeService = sizeService;
         }
@@ -62,6 +66,8 @@ VALUES
 
             input.OrderId = await dbController.GetFirstAsync<int>(sql, input.GetParameters(), cancellationToken);
 
+            await _customerService.CreateAsync(input.Customer, dbController, cancellationToken);
+            await _invoiceService.CreateAsync(input.Invoice, dbController, cancellationToken);
             await _sizeService.CreateAsync(input.Size, dbController, cancellationToken);
             await _addressService.CreateAsync(input.DeliveryAddress, dbController, cancellationToken);
             await _addressService.CreateAsync(input.BillingAddress, dbController, cancellationToken);
@@ -75,6 +81,8 @@ VALUES
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
 
+            await _customerService.DeleteAsync(input.Customer, dbController, cancellationToken);
+            await _invoiceService.DeleteAsync(input.Invoice, dbController, cancellationToken);
             await _sizeService.DeleteAsync(input.Size, dbController, cancellationToken);
             await _addressService.DeleteAsync(input.DeliveryAddress, dbController, cancellationToken);
             await _addressService.DeleteAsync(input.BillingAddress, dbController, cancellationToken);
@@ -92,6 +100,8 @@ VALUES
 
             if (order is not null)
             {
+                order.Customer = await _customerService.GetAsync(order.CustomerId, dbController, cancellationToken) ?? new();
+                order.Invoice = await _invoiceService.GetAsync(order.InvoiceId, dbController, cancellationToken) ?? new();
                 order.Size = await _sizeService.GetAsync(order.SizeId, dbController, cancellationToken) ?? new();
                 order.DeliveryAddress = await _addressService.GetAsync(order.DeliveryAddressId, dbController, cancellationToken) ?? new();
                 order.DeliveryAddress = await _addressService.GetAsync(order.BillingAddressId, dbController, cancellationToken) ?? new();
@@ -238,6 +248,8 @@ WHERE `article_id` = @ARTICLE_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
 
+            await _customerService.UpdateAsync(input.Customer, dbController, cancellationToken);
+            await _invoiceService.UpdateAsync(input.Invoice, dbController, cancellationToken);
             await _sizeService.UpdateAsync(input.Size, dbController, cancellationToken);
             await _addressService.UpdateAsync(input.DeliveryAddress, dbController, cancellationToken);
             await _addressService.UpdateAsync(input.BillingAddress, dbController, cancellationToken);
