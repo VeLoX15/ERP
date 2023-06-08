@@ -7,11 +7,12 @@
 <h3>Article Filter</h3>
 <hr />
 <EditForm Model="Filter" OnValidSubmit="async () => await SendDataAsync()">
-    <FluentValidationValidator Validator="Validator" />
+    <FluentValidationValidator/>
     <div class="col-lg-6">
         <div class="form-group col-md-10">
             <label for="article-number">Article Number:</label>
             <InputText id="article-number" @bind-Value="Filter.ArticleNumber" class="form-control" />
+            <ValidationMessage For="() => Filter.ArticleNumber" />
         </div>
         <div class="form-group col-md-10">
             <label for="name">Article Name:</label>

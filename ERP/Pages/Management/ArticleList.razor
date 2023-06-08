@@ -4,8 +4,15 @@
 <PageTitle>Article List</PageTitle>
 <h3>Article List</h3>
 
-<div class="col-lg-9 col-sm-12">
+<AuthorizeView Roles="@(Roles.ADD_ARTICLES)">
+    <Authorized>
+        <div class="toolbar">
+            <button type="button" class="btn btn-success" @onclick="NewAsync"><i class="bi bi-plus-lg"></i></button>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
+<div>
     <div class="card">
         <div class="card-content">
             <!-- Table with no outer spacing -->
@@ -16,7 +23,6 @@
                             <th>Article Number</th>
                             <th>Article Name</th>
                             <th>Bundle</th>
-                            <th>Purchase Price</th>
                             <th>Selling Price</th>
                             <th class="text-right">Action</th>
                         </tr>
@@ -35,7 +41,6 @@
                                         <i class="bi bi-x-lg text-danger"></i>
                                     }
                                 </td>
-                                <td>@article.PurchasePrice</td>
                                 <td>@article.SellingPrice</td>
                                 <td class="text-right">
                                     <AuthorizeView Roles="@(Roles.DELETE_ARTICLES)">
@@ -59,9 +64,7 @@
                 </table>
             </div>
         </div>
-
     </div>
-
 </div>
 
 @if (Input is not null)
@@ -73,7 +76,6 @@
 
         <EditForm Model="Input" @ref="_form">
             <FluentValidationValidator />
-            <ValidationSummary />
             <div class="row">
                 <div class="col-12">
                     <div class="form-floating mb-3">
@@ -96,23 +98,31 @@
                         <label>Size</label>
                         <div class="row">
                             <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
-                                <InputNumber @bind-Value="Input.Size.Length" class="form-control" id="article-length" placeholder="Length" />
+                                <InputNumber @bind-Value="@Input.Size.Length" @oninput="CalculateResult" class="form-control" id="article-length" placeholder="Length" />
                                 <label for="article-length">Length</label>
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Width" @oninput="CalculateResult" class="form-control" id="article-width" placeholder="Width" />
+                                <label for="article-width">Width</label>
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Height" @oninput="CalculateResult" class="form-control" id="article-height" placeholder="Height" />
+                                <label for="article-height">Height</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
                                 <ValidationMessage For="() => Input.Size.Length" />
                             </div>
                             <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
-                                <InputNumber @bind-Value="Input.Size.Width" class="form-control" id="article-width" placeholder="Width" />
-                                <label for="article-width">Width</label>
                                 <ValidationMessage For="() => Input.Size.Width" />
                             </div>
                             <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
-                                <InputNumber @bind-Value="Input.Size.Height" class="form-control" id="article-height" placeholder="Height" />
-                                <label for="article-height">Height</label>
                                 <ValidationMessage For="() => Input.Size.Height" />
                             </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <InputNumber @bind-Value="Input.Size.Volume" class="form-control" id="article-volume" placeholder="Volume" />
+                            <InputNumber @bind-Value="Input.Size.Volume" readonly class="form-control" id="article-volume" placeholder="Volume" />
                             <label for="article-volume">Volume</label>
                             <ValidationMessage For="() => Input.Size.Volume" />
                         </div>

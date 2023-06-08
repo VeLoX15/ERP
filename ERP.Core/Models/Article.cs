@@ -12,6 +12,8 @@ namespace ERP.Core.Models
         public string Name { get; set; } = string.Empty;
         [CompareField("description")]
         public string Description { get; set; } = string.Empty;
+        [CompareField("size_id")]
+        public int SizeId { get; set; }
         [CompareField("weight")]
         public decimal Weight { get; set; }
         [CompareField("inclusion_date")]
@@ -22,8 +24,6 @@ namespace ERP.Core.Models
         public decimal SellingPrice { get; set; }
         [CompareField("is_bundle")]
         public bool IsBundle { get; set; }
-        [CompareField("size_id")]
-        public int SizeId { get; set; }
         public Size Size { get; set; } = new();
         public List<Article> BundleArticles { get; set; } = new();
         public List<Category> Categories { get; set; } = new();
@@ -39,6 +39,7 @@ namespace ERP.Core.Models
                 { "ARTICLE_NUMBER", ArticleNumber },
                 { "NAME", Name },
                 { "DESCRIPTION", Description },
+                { "SIZE_ID", SizeId },
                 { "WEIGHT", Weight },
                 { "INCLUSION_DATE", InclusionDate },
                 { "PURCHASE_PRICE", PurchasePrice },

@@ -4,8 +4,15 @@
 <PageTitle>Article List</PageTitle>
 <h3>Article List</h3>
 
-<div class="col-lg-9 col-sm-12">
+<AuthorizeView Roles="@(Roles.ADD_ORDERS)">
+    <Authorized>
+        <div class="toolbar">
+            <button type="button" class="btn btn-success" @onclick="NewAsync"><i class="bi bi-plus-lg"></i></button>
+        </div>
+    </Authorized>
+</AuthorizeView>
 
+<div>
     <div class="card">
         <div class="card-content">
             <!-- Table with no outer spacing -->
@@ -43,9 +50,7 @@
                 </table>
             </div>
         </div>
-
     </div>
-
 </div>
 
 @if (Input is not null)

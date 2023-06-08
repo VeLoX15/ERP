@@ -7,6 +7,13 @@ namespace ERP.Core.Services
 {
     public class CompartmentService : IModelService<Compartment, int, WarehouseFilter>
     {
+        private readonly ArticleService _articleService;
+
+        public CompartmentService(ArticleService articleService)
+        {
+            _articleService = articleService;
+        }
+
         public async Task CreateAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -20,6 +27,8 @@ VALUES
 ); {dbController.GetLastIdSql()}";
 
             input.CompartmentId = await dbController.GetFirstAsync<int>(sql, input.GetParameters(), cancellationToken);
+
+            await _articleService.CreateAsync(input.Article, dbController, cancellationToken);
         }
 
         public async Task DeleteAsync(Compartment input, IDbController dbController, CancellationToken cancellationToken = default)
@@ -28,6 +37,8 @@ VALUES
             string sql = "DELETE FROM `compartments` WHERE `compartment_id` = @COMPARTMENT_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
+
+            await _articleService.DeleteAsync(input.Article, dbController, cancellationToken);
         }
 
         public async Task<Compartment?> GetAsync(int compartmentId, IDbController dbController, CancellationToken cancellationToken = default)
@@ -39,6 +50,11 @@ VALUES
             {
                 COMPARTMENT_ID = compartmentId,
             }, cancellationToken);
+
+            if (compartment is not null)
+            {
+                compartment.Article = await _articleService.GetAsync(compartment.ArticleId, dbController, cancellationToken) ?? new();
+            }
 
             return compartment;
         }
@@ -60,6 +76,18 @@ VALUES
             string sql = sqlBuilder.ToString();
 
             List<Compartment> list = await dbController.SelectDataAsync<Compartment>(sql, GetFilterParameter(filter), cancellationToken);
+
+            if (list.Any())
+            {
+                IEnumerable<int> articleIds = list.Select(x => x.ArticleId);
+                sql = $"SELECT * FROM `articles` WHERE `article_id` IN ({string.Join(",", articleIds)})";
+                List<Article> articles = await dbController.SelectDataAsync<Article>(sql, null, cancellationToken);
+
+                foreach (var item in list)
+                {
+                    item.Article = articles.FirstOrDefault(x => x.ArticleId == item.ArticleId) ?? new();
+                }
+            }
 
             return list;
         }
@@ -134,6 +162,8 @@ VALUES
 WHERE `compartment_id` = @COMPARTMENT_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
+
+            await _articleService.UpdateAsync(input.Article, dbController, cancellationToken);
         }
     }
 }

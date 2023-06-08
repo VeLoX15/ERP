@@ -67,5 +67,18 @@ namespace ERP.Pages.Management
             await base.DeleteAsync();
             await LoadAsync();
         }
+
+        private void CalculateResult()
+        {
+            if(Input is not null) 
+            {
+                decimal length = Input.Size.Length;
+                decimal width = Input.Size.Width;
+                decimal height = Input.Size.Height;
+
+                Input.Size.Volume = length * width * height;
+            }
+            StateHasChanged();
+        }
     }
 }
