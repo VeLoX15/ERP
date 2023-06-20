@@ -5,7 +5,7 @@
 <PageTitle>User Mangement</PageTitle>
 <h3>User Mangement</h3>
 
-<AuthorizeView Roles="@(Roles.EDIT_USERS)">
+<AuthorizeView Roles="@(Roles.ADD_USERS)">
     <Authorized>
         <div class="toolbar">
             <button type="button" class="btn btn-success" @onclick="NewAsync"><i class="bi bi-plus-lg"></i></button>

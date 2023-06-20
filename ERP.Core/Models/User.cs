@@ -1,5 +1,4 @@
 ﻿using DbController;
-using ERP.Core.Models;
 
 namespace ERP.Core.Models
 {
