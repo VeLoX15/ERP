@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `erp`.`customers` (
     `standard_delivery_method` VARCHAR(50) NOT NULL,
     `delivery_address_id` INTEGER,
     `billing_address_id` INTEGER,
-    `registration_date` DATETIME NOT NULL,
+    `registration_date` DATETIME NOT NULL,x
     `last_login`DATETIME NOT NULL,
     `customer_status` INTEGER NOT NULL DEFAULT 0,
     `customer_group` INTEGER NOT NULL DEFAULT 0,

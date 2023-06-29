@@ -15,28 +15,30 @@ USE `erp`;
 # Dumping data for table 'permissions'
 #
 
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (1, 'View Users', 'VIEW_USERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (2, 'View Warhouses', 'VIEW_WAREHOUSES', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (3, 'View Stocks', 'VIEW_STOCKS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (4, 'View Articles', 'VIEW_ARTICLES', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (5, 'View Orders', 'VIEW_ORDERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (6, 'View Customers', 'VIEW_CUSTOMERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (7, 'View Statistics', 'VIEW_STATISTICS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (8, 'Edit Users', 'EDIT_USERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (9, 'Edit Warehouses', 'EDIT_WAREHOUSES', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (10, 'Edit Stocks', 'EDIT_STOCKS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (11, 'Edit Articles', 'EDIT_ARTICLES', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (12, 'Edit Orders', 'EDIT_ORDERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (13, 'Edit Customers', 'EDIT_CUSTOMERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (14, 'Edit Statistics', 'EDIT_STATISTICS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (15, 'Delete Users', 'DELETE_USERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (16, 'Delete Warehouses', 'DELETE_WAREHOUSES', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (17, 'Delete Stocks', 'DELETE_STOCKS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (18, 'Delete Articles', 'DELETE_ARTICLES', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (19, 'Delete Orders', 'DELETE_ORDERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (20, 'Delete Customers', 'DELETE_CUSTOMERS', '');
-INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (21, 'Delete Statistics', 'DELETE_STATISTICS', '');
-# 21 records
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (1, 'Add Users', 'ADD_USERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (2, 'Add Warehouses', 'ADD_WAREHOUSES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (3, 'Add Articles', 'ADD_ARTICLES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (4, 'Add Orders', 'ADD_ORDERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (5, 'Add Customers', 'ADD_CUSTOMERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (6, 'Delete Users', 'DELETE_USERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (7, 'Delete Warehouses', 'DELETE_WAREHOUSES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (8, 'Delete Articles', 'DELETE_ARTICLES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (9, 'Delete Orders', 'DELETE_ORDERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (10, 'Delete Customers', 'DELETE_CUSTOMERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (11, 'View Users', 'VIEW_USERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (12, 'View Warhouses', 'VIEW_WAREHOUSES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (13, 'View Stocks', 'VIEW_STOCKS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (14, 'View Articles', 'VIEW_ARTICLES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (15, 'View Orders', 'VIEW_ORDERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (16, 'View Customers', 'VIEW_CUSTOMERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (17, 'View Statistics', 'VIEW_STATISTICS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (18, 'Edit Users', 'EDIT_USERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (19, 'Edit Warehouses', 'EDIT_WAREHOUSES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (20, 'Edit Stocks', 'EDIT_STOCKS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (21, 'Edit Articles', 'EDIT_ARTICLES', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (22, 'Edit Orders', 'EDIT_ORDERS', '');
+INSERT INTO `erp`.`permissions` (`permission_id`, `name`, `identifier`, `description`) VALUES (23, 'Edit Customers', 'EDIT_CUSTOMERS', '');
+# 23 records
 
 #
 # Dumping data for table 'countries'
@@ -321,7 +323,9 @@ INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 18)
 INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 19);
 INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 20);
 INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 21);
-# 21 records
+INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 22);
+INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 23);
+# 23 records
 
 #
 # Optional: Adds Sample data
@@ -330,7 +334,7 @@ INSERT INTO `erp`.`user_permissions` (`user_id`, `permission_id`) VALUES (1, 21)
 #
 
 #
-# Dumping data for table 'articles'
+# Dumping data for table 'sizes'
 #
 
 INSERT INTO `erp`.`sizes` (`size_id`, `length`, `width`, `height`, `volume`) VALUES (1, 10.5, 8.2, 5.3, 450.1);

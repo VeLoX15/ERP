@@ -1,8 +1,8 @@
 ﻿@page "/Management/Orders/List"
 @attribute [Authorize(Roles = Roles.VIEW_ORDERS)]
 @inherits ManagementBasePage<Order, OrderService>
-<PageTitle>Article List</PageTitle>
-<h3>Article List</h3>
+<PageTitle>Order List</PageTitle>
+<h3>Order List</h3>
 
 <AuthorizeView Roles="@(Roles.ADD_ORDERS)">
     <Authorized>
@@ -21,6 +21,9 @@
                     <thead>
                         <tr>
                             <th>Order Number</th>
+                            <th>Customer Number</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th class="text-right">Action</th>
                         </tr>
                     </thead>
@@ -28,6 +31,9 @@
                         <Virtualize Items="FilterData" Context="order">
                             <tr>
                                 <td>@order.OrderNumber</td>
+                                <td>@order.Customer.CustomerNumber</td>
+                                <td>@order.Customer.FirstName</td>
+                                <td>@order.Customer.LastName</td>
                                 <td class="text-right">
                                     <AuthorizeView Roles="@(Roles.DELETE_ORDERS)">
                                         <Authorized>
@@ -66,9 +72,166 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-floating mb-3">
-                        <InputText @bind-Value="Input.OrderNumber" class="form-control" id="article-article-number" placeholder="Article Number" />
-                        <label for="article-article_number">Order Number</label>
+                        <InputText @bind-Value="Input.OrderNumber" class="form-control" id="order-number" placeholder="Order Number" />
+                        <label for="order-number">Order Number</label>
                         <ValidationMessage For="() => Input.OrderNumber" />
+                    </div>
+                    <div>
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Customer.LastName" class="form-control" id="order-customer-number" placeholder="Customer Number" />
+                            <label for="order-customer-number">Customer Number</label>
+                            <ValidationMessage For="() => Input.Customer.LastName" />
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Customer.FirstName" class="form-control" id="order-customer-firstname" placeholder="First Name" />
+                            <label for="order-customer-firstname">First Name</label>
+                            <ValidationMessage For="() => Input.OrderNumber" />
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Customer.LastName" class="form-control" id="order-customer-lastname" placeholder="Last Name" />
+                            <label for="order-customer-lastname">Last Name</label>
+                            <ValidationMessage For="() => Input.Customer.LastName" />
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.Invoice.InvoiceNumber" class="form-control" id="order-invoice-number" placeholder="Invoice Number" />
+                            <label for="order-invoice-number">Invoice Number</label>
+                            <ValidationMessage For="() => Input.Invoice.InvoiceNumber" />
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputNumber @bind-Value="Input.Invoice.TotalPrice" class="form-control" id="order-invoice-totalprice" placeholder="Total Price" />
+                            <label for="order-invoice-totalprice">Total Price</label>
+                            <ValidationMessage For="() => Input.Invoice.TotalPrice" />
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputNumber @bind-Value="Input.Invoice.Tax" class="form-control" id="order-invoice-tax" placeholder="Tax" />
+                            <label for="order-invoice-tax">Tax</label>
+                            <ValidationMessage For="() => Input.Invoice.Tax" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Size</label>
+                        <div class="row">
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="@Input.Size.Length" class="form-control" id="order-size-length" placeholder="Length" />
+                                <label for="order-size-length">Length</label>
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Width" class="form-control" id="order-size-width" placeholder="Width" />
+                                <label for="order-size-width">Width</label>
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <InputNumber @bind-Value="Input.Size.Height" class="form-control" id="order-size-height" placeholder="Height" />
+                                <label for="order-size-height">Height</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <ValidationMessage For="() => Input.Size.Length" />
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <ValidationMessage For="() => Input.Size.Width" />
+                            </div>
+                            <div class="form-floating col-md-4 mb-3 d-flex justify-content-between">
+                                <ValidationMessage For="() => Input.Size.Height" />
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputNumber @bind-Value="Input.Size.Volume" readonly class="form-control" id="order-size-volume" placeholder="Volume" />
+                            <label for="order-size-volume">Volume</label>
+                            <ValidationMessage For="() => Input.Size.Volume" />
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber @bind-Value="Input.Weight" class="form-control" id="order-weight" placeholder="Weight" />
+                        <label for="order-weight">Weight</label>
+                        <ValidationMessage For="() => Input.Weight" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Delivery Address</label>
+                        <div class="row">
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputText @bind-Value="Input.DeliveryAddress.Street" class="form-control" id="customer-street" placeholder="Street" />
+                                <label for="customer-street">Street</label>
+                                <ValidationMessage For="() => Input.DeliveryAddress.Street" />
+                            </div>
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputNumber @bind-Value="Input.DeliveryAddress.HouseNumber" class="form-control" id="customer-housenumber" placeholder="House Number" />
+                                <label for="customer-housenumber">House Number</label>
+                                <ValidationMessage For="() => Input.DeliveryAddress.HouseNumber" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputText @bind-Value="Input.DeliveryAddress.PostalCode" class="form-control" id="customer-postal-code" placeholder="Postal Code" />
+                                <label for="customer-Postal-code">Postal Code</label>
+                                <ValidationMessage For="() => Input.DeliveryAddress.PostalCode" />
+                            </div>
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputText @bind-Value="Input.DeliveryAddress.City" class="form-control" id="customer-city" placeholder="City" />
+                                <label for="customer-city">City</label>
+                                <ValidationMessage For="() => Input.DeliveryAddress.City" />
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.DeliveryAddress.State" class="form-control" id="customer-state" placeholder="State" />
+                            <label for="customer-state">State</label>
+                            <ValidationMessage For="() => Input.DeliveryAddress.State" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="mb-3">
+                        <label>Billing Address</label>
+                        <div class="row">
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputText @bind-Value="Input.BillingAddress.Street" class="form-control" id="billing-address-street" placeholder="Street" />
+                                <label for="billing-address-street">Street</label>
+                                <ValidationMessage For="() => Input.BillingAddress.Street" />
+                            </div>
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputNumber @bind-Value="Input.BillingAddress.HouseNumber" class="form-control" id="billing-address-housenumber" placeholder="House Number" />
+                                <label for="billing-address-housenumber">House Number</label>
+                                <ValidationMessage For="() => Input.BillingAddress.HouseNumber" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputText @bind-Value="Input.BillingAddress.PostalCode" class="form-control" id="billing-address-postalcode" placeholder="Postal Code" />
+                                <label for="billing-address-postalcode">Postal Code</label>
+                                <ValidationMessage For="() => Input.BillingAddress.PostalCode" />
+                            </div>
+                            <div class="form-floating col-md-6 mb-3">
+                                <InputText @bind-Value="Input.BillingAddress.City" class="form-control" id="billing-address-city" placeholder="City" />
+                                <label for="billing-address-city">City</label>
+                                <ValidationMessage For="() => Input.BillingAddress.City" />
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <InputText @bind-Value="Input.BillingAddress.State" class="form-control" id="billing-address-state" placeholder="State" />
+                            <label for="billing-address-state">State</label>
+                            <ValidationMessage For="() => Input.BillingAddress.State" />
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputDate @bind-Value="Input.OrderDate" class="form-control" id="order-date" placeholder="Date" />
+                        <label for="order-date">Order Date</label>
+                        <ValidationMessage For="() => Input.OrderDate" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputDate @bind-Value="Input.DeliveryDate" class="form-control" id="order-delivery-date" placeholder="Date" />
+                        <label for="order-delivery-date">Delivery Date</label>
+                        <ValidationMessage For="() => Input.DeliveryDate" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputDate @bind-Value="Input.InvoiceDate" class="form-control" id="order-invoice-date" placeholder="Date" />
+                        <label for="order-invoice-date">Invoice Date</label>
+                        <ValidationMessage For="() => Input.InvoiceDate" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputTextArea @bind-Value="Input.OrderNote" class="form-control" id="order-note" placeholder="Note" />
+                        <label for="order-note">Order Note</label>
+                        <ValidationMessage For="() => Input.OrderNote" />
                     </div>
                 </div>
             </div>

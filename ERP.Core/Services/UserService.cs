@@ -132,8 +132,6 @@ namespace ERP.Core.Services
                 user.Permissions = permissions.Where(x => permission_ids.Contains(x.PermissionId)).ToList();
             }
 
-
-
             return list;
         }
 

@@ -79,13 +79,33 @@ VALUES
 
             if (list.Any())
             {
-                IEnumerable<int> articleIds = list.Select(x => x.ArticleId);
-                sql = $"SELECT * FROM `articles` WHERE `article_id` IN ({string.Join(",", articleIds)})";
+                IEnumerable<int> Ids = list.Select(x => x.ArticleId);
+                sql = $"SELECT * FROM `articles` WHERE `article_id` IN ({string.Join(",", Ids)})";
                 List<Article> articles = await dbController.SelectDataAsync<Article>(sql, null, cancellationToken);
+
+                Ids = list.Select(x => x.WarehouseId);
+                sql = $"SELECT * FROM `warehouses` WHERE `warehouse_id` IN ({string.Join(",", Ids)})";
+                List<Warehouse> warehouses = await dbController.SelectDataAsync<Warehouse>(sql, null, cancellationToken);
+
+                Ids = list.Select(x => x.SectionId);
+                sql = $"SELECT * FROM `sections` WHERE `section_id` IN ({string.Join(",", Ids)})";
+                List<Section> sections = await dbController.SelectDataAsync<Section>(sql, null, cancellationToken);
+
+                Ids = list.Select(x => x.RowId);
+                sql = $"SELECT * FROM `rows` WHERE `row_id` IN ({string.Join(",", Ids)})";
+                List<Row> rows = await dbController.SelectDataAsync<Row>(sql, null, cancellationToken);
+
+                Ids = list.Select(x => x.RackId);
+                sql = $"SELECT * FROM `racks` WHERE `rack_id` IN ({string.Join(",", Ids)})";
+                List<Rack> racks = await dbController.SelectDataAsync<Rack>(sql, null, cancellationToken);
 
                 foreach (var item in list)
                 {
                     item.Article = articles.FirstOrDefault(x => x.ArticleId == item.ArticleId) ?? new();
+                    item.Warehouse = warehouses.FirstOrDefault(x => x.WarehouseId == item.WarehouseId) ?? new();
+                    item.Section = sections.FirstOrDefault(x => x.SectionId == item.SectionId) ?? new();
+                    item.Row = rows.FirstOrDefault(x => x.RowId == item.RowId) ?? new();
+                    item.Rack = racks.FirstOrDefault(x => x.RackId == item.RackId) ?? new();
                 }
             }
 

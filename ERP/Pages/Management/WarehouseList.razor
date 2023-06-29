@@ -12,8 +12,11 @@
                 <table class="table mb-0 table-lg">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Storage Number</th>
+                            <th>Warehouse</th>
+                            <th>Section</th>
+                            <th>Row</th>
+                            <th>Rack</th>
+                            <th>Storage</th>
                             <th>Name</th>
                             <th>Article Number</th>
                             <th>Article</th>
@@ -23,7 +26,10 @@
                     <tbody>
                         <Virtualize Items="FilterData" Context="storage">
                             <tr>
-                                <td>@storage.CompartmentId</td>
+                                <td>@storage.Warehouse.Number</td>
+                                <td>@storage.Section.Number</td>
+                                <td>@storage.Row.Number</td>
+                                <td>@storage.Rack.Number</td>
                                 <td>@storage.Number</td>
                                 <td>@storage.Name</td>
                                 <td>@storage.Article.ArticleNumber</td>

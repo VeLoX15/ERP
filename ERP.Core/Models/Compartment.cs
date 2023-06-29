@@ -26,6 +26,10 @@ namespace ERP.Core.Models
         public int Stock { get; set; }
 
         public Article Article { get; set; } = new();
+        public Warehouse Warehouse { get; set; } = new();
+        public Section Section { get; set; } = new();
+        public Row Row { get; set; } = new();
+        public Rack Rack { get; set; } = new();
 
         public int Id => CompartmentId;
 

@@ -66,11 +66,6 @@ VALUES
 
             input.OrderId = await dbController.GetFirstAsync<int>(sql, input.GetParameters(), cancellationToken);
 
-            await _customerService.CreateAsync(input.Customer, dbController, cancellationToken);
-            await _invoiceService.CreateAsync(input.Invoice, dbController, cancellationToken);
-            await _sizeService.CreateAsync(input.Size, dbController, cancellationToken);
-            await _addressService.CreateAsync(input.DeliveryAddress, dbController, cancellationToken);
-            await _addressService.CreateAsync(input.BillingAddress, dbController, cancellationToken);
 
         }
 
@@ -81,11 +76,9 @@ VALUES
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
 
-            await _customerService.DeleteAsync(input.Customer, dbController, cancellationToken);
-            await _invoiceService.DeleteAsync(input.Invoice, dbController, cancellationToken);
             await _sizeService.DeleteAsync(input.Size, dbController, cancellationToken);
-            await _addressService.DeleteAsync(input.DeliveryAddress, dbController, cancellationToken);
             await _addressService.DeleteAsync(input.BillingAddress, dbController, cancellationToken);
+            await _addressService.DeleteAsync(input.DeliveryAddress, dbController, cancellationToken);
         }
 
         public async Task<Order?> GetAsync(int orderId, IDbController dbController, CancellationToken cancellationToken = default)
@@ -126,36 +119,32 @@ VALUES
 
             if (list.Any())
             {
-                IEnumerable<int> addressIds = list.Select(x => x.DeliveryAddressId);
-                sql = $"SELECT * FROM `addresses` WHERE `address_id` IN ({string.Join(",", addressIds)})";
+                IEnumerable<int> Ids = list.Select(x => x.CustomerId);
+                sql = $"SELECT * FROM `customers` WHERE `customer_id` IN ({string.Join(",", Ids)})";
+                List<Customer> customers = await dbController.SelectDataAsync<Customer>(sql, null, cancellationToken);
+
+                Ids = list.Select(x => x.DeliveryAddressId);
+                sql = $"SELECT * FROM `invoices` WHERE `invoice_id` IN ({string.Join(",", Ids)})";
+                List<Invoice> invoices = await dbController.SelectDataAsync<Invoice>(sql, null, cancellationToken);
+
+                Ids = list.Select(x => x.DeliveryAddressId);
+                sql = $"SELECT * FROM `addresses` WHERE `address_id` IN ({string.Join(",", Ids)})";
                 List<Address> addresses = await dbController.SelectDataAsync<Address>(sql, null, cancellationToken);
 
-                foreach (var item in list)
-                {
-                    item.DeliveryAddress = addresses.FirstOrDefault(x => x.AddressId == item.DeliveryAddressId) ?? new();
-                }
-            }
+                Ids = list.Select(x => x.BillingAddressId);
+                sql = $"SELECT * FROM `addresses` WHERE `address_id` IN ({string.Join(",", Ids)})";
+                addresses = await dbController.SelectDataAsync<Address>(sql, null, cancellationToken);
 
-            if (list.Any())
-            {
-                IEnumerable<int> addressIds = list.Select(x => x.BillingAddressId);
-                sql = $"SELECT * FROM `addresses` WHERE `address_id` IN ({string.Join(",", addressIds)})";
-                List<Address> addresses = await dbController.SelectDataAsync<Address>(sql, null, cancellationToken);
-
-                foreach (var item in list)
-                {
-                    item.BillingAddress = addresses.FirstOrDefault(x => x.AddressId == item.BillingAddressId) ?? new();
-                }
-            }
-
-            if (list.Any())
-            {
-                IEnumerable<int> sizeIds = list.Select(x => x.SizeId);
-                sql = $"SELECT * FROM `sizes` WHERE `size_id` IN ({string.Join(",", sizeIds)})";
+                Ids = list.Select(x => x.SizeId);
+                sql = $"SELECT * FROM `sizes` WHERE `size_id` IN ({string.Join(",", Ids)})";
                 List<Size> sizes = await dbController.SelectDataAsync<Size>(sql, null, cancellationToken);
 
                 foreach (var item in list)
                 {
+                    item.Customer = customers.FirstOrDefault(x => x.CustomerId == item.CustomerId) ?? new();
+                    item.Invoice = invoices.FirstOrDefault(x => x.InvoiceId == item.InvoiceId) ?? new();
+                    item.DeliveryAddress = addresses.FirstOrDefault(x => x.AddressId == item.DeliveryAddressId) ?? new();
+                    item.BillingAddress = addresses.FirstOrDefault(x => x.AddressId == item.BillingAddressId) ?? new();
                     item.Size = sizes.FirstOrDefault(x => x.SizeId == item.SizeId) ?? new();
                 }
             }
@@ -243,7 +232,7 @@ VALUES
 `order_status_public` = @ORDER_STATUS_PUBLIC,
 `order_status_intern` = @ORDER_STATUS_INTERN,
 `discount_id` = @DISCOUNT_ID,
-`order_note` = @ORDER_NOT
+`order_note` = @ORDER_NOTE
 WHERE `article_id` = @ARTICLE_ID";
 
             await dbController.QueryAsync(sql, input.GetParameters(), cancellationToken);
